@@ -1,5 +1,5 @@
 public class Game {
-    
+    //geia sas
     BannerPanel bannerpanel;
     Board board;
     GameBoard gameboard;
