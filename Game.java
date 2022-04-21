@@ -1,3 +1,12 @@
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.io.File;
+import java.io.InputStream;
+
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.TargetDataLine;
+import javax.swing.JOptionPane;
+
 public class Game {
     //geia sas
     BannerPanel bannerpanel;
@@ -26,4 +35,18 @@ public class Game {
         this.pvp = new PvP();
         
     }
+
+    /*public void music() {
+        playMusic("TUCTACTOEMUSIC.wav");
+    }
+    public static void playMusic(String filepath) {
+        InputStream music;
+        try {
+            music = new FileInputStream(new File(filepath));
+            AudioInputStream audios = new AudioInputStream((TargetDataLine) music);
+            AudioPlayer.player.start(audios);
+        } catch(Exception e) {
+            JOptionPane.showMessageDialog(null, "Error");
+        }
+    }*/
 }
