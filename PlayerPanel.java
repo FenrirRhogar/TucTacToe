@@ -5,7 +5,7 @@ import java.io.*;
 
 public class PlayerPanel implements ActionListener {
 
-    //components creation
+    // components creation
     JLabel player1label = new JLabel("Player 1");
     JLabel player2label = new JLabel("Player 2");
     JLabel player1name = new JLabel();
@@ -13,7 +13,7 @@ public class PlayerPanel implements ActionListener {
     JButton selectplayer1button = new JButton("Select Player");
     JButton selectplayer2button = new JButton("Select Player");
 
-    //player 1 panel
+    // player 1 panel
     public void leftpanel(JFrame frame) {
         player1label.setBounds(60, 10, 100, 50);
         player1label.setFont(new Font("Monaco", Font.BOLD, 20));
@@ -27,7 +27,7 @@ public class PlayerPanel implements ActionListener {
         selectplayer1button.addActionListener(this);
     }
 
-    //player 2 panel
+    // player 2 panel
     public void rightpanel(JFrame frame) {
         player2label.setBounds(560, 10, 100, 50);
         player2label.setFont(new Font("Monaco", Font.BOLD, 20));
@@ -41,7 +41,7 @@ public class PlayerPanel implements ActionListener {
         selectplayer2button.addActionListener(this);
     }
 
-    //popup window to choose exsisting or new player
+    // popup window to choose exsisting or new player
     public String selectoraddpopup() {
         JFrame jFrame = new JFrame();
         String username = null;
@@ -49,16 +49,18 @@ public class PlayerPanel implements ActionListener {
         if (result == 0) {
             username = JOptionPane.showInputDialog("Please enter the new player's name:", null);
             Player player = new Player(username, 0, 0, 0);
-            /*try {
-                FileOutputStream fileOut = new FileOutputStream("tuctactoe.ser");
-                ObjectOutputStream out = new ObjectOutputStream(fileOut);
-                out.writeObject(player);
-                out.close();
-                fileOut.close();
-                System.out.printf("Serialized data is saved in tuctactoe.ser");
-            } catch (IOException i) {
-                i.printStackTrace();
-            }*/
+            /*
+             * try {
+             * FileOutputStream fileOut = new FileOutputStream("tuctactoe.ser");
+             * ObjectOutputStream out = new ObjectOutputStream(fileOut);
+             * out.writeObject(player);
+             * out.close();
+             * fileOut.close();
+             * System.out.printf("Serialized data is saved in tuctactoe.ser");
+             * } catch (IOException i) {
+             * i.printStackTrace();
+             * }
+             */
             return username;
         } else if (result == 1) {
             System.out.println("You pressed NO");
@@ -82,7 +84,7 @@ public class PlayerPanel implements ActionListener {
         }
     }
 
-    //action for every button configuration
+    // action for every button configuration
     @Override
     public void actionPerformed(ActionEvent e) {
         try {

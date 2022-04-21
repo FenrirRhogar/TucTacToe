@@ -1,179 +1,84 @@
 import java.util.*;
-//import java.awt.*;
-import javax.swing.*;
 
 public class Board {
 
-    int i=0;
+    int i = 0;
     int result;
     boolean Player1;
-    String Symbol1,Symbol2,BoardState;
-    JButton[] Gb = new JButton[9];
+    String Symbol1 = "X", Symbol2 = "O", BoardState;
     Random random = new Random();
 
-    public Board(){
+    public Board() {
 
     }
 
-    public void begingame() {
-        
+    public int getResult() {
+        return result;
     }
-    public void firstPlay(){
-        if (random.nextInt(2)==0){
-                Player1 = true;
-                //print (-player 1 name- turn in screen)
-        }
-        else{
+
+    public void setResult(int result) {
+        this.result = result;
+    }
+
+    public boolean isPlayer1() {
+        return Player1;
+    }
+
+    public void setPlayer1(boolean player1) {
+        Player1 = player1;
+    }
+
+    public String getSymbol1() {
+        return Symbol1;
+    }
+
+    public void setSymbol1(String symbol1) {
+        Symbol1 = symbol1;
+    }
+
+    public String getSymbol2() {
+        return Symbol2;
+    }
+
+    public void setSymbol2(String symbol2) {
+        Symbol2 = symbol2;
+    }
+
+    public String getBoardState() {
+        return BoardState;
+    }
+
+    public void setBoardState(String boardState) {
+        BoardState = boardState;
+    }
+
+    public boolean firstPlay() {
+        if (random.nextInt(2) == 0) {
+            Player1 = true;
+            return Player1;
+            // print (-player 1 name- turn in screen)
+        } else {
             Player1 = false;
-            //print (-player 2 name -turn in screen)
+            return Player1;
+            // print (-player 2 name -turn in screen)
         }
     }
-    /*public void nextPlay(){
-        for(int i=0; i<9; i++){
-            Gb[i].ge
+
+    public boolean nextPlay() {
+        if (Player1 == true) {
+            Player1 = false;
+            return Player1;
+        } else {
+            Player1 = true;
+            return Player1;
         }
 
-
-    }*/
-
-    public void ResultCheck(){
-        //P1 wins
-        if (Gb[0].getText()==Symbol1 &&
-            Gb[1].getText()==Symbol1 &&
-            Gb[2].getText()==Symbol1){
-                result = 1;
-        }
-        if (Gb[3].getText()==Symbol1 &&
-            Gb[4].getText()==Symbol1 &&
-            Gb[5].getText()==Symbol1){
-                result = 1;
-            }
-        if (Gb[6].getText()==Symbol1 &&
-            Gb[7].getText()==Symbol1 &&
-            Gb[8].getText()==Symbol1){
-                result = 1;
-        }
-        if (Gb[0].getText()==Symbol1 &&
-            Gb[3].getText()==Symbol1 &&
-            Gb[6].getText()==Symbol1){
-                result = 1;
-            }
-        if (Gb[1].getText()==Symbol1 &&
-            Gb[4].getText()==Symbol1 &&
-            Gb[7].getText()==Symbol1){
-                result = 1;
-            }
-        if (Gb[2].getText()==Symbol1 &&
-            Gb[5].getText()==Symbol1 &&
-            Gb[8].getText()==Symbol1){
-                result = 1;
-            }
-        if (Gb[0].getText()==Symbol1 &&
-            Gb[4].getText()==Symbol1 &&
-            Gb[8].getText()==Symbol1){
-                result = 1;
-            }
-        if (Gb[2].getText()==Symbol1 &&
-            Gb[4].getText()==Symbol1 &&
-            Gb[6].getText()==Symbol1){
-                result = 1;
-            }
- /**************************************************************** */           
-        //P2 wins
-        if (Gb[0].getText()==Symbol2 &&
-            Gb[1].getText()==Symbol2 &&
-            Gb[2].getText()==Symbol2){
-                result = -1;
-        }
-        if (Gb[3].getText()==Symbol2 &&
-            Gb[4].getText()==Symbol2 &&
-            Gb[5].getText()==Symbol2){
-                result = -1;
-            }
-        if (Gb[6].getText()==Symbol2 &&
-            Gb[7].getText()==Symbol2 &&
-            Gb[8].getText()==Symbol2){
-                result = -1;
-        }
-        if (Gb[0].getText()==Symbol2 &&
-            Gb[3].getText()==Symbol2 &&
-            Gb[6].getText()==Symbol2){
-                result = -1;
-            }
-        if (Gb[1].getText()==Symbol2 &&
-            Gb[4].getText()==Symbol2 &&
-            Gb[7].getText()==Symbol2){
-                result = -1;
-            }
-        if (Gb[2].getText()==Symbol2 &&
-            Gb[5].getText()==Symbol2 &&
-            Gb[8].getText()==Symbol2){
-                result = -1;
-            }
-        if (Gb[0].getText()==Symbol2 &&
-            Gb[4].getText()==Symbol2 &&
-            Gb[8].getText()==Symbol2){
-                result = -1;
-            }
-        if (Gb[2].getText()==Symbol2 &&
-            Gb[4].getText()==Symbol2 &&
-            Gb[6].getText()==Symbol2){
-                result = -1;
-            }
-        //draw
-        else{
-            result = 0;
-        }
     }
-    public void State(){
-        if (result == 0 || i==9){
+
+    public void State() {
+        if (result == 0 || i == 9) {
             BoardState = "final";
         }
     }
-    public void PlayerMoving(int a){
-        for (i=0; i<9; i++){
-       /* if (actionSource.equals(Gb[i])){
-            if (Player1==true){
-                if (Gb[i].getText()==""){
-                    Gb[i].setText(Symbol1);
-                }
-            }
-        }*/
-            if ((i/2)==0 && Player1==true){
-                //Player 1 plays
-                Gb[a].setText(Symbol1);
-            }
-            else if((i/2)!=0 && Player1==true){
-                //Player 2 plays
-                Gb[a].setText(Symbol2);
-            }
-            else if ((i/2)==0 && Player1==false){
-                //Player 2 plays
-                Gb[a].setText(Symbol2);
-            }
-            else{
-                //Player 1 plays
-                Gb[a].setText(Symbol1);
-            }
-        }
-    }
-   /* public void Result(){
-        if (BoardState=="final"){
-            if (PlayerMoving()!=null){
-                if (result==1){
-                    //Player 1 wins
-                }
-                else if(result==-1){
-                    //Player 2 wins
-                }
-                else{
-                    //draw
-                }
-            }
-            else{
 
-            }
-        }
-    }*/
-    
 }

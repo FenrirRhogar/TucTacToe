@@ -6,8 +6,130 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
     MainWindow mainwindow;
     JButton b[] = new JButton[9];
     JButton startbutton = new JButton("Start");
+    Board board = new Board();
+    boolean turn = board.firstPlay();
+    int num, result;
 
-    //game board 9 buttons creation
+    public void ResultCheck() {
+        // P1 wins
+        if (b[0].getText() == board.getSymbol1() &&
+                b[1].getText() == board.getSymbol1() &&
+                b[2].getText() == board.getSymbol1()) {
+            result = 1;
+            Result(result);
+        }
+        if (b[3].getText() == board.getSymbol1() &&
+                b[4].getText() == board.getSymbol1() &&
+                b[5].getText() == board.getSymbol1()) {
+            result = 1;
+            Result(result);
+        }
+        if (b[6].getText() == board.getSymbol1() &&
+                b[7].getText() == board.getSymbol1() &&
+                b[8].getText() == board.getSymbol1()) {
+            result = 1;
+            Result(result);
+        }
+        if (b[0].getText() == board.getSymbol1() &&
+                b[3].getText() == board.getSymbol1() &&
+                b[6].getText() == board.getSymbol1()) {
+            result = 1;
+            Result(result);
+        }
+        if (b[1].getText() == board.getSymbol1() &&
+                b[4].getText() == board.getSymbol1() &&
+                b[7].getText() == board.getSymbol1()) {
+            result = 1;
+            Result(result);
+        }
+        if (b[2].getText() == board.getSymbol1() &&
+                b[5].getText() == board.getSymbol1() &&
+                b[8].getText() == board.getSymbol1()) {
+            result = 1;
+            Result(result);
+        }
+        if (b[0].getText() == board.getSymbol1() &&
+                b[4].getText() == board.getSymbol1() &&
+                b[8].getText() == board.getSymbol1()) {
+            result = 1;
+            Result(result);
+        }
+        if (b[2].getText() == board.getSymbol1() &&
+                b[4].getText() == board.getSymbol1() &&
+                b[6].getText() == board.getSymbol1()) {
+            result = 1;
+            Result(result);
+        }
+        /**************************************************************** */
+        // P2 wins
+        if (b[0].getText() == board.getSymbol2() &&
+                b[1].getText() == board.getSymbol2() &&
+                b[2].getText() == board.getSymbol2()) {
+            result = -1;
+            Result(result);
+        }
+        if (b[3].getText() == board.getSymbol2() &&
+                b[4].getText() == board.getSymbol2() &&
+                b[5].getText() == board.getSymbol2()) {
+            result = -1;
+            Result(result);
+        }
+        if (b[6].getText() == board.getSymbol2() &&
+                b[7].getText() == board.getSymbol2() &&
+                b[8].getText() == board.getSymbol2()) {
+            result = -1;
+            Result(result);
+        }
+        if (b[0].getText() == board.getSymbol2() &&
+                b[3].getText() == board.getSymbol2() &&
+                b[6].getText() == board.getSymbol2()) {
+            result = -1;
+            Result(result);
+        }
+        if (b[1].getText() == board.getSymbol2() &&
+                b[4].getText() == board.getSymbol2() &&
+                b[7].getText() == board.getSymbol2()) {
+            result = -1;
+            Result(result);
+        }
+        if (b[2].getText() == board.getSymbol2() &&
+                b[5].getText() == board.getSymbol2() &&
+                b[8].getText() == board.getSymbol2()) {
+            result = -1;
+            Result(result);
+        }
+        if (b[0].getText() == board.getSymbol2() &&
+                b[4].getText() == board.getSymbol2() &&
+                b[8].getText() == board.getSymbol2()) {
+            result = -1;
+            Result(result);
+        }
+        if (b[2].getText() == board.getSymbol2() &&
+                b[4].getText() == board.getSymbol2() &&
+                b[6].getText() == board.getSymbol2()) {
+            result = -1;
+            Result(result);
+        }
+        // draw
+        else {
+            result = 0;
+        }
+
+    }
+
+    public void Result(int res) {
+        if (res == 1) {
+            for (int i = 0; i < 9; i++) {
+                b[i].setEnabled(false);
+            }
+        } else if (res == -1) {
+            for (int i = 0; i < 9; i++) {
+                b[i].setEnabled(false);
+            }
+        }
+    }
+
+    // game board 9 buttons creation
     public void boardcreation(JFrame frame) {
         int i, j, x, y;
         x = 200;
@@ -33,19 +155,33 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
         startbutton.setEnabled(false);
     }
 
-    public void name() {
-        
-    }
-
     @Override
     public void actionPerformed(ActionEvent e) {
         try {
             JButton actionSource = (JButton) e.getSource();
+            for (int i = 0; i < 9; i++) {
+                if (actionSource == b[i]) {
+                    if (turn) {
+                        if (b[i].getText() == "") {
+                            b[i].setText(board.getSymbol1());
+                            turn = board.nextPlay();
+                            ResultCheck();
+                            // cheking return number
+                            // P2 turn
+                        }
 
-            if (actionSource.equals(startbutton)) {
-                Board board = new Board();
-                board.begingame();
+                    } else {
+                        if (b[i].getText() == "") {
+                            b[i].setText(board.getSymbol2());
+                            turn = board.nextPlay();
+                            ResultCheck();
+                            // checking return number
+                            // P1 turn
+                        }
+                    }
+                }
             }
+
         } catch (Exception ex) {
             System.out.println(ex);
         }
@@ -53,7 +189,7 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
 
     @Override
     public void itemStateChanged(ItemEvent e) {
-        
+
     }
 
 }
