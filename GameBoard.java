@@ -6,6 +6,8 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
     MainWindow mainwindow;
     JButton b[] = new JButton[9];
     JButton startbutton = new JButton("Start");
+    JPanel boardpanel = new JPanel();
+    ImageIcon tictactoegameboard = new ImageIcon("board.png");
     Board board = new Board();
     boolean turn = board.firstPlay();
     int num, result;
@@ -144,6 +146,13 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
             }
             b[i].setBounds(x, y, 100, 100);
             frame.add(b[i]);
+            b[i].setEnabled(false);
+            
+            //make buttons invisible
+            /*b[i].setOpaque(false);
+            b[i].setContentAreaFilled(false);
+            b[i].setBorderPainted(false);*/
+            
             b[i].addActionListener(this);
         }
     }
@@ -152,13 +161,22 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
         startbutton.setBounds(300, 350, 100, 35);
         frame.add(startbutton);
         startbutton.addActionListener(this);
-        startbutton.setEnabled(false);
+        //to koumpi energopoieitai otan epileksoun kai oi 2 paiktes
+        //startbutton.setEnabled(false);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         try {
             JButton actionSource = (JButton) e.getSource();
+
+            if(actionSource == startbutton) {
+                startbutton.setEnabled(false);
+                startbutton.setVisible(false);
+                for (int i = 0; i < 9; i++) {
+                    b[i].setEnabled(true);
+                }
+            }
             for (int i = 0; i < 9; i++) {
                 if (actionSource == b[i]) {
                     if (turn) {
