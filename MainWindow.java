@@ -1,6 +1,8 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.Cursor;
+
 
 public class MainWindow extends Frame implements ActionListener {
 
@@ -71,6 +73,11 @@ public class MainWindow extends Frame implements ActionListener {
         frame.add(halloffamebutton);
         frame.add(settingsbutton);
         frame.add(exitbutton);
+        playbutton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        halloffamebutton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        settingsbutton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        exitbutton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+
     }
 
     
@@ -89,6 +96,8 @@ public class MainWindow extends Frame implements ActionListener {
         pvebutton.addActionListener(this);
         frame.add(pvpbutton);
         frame.add(pvebutton);
+        pvpbutton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        pvebutton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     }
 
     // action for every button configuration
@@ -99,6 +108,7 @@ public class MainWindow extends Frame implements ActionListener {
 
             if (actionSource.equals(playbutton)) {
                 frame.add(backtomenubutton);
+                backtomenubutton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 gamemodeselection();
             } else if (actionSource.equals(halloffamebutton)) {
                 System.out.println("Prits2");

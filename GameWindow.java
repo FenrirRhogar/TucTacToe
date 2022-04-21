@@ -11,6 +11,7 @@ public class GameWindow extends Frame implements ActionListener {
         backtomenubutton.setBounds(520, 510, 150, 30);
         backtomenubutton.addActionListener(this);
         frame.add(backtomenubutton);
+        backtomenubutton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     }
 
     public JFrame gamewindowcreation() {

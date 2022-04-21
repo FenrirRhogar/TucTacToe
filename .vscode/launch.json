@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch test",
+            "request": "launch",
+            "mainClass": "test",
+            "projectName": "TucTacToe_1f34d3c7"
+        },
+        {
+            "type": "java",
             "name": "Launch Player",
             "request": "launch",
             "mainClass": "Player",

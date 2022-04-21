@@ -2,6 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
+import java.awt.Cursor;
+
 
 public class PlayerPanel implements ActionListener {
 
@@ -24,6 +26,7 @@ public class PlayerPanel implements ActionListener {
         frame.add(player1label);
         frame.add(selectplayer1button);
         frame.add(player1name);
+        selectplayer1button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         selectplayer1button.addActionListener(this);
     }
 
@@ -38,6 +41,7 @@ public class PlayerPanel implements ActionListener {
         frame.add(player2label);
         frame.add(selectplayer2button);
         frame.add(player2name);
+        selectplayer2button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         selectplayer2button.addActionListener(this);
     }
 

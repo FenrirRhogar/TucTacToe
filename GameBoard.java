@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.event.*;
+import java.awt.Cursor;
 
 public class GameBoard extends JFrame implements ItemListener, ActionListener {
 
@@ -133,6 +134,11 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
 
     // game board 9 buttons creation
     public void boardcreation(JFrame frame) {
+        JButton board = new JButton(tictactoegameboard);
+        board.setBounds(200, 10, 300, 300);
+        frame.add(board);
+        JLayeredPane layeredPane = frame.getLayeredPane();
+        layeredPane.add(board, Integer.valueOf(0));
         int i, j, x, y;
         x = 200;
         y = 10;
@@ -147,12 +153,14 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
             b[i].setBounds(x, y, 100, 100);
             frame.add(b[i]);
             b[i].setEnabled(false);
-            
-            //make buttons invisible
-            /*b[i].setOpaque(false);
+            b[i].setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+            layeredPane.add(b[i], Integer.valueOf(1));
+            // make buttons invisible
+            b[i].setOpaque(false);
             b[i].setContentAreaFilled(false);
-            b[i].setBorderPainted(false);*/
+            b[i].setBorderPainted(false);
             
+
             b[i].addActionListener(this);
         }
     }
@@ -160,9 +168,10 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
     public void createstartbutton(JFrame frame) {
         startbutton.setBounds(300, 350, 100, 35);
         frame.add(startbutton);
+        startbutton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         startbutton.addActionListener(this);
-        //to koumpi energopoieitai otan epileksoun kai oi 2 paiktes
-        //startbutton.setEnabled(false);
+        // to koumpi energopoieitai otan epileksoun kai oi 2 paiktes
+        // startbutton.setEnabled(false);
     }
 
     @Override
@@ -170,7 +179,7 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
         try {
             JButton actionSource = (JButton) e.getSource();
 
-            if(actionSource == startbutton) {
+            if (actionSource == startbutton) {
                 startbutton.setEnabled(false);
                 startbutton.setVisible(false);
                 for (int i = 0; i < 9; i++) {
