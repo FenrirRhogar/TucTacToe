@@ -15,6 +15,9 @@ public class Board {
 
     }
 
+    public void begingame() {
+        
+    }
     public void firstPlay(){
         if (random.nextInt(2)==0){
                 Player1 = true;

@@ -73,6 +73,7 @@ public class MainWindow extends Frame implements ActionListener {
         frame.add(exitbutton);
     }
 
+    
     public void gamemodeselection() {
         // remove previous buttons
         frame.remove(playbutton);
@@ -109,6 +110,7 @@ public class MainWindow extends Frame implements ActionListener {
                 frame.remove(pvpbutton);
                 frame.remove(pvebutton);
                 frame.remove(menutitle);
+                frame.remove(backtomenubutton);
                 frame.revalidate();
                 frame.repaint();
                 pvp.pvpopen(frame);
@@ -116,6 +118,7 @@ public class MainWindow extends Frame implements ActionListener {
                 frame.remove(pvpbutton);
                 frame.remove(pvebutton);
                 frame.remove(menutitle);
+                frame.remove(backtomenubutton);
                 frame.revalidate();
                 frame.repaint();
                 pve.pveopen(frame);

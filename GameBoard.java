@@ -5,6 +5,7 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
 
     MainWindow mainwindow;
     JButton b[] = new JButton[9];
+    JButton startbutton = new JButton("Start");
 
     //game board 9 buttons creation
     public void boardcreation(JFrame frame) {
@@ -25,9 +26,29 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
         }
     }
 
+    public void createstartbutton(JFrame frame) {
+        startbutton.setBounds(300, 350, 100, 35);
+        frame.add(startbutton);
+        startbutton.addActionListener(this);
+        startbutton.setEnabled(false);
+    }
+
+    public void name() {
+        
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
-        
+        try {
+            JButton actionSource = (JButton) e.getSource();
+
+            if (actionSource.equals(startbutton)) {
+                Board board = new Board();
+                board.begingame();
+            }
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
     }
 
     @Override
