@@ -12,101 +12,101 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
 
     public void ResultCheck() {
         // P1 wins
-        if (b[0].getText() == board.getSymbol1() &&
-                b[1].getText() == board.getSymbol1() &&
-                b[2].getText() == board.getSymbol1()) {
+        if (b[0].getIcon() == board.getIc1() &&
+                b[1].getIcon() == board.getIc1() &&
+                b[2].getIcon() == board.getIc1()) {
             result = 1;
             Result(result);
         }
-        if (b[3].getText() == board.getSymbol1() &&
-                b[4].getText() == board.getSymbol1() &&
-                b[5].getText() == board.getSymbol1()) {
+        if (b[3].getIcon() == board.getIc1() &&
+                b[4].getIcon() == board.getIc1() &&
+                b[5].getIcon() == board.getIc1()) {
             result = 1;
             Result(result);
         }
-        if (b[6].getText() == board.getSymbol1() &&
-                b[7].getText() == board.getSymbol1() &&
-                b[8].getText() == board.getSymbol1()) {
+        if (b[6].getIcon() == board.getIc1() &&
+                b[7].getIcon() == board.getIc1() &&
+                b[8].getIcon() == board.getIc1()) {
             result = 1;
             Result(result);
         }
-        if (b[0].getText() == board.getSymbol1() &&
-                b[3].getText() == board.getSymbol1() &&
-                b[6].getText() == board.getSymbol1()) {
+        if (b[0].getIcon() == board.getIc1() &&
+                b[3].getIcon() == board.getIc1() &&
+                b[6].getIcon() == board.getIc1()) {
             result = 1;
             Result(result);
         }
-        if (b[1].getText() == board.getSymbol1() &&
-                b[4].getText() == board.getSymbol1() &&
-                b[7].getText() == board.getSymbol1()) {
+        if (b[1].getIcon() == board.getIc1() &&
+                b[4].getIcon() == board.getIc1() &&
+                b[7].getIcon() == board.getIc1()) {
             result = 1;
             Result(result);
         }
-        if (b[2].getText() == board.getSymbol1() &&
-                b[5].getText() == board.getSymbol1() &&
-                b[8].getText() == board.getSymbol1()) {
+        if (b[2].getIcon() == board.getIc1() &&
+                b[5].getIcon() == board.getIc1() &&
+                b[8].getIcon() == board.getIc1()) {
             result = 1;
             Result(result);
         }
-        if (b[0].getText() == board.getSymbol1() &&
-                b[4].getText() == board.getSymbol1() &&
-                b[8].getText() == board.getSymbol1()) {
+        if (b[0].getIcon() == board.getIc1() &&
+                b[4].getIcon() == board.getIc1() &&
+                b[8].getIcon() == board.getIc1()) {
             result = 1;
             Result(result);
         }
-        if (b[2].getText() == board.getSymbol1() &&
-                b[4].getText() == board.getSymbol1() &&
-                b[6].getText() == board.getSymbol1()) {
+        if (b[2].getIcon() == board.getIc1() &&
+                b[4].getIcon() == board.getIc1() &&
+                b[6].getIcon() == board.getIc1()) {
             result = 1;
             Result(result);
         }
         /**************************************************************** */
         // P2 wins
-        if (b[0].getText() == board.getSymbol2() &&
-                b[1].getText() == board.getSymbol2() &&
-                b[2].getText() == board.getSymbol2()) {
+        if (b[0].getIcon() == board.getIc2() &&
+                b[1].getIcon() == board.getIc2() &&
+                b[2].getIcon() == board.getIc2()) {
             result = -1;
             Result(result);
         }
-        if (b[3].getText() == board.getSymbol2() &&
-                b[4].getText() == board.getSymbol2() &&
-                b[5].getText() == board.getSymbol2()) {
+        if (b[3].getIcon() == board.getIc2() &&
+                b[4].getIcon() == board.getIc2() &&
+                b[5].getIcon() == board.getIc2()) {
             result = -1;
             Result(result);
         }
-        if (b[6].getText() == board.getSymbol2() &&
-                b[7].getText() == board.getSymbol2() &&
-                b[8].getText() == board.getSymbol2()) {
+        if (b[6].getIcon() == board.getIc2() &&
+                b[7].getIcon() == board.getIc2() &&
+                b[8].getIcon() == board.getIc2()) {
             result = -1;
             Result(result);
         }
-        if (b[0].getText() == board.getSymbol2() &&
-                b[3].getText() == board.getSymbol2() &&
-                b[6].getText() == board.getSymbol2()) {
+        if (b[0].getIcon() == board.getIc2() &&
+                b[3].getIcon() == board.getIc2() &&
+                b[6].getIcon() == board.getIc2()) {
             result = -1;
             Result(result);
         }
-        if (b[1].getText() == board.getSymbol2() &&
-                b[4].getText() == board.getSymbol2() &&
-                b[7].getText() == board.getSymbol2()) {
+        if (b[1].getIcon() == board.getIc2() &&
+                b[4].getIcon() == board.getIc2() &&
+                b[7].getIcon() == board.getIc2()) {
             result = -1;
             Result(result);
         }
-        if (b[2].getText() == board.getSymbol2() &&
-                b[5].getText() == board.getSymbol2() &&
-                b[8].getText() == board.getSymbol2()) {
+        if (b[2].getIcon() == board.getIc2() &&
+                b[5].getIcon() == board.getIc2() &&
+                b[8].getIcon() == board.getIc2()) {
             result = -1;
             Result(result);
         }
-        if (b[0].getText() == board.getSymbol2() &&
-                b[4].getText() == board.getSymbol2() &&
-                b[8].getText() == board.getSymbol2()) {
+        if (b[0].getIcon() == board.getIc2() &&
+                b[4].getIcon() == board.getIc2() &&
+                b[8].getIcon() == board.getIc2()) {
             result = -1;
             Result(result);
         }
-        if (b[2].getText() == board.getSymbol2() &&
-                b[4].getText() == board.getSymbol2() &&
-                b[6].getText() == board.getSymbol2()) {
+        if (b[2].getIcon() == board.getIc2() &&
+                b[4].getIcon() == board.getIc2() &&
+                b[6].getIcon() == board.getIc2()) {
             result = -1;
             Result(result);
         }
@@ -163,7 +163,7 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
                 if (actionSource == b[i]) {
                     if (turn) {
                         if (b[i].getText() == "") {
-                            b[i].setText(board.getSymbol1());
+                            b[i].setIcon(board.getIc1());
                             turn = board.nextPlay();
                             ResultCheck();
                             // cheking return number
@@ -172,7 +172,7 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
 
                     } else {
                         if (b[i].getText() == "") {
-                            b[i].setText(board.getSymbol2());
+                            b[i].setIcon(board.getIc2());
                             turn = board.nextPlay();
                             ResultCheck();
                             // checking return number

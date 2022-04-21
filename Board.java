@@ -1,11 +1,15 @@
 import java.util.*;
 
+import javax.swing.*;
+
 public class Board {
 
     int i = 0;
     int result;
     boolean Player1;
-    String Symbol1 = "X", Symbol2 = "O", BoardState;
+    Icon ic1 = new ImageIcon("X.png");
+    Icon ic2 = new ImageIcon("O.png");
+    String BoardState;
     Random random = new Random();
 
     public Board() {
@@ -28,20 +32,20 @@ public class Board {
         Player1 = player1;
     }
 
-    public String getSymbol1() {
-        return Symbol1;
+    public Icon getIc1() {
+        return ic1;
     }
 
-    public void setSymbol1(String symbol1) {
-        Symbol1 = symbol1;
+    public void setIc1(Icon ic1) {
+        this.ic1 = ic1;
     }
 
-    public String getSymbol2() {
-        return Symbol2;
+    public Icon getIc2() {
+        return ic2;
     }
 
-    public void setSymbol2(String symbol2) {
-        Symbol2 = symbol2;
+    public void setIc2(Icon ic2) {
+        this.ic2 = ic2;
     }
 
     public String getBoardState() {
