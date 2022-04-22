@@ -4,7 +4,6 @@ import java.awt.event.*;
 import java.io.*;
 import java.awt.Cursor;
 
-
 public class PlayerPanel implements ActionListener {
 
     // components creation
@@ -16,7 +15,7 @@ public class PlayerPanel implements ActionListener {
     JButton selectplayer2button = new JButton("Select Player");
 
     // player 1 panel
-    public void leftpanel(JFrame frame) {
+    public JLabel leftpanel(JFrame frame) {
         player1label.setBounds(60, 10, 100, 50);
         player1label.setFont(new Font("Monaco", Font.BOLD, 20));
         player1label.setForeground(Color.GREEN);
@@ -28,10 +27,11 @@ public class PlayerPanel implements ActionListener {
         frame.add(player1name);
         selectplayer1button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         selectplayer1button.addActionListener(this);
+        return player1name;
     }
 
     // player 2 panel
-    public void rightpanel(JFrame frame) {
+    public JLabel rightpanel(JFrame frame) {
         player2label.setBounds(560, 10, 100, 50);
         player2label.setFont(new Font("Monaco", Font.BOLD, 20));
         player2label.setForeground(Color.GREEN);
@@ -43,6 +43,7 @@ public class PlayerPanel implements ActionListener {
         frame.add(player2name);
         selectplayer2button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         selectplayer2button.addActionListener(this);
+        return player2name;
     }
 
     // popup window to choose exsisting or new player

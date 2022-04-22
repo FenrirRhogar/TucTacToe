@@ -3,7 +3,6 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.Cursor;
 
-
 public class MainWindow extends Frame implements ActionListener {
 
     // classes
@@ -13,6 +12,7 @@ public class MainWindow extends Frame implements ActionListener {
     GameBoard gameboard = new GameBoard();
     PvP pvp = new PvP();
     PvE pve = new PvE();
+    EvE eve = new EvE();
     // main frame
     JFrame frame = new JFrame("Tuc Tac Toe");
     // tuc tac toe label
@@ -24,6 +24,7 @@ public class MainWindow extends Frame implements ActionListener {
     JButton exitbutton = new JButton("Exit");
     JButton pvpbutton = new JButton("PvP");
     JButton pvebutton = new JButton("PvE");
+    JButton evebutton = new JButton("EvE");
     JButton backtomenubutton = new JButton("Back to Menu");
 
     public void windowcreation() {
@@ -38,7 +39,7 @@ public class MainWindow extends Frame implements ActionListener {
         } else {
             JOptionPane.showMessageDialog(frame, "Icon image not found.");
         }
-        
+
         // window properties
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(714, 600);
@@ -80,7 +81,6 @@ public class MainWindow extends Frame implements ActionListener {
 
     }
 
-    
     public void gamemodeselection() {
         // remove previous buttons
         frame.remove(playbutton);
@@ -90,14 +90,18 @@ public class MainWindow extends Frame implements ActionListener {
         frame.revalidate();
         frame.repaint();
         // add game mode selection buttons
-        pvpbutton.setBounds(250, 150, 70, 30);
-        pvebutton.setBounds(350, 150, 70, 30);
+        pvpbutton.setBounds(210, 150, 70, 30);
+        pvebutton.setBounds(310, 150, 70, 30);
+        evebutton.setBounds(410, 150, 70, 30);
         pvpbutton.addActionListener(this);
         pvebutton.addActionListener(this);
+        evebutton.addActionListener(this);
         frame.add(pvpbutton);
         frame.add(pvebutton);
+        frame.add(evebutton);
         pvpbutton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         pvebutton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        evebutton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     }
 
     // action for every button configuration
@@ -119,6 +123,7 @@ public class MainWindow extends Frame implements ActionListener {
             } else if (actionSource.equals(pvpbutton)) {
                 frame.remove(pvpbutton);
                 frame.remove(pvebutton);
+                frame.remove(evebutton);
                 frame.remove(menutitle);
                 frame.remove(backtomenubutton);
                 frame.revalidate();
@@ -127,11 +132,21 @@ public class MainWindow extends Frame implements ActionListener {
             } else if (actionSource.equals(pvebutton)) {
                 frame.remove(pvpbutton);
                 frame.remove(pvebutton);
+                frame.remove(evebutton);
                 frame.remove(menutitle);
                 frame.remove(backtomenubutton);
                 frame.revalidate();
                 frame.repaint();
                 pve.pveopen(frame);
+            } else if (actionSource.equals(evebutton)) {
+                frame.remove(pvpbutton);
+                frame.remove(pvebutton);
+                frame.remove(evebutton);
+                frame.remove(menutitle);
+                frame.remove(backtomenubutton);
+                frame.revalidate();
+                frame.repaint();
+                eve.eveopen(frame);
             } else if (actionSource.equals(backtomenubutton)) {
                 frame.remove(pvpbutton);
                 frame.remove(pvebutton);
