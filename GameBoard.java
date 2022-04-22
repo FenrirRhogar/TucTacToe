@@ -13,55 +13,55 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
     boolean turn = board.firstPlay();
     int num, result;
 
-    public void ResultCheck() {
+    public int ResultCheck() {
         // P1 wins
         if (b[0].getIcon() == board.getIc1() &&
                 b[1].getIcon() == board.getIc1() &&
                 b[2].getIcon() == board.getIc1()) {
             result = 1;
-            Result(result);
+            return result;
         }
         if (b[3].getIcon() == board.getIc1() &&
                 b[4].getIcon() == board.getIc1() &&
                 b[5].getIcon() == board.getIc1()) {
             result = 1;
-            Result(result);
+            return result;
         }
         if (b[6].getIcon() == board.getIc1() &&
                 b[7].getIcon() == board.getIc1() &&
                 b[8].getIcon() == board.getIc1()) {
             result = 1;
-            Result(result);
+            return result;
         }
         if (b[0].getIcon() == board.getIc1() &&
                 b[3].getIcon() == board.getIc1() &&
                 b[6].getIcon() == board.getIc1()) {
             result = 1;
-            Result(result);
+            return result;
         }
         if (b[1].getIcon() == board.getIc1() &&
                 b[4].getIcon() == board.getIc1() &&
                 b[7].getIcon() == board.getIc1()) {
             result = 1;
-            Result(result);
+            return result;
         }
         if (b[2].getIcon() == board.getIc1() &&
                 b[5].getIcon() == board.getIc1() &&
                 b[8].getIcon() == board.getIc1()) {
             result = 1;
-            Result(result);
+            return result;
         }
         if (b[0].getIcon() == board.getIc1() &&
                 b[4].getIcon() == board.getIc1() &&
                 b[8].getIcon() == board.getIc1()) {
             result = 1;
-            Result(result);
+            return result;
         }
         if (b[2].getIcon() == board.getIc1() &&
                 b[4].getIcon() == board.getIc1() &&
                 b[6].getIcon() == board.getIc1()) {
             result = 1;
-            Result(result);
+            return result;
         }
         /**************************************************************** */
         // P2 wins
@@ -69,53 +69,54 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
                 b[1].getIcon() == board.getIc2() &&
                 b[2].getIcon() == board.getIc2()) {
             result = -1;
-            Result(result);
+            return result;
         }
         if (b[3].getIcon() == board.getIc2() &&
                 b[4].getIcon() == board.getIc2() &&
                 b[5].getIcon() == board.getIc2()) {
             result = -1;
-            Result(result);
+            return result;
         }
         if (b[6].getIcon() == board.getIc2() &&
                 b[7].getIcon() == board.getIc2() &&
                 b[8].getIcon() == board.getIc2()) {
             result = -1;
-            Result(result);
+            return result;
         }
         if (b[0].getIcon() == board.getIc2() &&
                 b[3].getIcon() == board.getIc2() &&
                 b[6].getIcon() == board.getIc2()) {
             result = -1;
-            Result(result);
+            return result;
         }
         if (b[1].getIcon() == board.getIc2() &&
                 b[4].getIcon() == board.getIc2() &&
                 b[7].getIcon() == board.getIc2()) {
             result = -1;
-            Result(result);
+            return result;
         }
         if (b[2].getIcon() == board.getIc2() &&
                 b[5].getIcon() == board.getIc2() &&
                 b[8].getIcon() == board.getIc2()) {
             result = -1;
-            Result(result);
+            return result;
         }
         if (b[0].getIcon() == board.getIc2() &&
                 b[4].getIcon() == board.getIc2() &&
                 b[8].getIcon() == board.getIc2()) {
             result = -1;
-            Result(result);
+            return result;
         }
         if (b[2].getIcon() == board.getIc2() &&
                 b[4].getIcon() == board.getIc2() &&
                 b[6].getIcon() == board.getIc2()) {
             result = -1;
-            Result(result);
+            return result;
         }
         // draw
         else {
             result = 0;
+            return result;
         }
 
     }
@@ -159,7 +160,6 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
             b[i].setOpaque(false);
             b[i].setContentAreaFilled(false);
             b[i].setBorderPainted(false);
-            
 
             b[i].addActionListener(this);
         }
@@ -173,6 +173,12 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
         // to koumpi energopoieitai otan epileksoun kai oi 2 paiktes
         // startbutton.setEnabled(false);
     }
+
+    /*
+     * public int minmax(boolean turn){
+     * if ()
+     * }
+     */
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -189,19 +195,19 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
             for (int i = 0; i < 9; i++) {
                 if (actionSource == b[i]) {
                     if (turn) {
-                        if (b[i].getText() == "") {
+                        if (b[i].getIcon() == null) {
                             b[i].setIcon(board.getIc1());
                             turn = board.nextPlay();
-                            ResultCheck();
+                            Result(ResultCheck());
                             // cheking return number
                             // P2 turn
                         }
 
                     } else {
-                        if (b[i].getText() == "") {
+                        if (b[i].getIcon() == null) {
                             b[i].setIcon(board.getIc2());
                             turn = board.nextPlay();
-                            ResultCheck();
+                            Result(ResultCheck());
                             // checking return number
                             // P1 turn
                         }
