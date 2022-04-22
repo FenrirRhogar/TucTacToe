@@ -1,5 +1,5 @@
 public class PlayerRoster {
-    
+
     Player[] player;
 
     public PlayerRoster() {
@@ -7,14 +7,21 @@ public class PlayerRoster {
     }
 
     public void findPlayerNames() {
-        
+
     }
 
-    public void findPlayer(String name) {
-        
-    }
+    /*
+     * public Player findPlayer(String name) {
+     * for(Player player : this.player){
+     * if(player!=null && player.getName().equals(name)){
+     * return player;
+     * }
+     * }
+     * 
+     * }
+     */
 
     public void findHallOfFame(int number) {
-        
+
     }
 }
