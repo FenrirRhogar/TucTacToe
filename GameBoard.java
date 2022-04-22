@@ -131,6 +131,12 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
             for (int i = 0; i < 9; i++) {
                 b[i].setEnabled(false);
             }
+        } else {
+            for (int i = 0; i < 9; i++) {
+                if (b[i].getIcon() == null) {
+                    continue;
+                }
+            }
         }
     }
 

@@ -23,11 +23,29 @@ public class AIplayer {
                         bestMove = i;
 
                     }
+                    if (value == -1) {
+                        break;
+                    }
                 }
             }
+            gb.b[bestMove].setIcon(b.getIc1());
+            gb.Result(gb.ResultCheck());
 
         }
 
+    }
+
+    public void RandomPlayer() {
+        int sel = 0;
+        int availablePos[] = new int[9];
+        for (int i = 0; i < 9; i++) {
+            if (gb.b[i].getIcon() == null) {
+                availablePos[i] = i;
+            }
+            sel = availablePos[random.nextInt(availablePos.length)];
+        }
+        gb.b[sel].setIcon(b.getIc1());
+        gb.Result(gb.ResultCheck());
     }
 
 }
