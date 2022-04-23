@@ -25,5 +25,7 @@ public class Game {
         this.pve = new PvE();
         this.pvp = new PvP();
 
+        playerpanel.addplayer("Mike", 0, 0, 0);
+
     }
 }

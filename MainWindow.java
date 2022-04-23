@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.Cursor;
+import java.io.*;
 
 public class MainWindow extends Frame implements ActionListener {
 

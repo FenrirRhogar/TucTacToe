@@ -16,6 +16,10 @@ public class PlayerPanel implements ActionListener {
     JButton selectplayer2button = new JButton("Select Player");
     GameBoard gameboard;
 
+    public PlayerPanel() {
+
+    }
+
     public void playerpanelscreation(JFrame frame, JButton startbutton, String gamemode) {
         // create player 1 and 2 panels
         leftpanel(frame);
@@ -114,6 +118,7 @@ public class PlayerPanel implements ActionListener {
             // NO: select exsisting player
         } else if (result == 1) {
             System.out.println("You pressed NO");
+
             // CANCEL
         } else {
             return null;
