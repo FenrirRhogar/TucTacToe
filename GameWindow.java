@@ -1,20 +1,42 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
+import javax.sound.sampled.AudioInputStream;
+import javax.swing.JOptionPane;
+import java.io.IOException;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 
 public class GameWindow extends Frame implements ActionListener {
     JFrame gameframe = new JFrame("Tuc Tac Toe");
+    GameBoard gameboard = new GameBoard();
     JButton backtomenubutton = new JButton("Back to Menu");
     MainWindow mainwindow;
-    
-    public void backbutton(JFrame frame) {
+    Music music = new Music();
+
+    public void backbutton(JFrame frame, Clip clip) {
         backtomenubutton.setBounds(520, 510, 150, 30);
         backtomenubutton.addActionListener(this);
         frame.add(backtomenubutton);
         backtomenubutton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        backtomenubutton.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                gameframe.dispose();
+                mainwindow = new MainWindow();
+                mainwindow.windowcreation();
+                clip.stop();
+            }
+
+        });
     }
 
-    public JFrame gamewindowcreation() {
+    public JFrame gamewindowcreation(String gamemode) {
+        Clip clip = music.playMusic();
         ImageIcon arrowIcon = null;
         java.net.URL imgURL = MainWindow.class.getResource("gb.png");
         if (imgURL != null) {
@@ -30,25 +52,26 @@ public class GameWindow extends Frame implements ActionListener {
         gameframe.setResizable(false);
         gameframe.setLayout(null);
         gameframe.setVisible(true);
-        backbutton(gameframe);
+        backbutton(gameframe, clip);
+        gameboard.boardcreation(gameframe, gamemode);
         return gameframe;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        try {
-            JButton actionSource = (JButton) e.getSource();
+        /*
+         * try {
+         * JButton actionSource = (JButton) e.getSource();
+         * if (actionSource.equals(backtomenubutton)) {
+         * gameframe.dispose();
+         * mainwindow = new MainWindow();
+         * mainwindow.windowcreation();
+         * }
+         * } catch (Exception ex) {
+         * System.out.println(ex);
+         * }
+         */
 
-            if (actionSource.equals(backtomenubutton)) {
-                gameframe.dispose();
-                mainwindow = new MainWindow();
-                mainwindow.windowcreation();
-            } 
-        } catch (Exception ex) {
-            System.out.println(ex);
-        }
-        
     }
 
-    
 }

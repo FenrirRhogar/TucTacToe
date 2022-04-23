@@ -1,16 +1,27 @@
 import javax.swing.*;
 import java.awt.event.*;
+import java.rmi.activation.ActivationDesc;
 import java.awt.Cursor;
-import java.math.*;
+import java.io.File;
+import javax.sound.sampled.AudioInputStream;
+import javax.swing.JOptionPane;
+import java.io.IOException;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 
 public class GameBoard extends JFrame implements ItemListener, ActionListener {
 
     MainWindow mainwindow;
+    PlayerPanel playerpanel = new PlayerPanel();
     JButton b[] = new JButton[9];
-    JButton startbutton = new JButton("Start");
     JPanel boardpanel = new JPanel();
     ImageIcon tictactoegameboard = new ImageIcon("board.png");
+    JButton boardbutton = new JButton(tictactoegameboard);
+    JButton startbutton = new JButton("Start");
     Board board = new Board();
+    Music music = new Music();
     boolean turn = board.firstPlay();
     int num, result;
 
@@ -123,14 +134,19 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
     }
 
     public void Result(int res) {
+        JFrame jFrame = new JFrame();
         if (res == 1) {
             for (int i = 0; i < 9; i++) {
                 b[i].setEnabled(false);
+                boardbutton.setEnabled(false);
             }
+            JOptionPane.showMessageDialog(jFrame, "Player 1 wins!");
         } else if (res == -1) {
             for (int i = 0; i < 9; i++) {
                 b[i].setEnabled(false);
+                boardbutton.setEnabled(false);
             }
+            JOptionPane.showMessageDialog(jFrame, "Player 2 wins!");
         } else {
             for (int i = 0; i < 9; i++) {
                 if (b[i].getIcon() == null) {
@@ -140,13 +156,34 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
         }
     }
 
+    public JButton createstartbutton(JFrame frame) {
+        startbutton.setBounds(300, 350, 100, 35);
+        frame.add(startbutton);
+        startbutton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        startbutton.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                for (int i = 0; i < 9; i++) {
+                    b[i].setEnabled(true);
+                }
+                startbutton.setEnabled(false);
+                startbutton.setVisible(false);
+            }
+
+        });
+        startbutton.setEnabled(false);
+        return startbutton;
+    }
+
     // game board 9 buttons creation
-    public void boardcreation(JFrame frame) {
-        JButton board = new JButton(tictactoegameboard);
-        board.setBounds(200, 10, 300, 300);
-        frame.add(board);
+    public void boardcreation(JFrame frame, String gamemode) {
+        JButton button = createstartbutton(frame);
+        playerpanel.playerpanelscreation(frame, button, gamemode);
+        boardbutton.setBounds(200, 10, 300, 300);
+        frame.add(boardbutton);
         JLayeredPane layeredPane = frame.getLayeredPane();
-        layeredPane.add(board, Integer.valueOf(0));
+        layeredPane.add(boardbutton, Integer.valueOf(0));
         int i, j, x, y;
         x = 200;
         y = 10;
@@ -160,73 +197,50 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
             }
             b[i].setBounds(x, y, 100, 100);
             frame.add(b[i]);
-            b[i].setEnabled(false);
-            b[i].setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
             layeredPane.add(b[i], Integer.valueOf(1));
+            b[i].setEnabled(false);
             // make buttons invisible
             b[i].setOpaque(false);
             b[i].setContentAreaFilled(false);
             b[i].setBorderPainted(false);
+            b[i].setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 
             b[i].addActionListener(this);
         }
     }
 
-    public void createstartbutton(JFrame frame) {
-        startbutton.setBounds(300, 350, 100, 35);
-        frame.add(startbutton);
-        startbutton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        startbutton.addActionListener(this);
-        // to koumpi energopoieitai otan epileksoun kai oi 2 paiktes
-        // startbutton.setEnabled(false);
-    }
-
-    public int minmax(boolean turn) {
-        if (ResultCheck() != 0) {
-            return result;
-        }
-        if (turn) {
-            int j = Integer.MAX_VALUE;
-            for (int i = 0; i < 9; i++) {
-                if (b[i].getIcon() == null) {
-                    b[i].setIcon(board.getIc1());
-                    int value = minmax(false);
-                    b[i].setIcon(null);
-                    if (value == -1) {
-                        return value;
-                    }
-                    j = Math.min(value, j);
-                }
-            }
-            return j;
-        }
-        int bestVal = Integer.MIN_VALUE;
-        for (int k = 0; k < 9; k++) {
-            if (b[k].getIcon() == null) {
-                b[k].setIcon(board.getIc2());
-                int value = minmax(true);
-                b[k].setIcon(null);
-                if (value == 1) {
-                    return value;
-                }
-                bestVal = Math.min(bestVal, value);
-            }
-        }
-        return bestVal;
-    }
+    /*
+     * public int minmax(boolean turn){
+     * if ()
+     * }
+     */
 
     @Override
     public void actionPerformed(ActionEvent e) {
         try {
             JButton actionSource = (JButton) e.getSource();
 
-            if (actionSource == startbutton) {
-                startbutton.setEnabled(false);
-                startbutton.setVisible(false);
-                for (int i = 0; i < 9; i++) {
-                    b[i].setEnabled(true);
-                }
-            }
+            /*
+             * if (actionSource == startbutton) {
+             * for (int i = 0; i < 9; i++) {
+             * b[i].setEnabled(true);
+             * }
+             * startbutton.setEnabled(false);
+             * startbutton.setVisible(false);
+             * } *
+             * else if (actionSource == playerpanel.selectplayer1button) {
+             * if (playerpanel.player1name.getText() != null &&
+             * playerpanel.player2name.getText() != null) {
+             * startbutton.setEnabled(true);
+             * }
+             * } else if (actionSource == playerpanel.selectplayer2button) {
+             * if (playerpanel.player1name.getText() != null &&
+             * playerpanel.player2name.getText() != null) {
+             * startbutton.setEnabled(true);
+             * }
+             * }
+             */
+
             for (int i = 0; i < 9; i++) {
                 if (actionSource == b[i]) {
                     if (turn) {

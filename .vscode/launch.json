@@ -6,6 +6,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch Music",
+            "request": "launch",
+            "mainClass": "Music",
+            "projectName": "TucTacToe_1f34d3c7"
+        },
+        {
+            "type": "java",
+            "name": "Launch music",
+            "request": "launch",
+            "mainClass": "music",
+            "projectName": "TucTacToe_1f34d3c7"
+        },
+        {
+            "type": "java",
             "name": "Launch test",
             "request": "launch",
             "mainClass": "test",
