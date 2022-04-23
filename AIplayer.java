@@ -8,6 +8,7 @@ public class AIplayer {
     Player p = new Player("Hal", 0, 0, 0);
     Random random = new Random();
     int[] corner = { 0, 2, 6, 8 };
+    int[] availablePos;
 
     public void PerfectPlayer() {
         int bestVal = Integer.MAX_VALUE;
@@ -37,12 +38,12 @@ public class AIplayer {
 
     public void RandomPlayer() {
         int sel = 0;
-        int availablePos[] = new int[9];
         for (int i = 0; i < 9; i++) {
             if (gb.b[i].getIcon() == null) {
                 availablePos[i] = i;
             }
             sel = availablePos[random.nextInt(availablePos.length)];
+
         }
         gb.b[sel].setIcon(b.getIc1());
         gb.Result(gb.ResultCheck());
