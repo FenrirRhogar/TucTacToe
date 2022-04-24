@@ -34,4 +34,12 @@ public class Music {
         }
         return clip;
     }
+
+    public void muteMusic(Clip clip) {
+        if (clip.isActive() == true) {
+            clip.stop();
+        } else if (clip.isActive() == false) {
+            clip.start();
+        }
+    }
 }

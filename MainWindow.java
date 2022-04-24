@@ -28,6 +28,30 @@ public class MainWindow extends Frame implements ActionListener {
     JButton pvebutton = new JButton("PvE");
     JButton evebutton = new JButton("EvE");
     JButton backtomenubutton = new JButton("Back to Menu");
+    JButton mutebutton = new JButton();
+
+    public void createmutebutton(JFrame gameframe, Clip clip) {
+        ImageIcon muteicon = new ImageIcon("mutebutton.png");
+        mutebutton.setBounds(665, 5, 30, 30);
+        gameframe.add(mutebutton);
+        mutebutton.setIcon(muteicon);
+        mutebutton.setOpaque(false);
+        mutebutton.setContentAreaFilled(false);
+        mutebutton.setBorderPainted(false);
+        mutebutton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        mutebutton.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mute(clip);
+            }
+
+        });
+    }
+
+    public void mute(Clip clip) {
+        music.muteMusic(clip);
+    }
 
     public void windowcreation() {
         Clip clip = music.playMenuMusic();
@@ -41,7 +65,7 @@ public class MainWindow extends Frame implements ActionListener {
         } else {
             JOptionPane.showMessageDialog(frame, "Icon image not found.");
         }
-
+        createmutebutton(frame, clip);
         // window properties
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(714, 600);

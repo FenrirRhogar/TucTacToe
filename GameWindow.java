@@ -8,6 +8,7 @@ public class GameWindow extends Frame implements ActionListener {
     JFrame gameframe = new JFrame("Tuc Tac Toe");
     GameBoard gameboard = new GameBoard();
     JButton backtomenubutton = new JButton("Back to Menu");
+    JButton mutebutton = new JButton();
     MainWindow mainwindow;
     Music music = new Music();
 
@@ -29,6 +30,29 @@ public class GameWindow extends Frame implements ActionListener {
         });
     }
 
+    public void createmutebutton(JFrame gameframe, Clip clip) {
+        ImageIcon muteicon = new ImageIcon("mutebutton.png");
+        mutebutton.setBounds(665, 5, 30, 30);
+        gameframe.add(mutebutton);
+        mutebutton.setIcon(muteicon);
+        mutebutton.setOpaque(false);
+        mutebutton.setContentAreaFilled(false);
+        mutebutton.setBorderPainted(false);
+        mutebutton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        mutebutton.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mute(clip);
+            }
+
+        });
+    }
+
+    public void mute(Clip clip) {
+        music.muteMusic(clip);
+    }
+
     public JFrame gamewindowcreation(String gamemode) {
         Clip clip = music.playGameMusic();
         ImageIcon arrowIcon = null;
@@ -47,6 +71,7 @@ public class GameWindow extends Frame implements ActionListener {
         gameframe.setLayout(null);
         gameframe.setVisible(true);
         backbutton(gameframe, clip);
+        createmutebutton(gameframe, clip);
         gameboard.boardcreation(gameframe, gamemode);
         return gameframe;
     }
