@@ -11,7 +11,7 @@ public class Music {
         Clip clip = null;
         try {
             clip = AudioSystem.getClip();
-            AudioInputStream ais = AudioSystem.getAudioInputStream(new File("gametheme.wav"));
+            AudioInputStream ais = AudioSystem.getAudioInputStream(new File("Music/gametheme.wav"));
             clip.open(ais);
             clip.start();
             clip.loop(Clip.LOOP_CONTINUOUSLY);
@@ -25,7 +25,7 @@ public class Music {
         Clip clip = null;
         try {
             clip = AudioSystem.getClip();
-            AudioInputStream ais = AudioSystem.getAudioInputStream(new File("menutheme.wav"));
+            AudioInputStream ais = AudioSystem.getAudioInputStream(new File("Music/menutheme.wav"));
             clip.open(ais);
             clip.start();
             clip.loop(Clip.LOOP_CONTINUOUSLY);
@@ -40,6 +40,7 @@ public class Music {
             clip.stop();
         } else if (clip.isActive() == false) {
             clip.start();
+            clip.loop(Clip.LOOP_CONTINUOUSLY);
         }
     }
 }

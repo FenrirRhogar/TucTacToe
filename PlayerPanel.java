@@ -2,10 +2,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
-import java.rmi.activation.Activatable;
 import java.awt.Cursor;
 
-public class PlayerPanel implements ActionListener {
+public class PlayerPanel {
 
     // components creation
     JLabel player1label = new JLabel("Player 1");
@@ -16,10 +15,7 @@ public class PlayerPanel implements ActionListener {
     JButton selectplayer2button = new JButton("Select Player");
     GameBoard gameboard;
 
-    public PlayerPanel() {
-
-    }
-
+    //create player panels
     public void playerpanelscreation(JFrame frame, JButton startbutton, String gamemode) {
         // create player 1 and 2 panels
         leftpanel(frame);
@@ -104,7 +100,7 @@ public class PlayerPanel implements ActionListener {
         //add new player
         if (optionindex == 0) {
             username = JOptionPane.showInputDialog("Please enter the new player's name:", null);
-            Player player = new Player(username, 0, 0, 0);
+            //Player player = new Player(username, 0, 0, 0);
             /*
              * try {
              * FileOutputStream fileOut = new FileOutputStream("tuctactoe.ser");
@@ -143,17 +139,5 @@ public class PlayerPanel implements ActionListener {
         } catch (IOException i) {
             i.printStackTrace();
         }
-    }
-
-    // action for every button configuration
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        try {
-            JButton actionSource = (JButton) e.getSource();
-
-        } catch (Exception ex) {
-            System.out.println(ex);
-        }
-
     }
 }

@@ -1,15 +1,7 @@
 import javax.swing.*;
 import java.awt.event.*;
-import java.rmi.activation.ActivationDesc;
 import java.awt.Cursor;
-import java.io.File;
-import javax.sound.sampled.AudioInputStream;
 import javax.swing.JOptionPane;
-import java.io.IOException;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
 
 public class GameBoard extends JFrame implements ItemListener, ActionListener {
 
@@ -17,7 +9,7 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
     PlayerPanel playerpanel = new PlayerPanel();
     JButton b[] = new JButton[9];
     JPanel boardpanel = new JPanel();
-    ImageIcon tictactoegameboard = new ImageIcon("board.png");
+    ImageIcon tictactoegameboard = new ImageIcon("Images/board.png");
     JButton boardbutton = new JButton(tictactoegameboard);
     JButton startbutton = new JButton("Start");
     Board board = new Board();
@@ -160,9 +152,10 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
         }
     }
 
-    public JButton createstartbutton(JFrame frame) {
+    //add start button
+    public JButton createstartbutton(JFrame gameframe) {
         startbutton.setBounds(300, 350, 100, 35);
-        frame.add(startbutton);
+        gameframe.add(startbutton);
         startbutton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         startbutton.addActionListener(new ActionListener() {
 

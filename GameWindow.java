@@ -31,7 +31,7 @@ public class GameWindow extends Frame implements ActionListener {
     }
 
     public void createmutebutton(JFrame gameframe, Clip clip) {
-        ImageIcon muteicon = new ImageIcon("mutebutton.png");
+        ImageIcon muteicon = new ImageIcon("Images/mutebutton.png");
         mutebutton.setBounds(665, 5, 30, 30);
         gameframe.add(mutebutton);
         mutebutton.setIcon(muteicon);
@@ -56,7 +56,7 @@ public class GameWindow extends Frame implements ActionListener {
     public JFrame gamewindowcreation(String gamemode) {
         Clip clip = music.playGameMusic();
         ImageIcon arrowIcon = null;
-        java.net.URL imgURL = MainWindow.class.getResource("gb.png");
+        java.net.URL imgURL = MainWindow.class.getResource("Images/gb.png");
         if (imgURL != null) {
             arrowIcon = new ImageIcon(imgURL);
             gameframe.setIconImage(arrowIcon.getImage());

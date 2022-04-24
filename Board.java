@@ -7,8 +7,8 @@ public class Board {
     int i = 0;
     int result;
     boolean Player1;
-    Icon ic1 = new ImageIcon("X.png");
-    Icon ic2 = new ImageIcon("O.png");
+    Icon ic1 = new ImageIcon("Images/X.png");
+    Icon ic2 = new ImageIcon("Images/O.png");
     String BoardState;
     Random random = new Random();
 

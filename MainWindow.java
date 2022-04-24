@@ -30,8 +30,9 @@ public class MainWindow extends Frame implements ActionListener {
     JButton backtomenubutton = new JButton("Back to Menu");
     JButton mutebutton = new JButton();
 
+    //mute music button configuration
     public void createmutebutton(JFrame gameframe, Clip clip) {
-        ImageIcon muteicon = new ImageIcon("mutebutton.png");
+        ImageIcon muteicon = new ImageIcon("Images/mutebutton.png");
         mutebutton.setBounds(665, 5, 30, 30);
         gameframe.add(mutebutton);
         mutebutton.setIcon(muteicon);
@@ -53,12 +54,13 @@ public class MainWindow extends Frame implements ActionListener {
         music.muteMusic(clip);
     }
 
+    //create main window
     public void windowcreation() {
         Clip clip = music.playMenuMusic();
         mainmenu(clip);
         // application image configuration
         ImageIcon arrowIcon = null;
-        java.net.URL imgURL = MainWindow.class.getResource("gb.png");
+        java.net.URL imgURL = MainWindow.class.getResource("Images/gb.png");
         if (imgURL != null) {
             arrowIcon = new ImageIcon(imgURL);
             frame.setIconImage(arrowIcon.getImage());
@@ -76,6 +78,7 @@ public class MainWindow extends Frame implements ActionListener {
         frame.setVisible(true);
     }
 
+    //main menu
     public void mainmenu(Clip clip) {
         // menu title customization
         menutitle.setText("TUC TAC TOE");
@@ -116,6 +119,7 @@ public class MainWindow extends Frame implements ActionListener {
 
     }
 
+    //pvp or pve or eve
     public void gamemodeselection(Clip clip) {
         // remove previous buttons
         frame.remove(playbutton);
@@ -190,9 +194,7 @@ public class MainWindow extends Frame implements ActionListener {
         try {
             JButton actionSource = (JButton) e.getSource();
 
-            if (actionSource.equals(playbutton)) {
-                
-            } else if (actionSource.equals(halloffamebutton)) {
+            if (actionSource.equals(halloffamebutton)) {
                 System.out.println("Prits2");
             } else if (actionSource.equals(settingsbutton)) {
                 System.out.println("Prits3");
