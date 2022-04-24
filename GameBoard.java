@@ -155,7 +155,6 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
                     b[i].setEnabled(false);
                     boardbutton.setEnabled(false);
                 }
-
                 JOptionPane.showMessageDialog(jFrame, "Draw!");
             }
         }
@@ -253,27 +252,6 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
         try {
             JButton actionSource = (JButton) e.getSource();
 
-            /*
-             * if (actionSource == startbutton) {
-             * for (int i = 0; i < 9; i++) {
-             * b[i].setEnabled(true);
-             * }
-             * startbutton.setEnabled(false);
-             * startbutton.setVisible(false);
-             * } *
-             * else if (actionSource == playerpanel.selectplayer1button) {
-             * if (playerpanel.player1name.getText() != null &&
-             * playerpanel.player2name.getText() != null) {
-             * startbutton.setEnabled(true);
-             * }
-             * } else if (actionSource == playerpanel.selectplayer2button) {
-             * if (playerpanel.player1name.getText() != null &&
-             * playerpanel.player2name.getText() != null) {
-             * startbutton.setEnabled(true);
-             * }
-             * }
-             */
-
             for (int i = 0; i < 9; i++) {
                 if (actionSource == b[i]) {
                     if (turn) {
@@ -284,7 +262,6 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
                             // cheking return number
                             // P2 turn
                         }
-
                     } else {
                         if (b[i].getIcon() == null) {
                             b[i].setIcon(board.getIc2());

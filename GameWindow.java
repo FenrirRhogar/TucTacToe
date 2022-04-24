@@ -1,14 +1,8 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.io.File;
-import javax.sound.sampled.AudioInputStream;
 import javax.swing.JOptionPane;
-import java.io.IOException;
-import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
 
 public class GameWindow extends Frame implements ActionListener {
     JFrame gameframe = new JFrame("Tuc Tac Toe");
@@ -36,7 +30,7 @@ public class GameWindow extends Frame implements ActionListener {
     }
 
     public JFrame gamewindowcreation(String gamemode) {
-        Clip clip = music.playMusic();
+        Clip clip = music.playGameMusic();
         ImageIcon arrowIcon = null;
         java.net.URL imgURL = MainWindow.class.getResource("gb.png");
         if (imgURL != null) {
