@@ -95,11 +95,14 @@ public class PlayerPanel implements ActionListener {
 
     // popup window to choose exsisting or new player
     public String selectoraddpopup() {
+        String[] players = {"p1", "p2", "p3"}; //proswrino
         JFrame jFrame = new JFrame();
         String username = null;
-        int result = JOptionPane.showConfirmDialog(jFrame, "Add new player?");
-        // YES: add new player
-        if (result == 0) {
+        String[] options = {"New Player", "Exsisting Player", "Cancel"};
+        int optionindex = JOptionPane.showOptionDialog(jFrame, "Add new player or select an exsisting?", null, JOptionPane.PLAIN_MESSAGE, JOptionPane.PLAIN_MESSAGE, null, options, null);
+        
+        //add new player
+        if (optionindex == 0) {
             username = JOptionPane.showInputDialog("Please enter the new player's name:", null);
             Player player = new Player(username, 0, 0, 0);
             /*
@@ -115,12 +118,13 @@ public class PlayerPanel implements ActionListener {
              * }
              */
             return username;
-            // NO: select exsisting player
-        } else if (result == 1) {
-            System.out.println("You pressed NO");
-
+            //select exsisting player
+        } else if (optionindex == 1) {
+            JFrame selectplayerframe = new JFrame();
+            username = (String) JOptionPane.showInputDialog(selectplayerframe, "Select Player:", null, JOptionPane.QUESTION_MESSAGE, null, players, players[0]);
+            return username;
             // CANCEL
-        } else {
+        } else if (optionindex == 2) {
             return null;
         }
         return null;
@@ -146,24 +150,6 @@ public class PlayerPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         try {
             JButton actionSource = (JButton) e.getSource();
-
-            /*
-             * if (actionSource.equals(selectplayer1button)) {
-             * player1name.setText(selectoraddpopup());
-             * if (player1name.getText() != null) {
-             * selectplayer1button.setEnabled(false);
-             * selectplayer1button.setVisible(false);
-             * checkplayers();
-             * }
-             * } else if (actionSource.equals(selectplayer2button)) {
-             * player2name.setText(selectoraddpopup());
-             * if (player2name.getText() != null) {
-             * selectplayer2button.setEnabled(false);
-             * selectplayer2button.setVisible(false);
-             * checkplayers();
-             * }
-             * }
-             */
 
         } catch (Exception ex) {
             System.out.println(ex);
