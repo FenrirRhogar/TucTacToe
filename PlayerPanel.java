@@ -71,7 +71,7 @@ public class PlayerPanel implements ActionListener {
         player1name.setBounds(45, 60, 110, 20);
         player1name.setForeground(Color.WHITE);
         player1name.setText(null);
-        selectplayer1button.setBounds(45, 60, 110, 20);
+        selectplayer1button.setBounds(45, 60, 110, 30);
         frame.add(player1label);
         frame.add(selectplayer1button);
         frame.add(player1name);
@@ -86,7 +86,7 @@ public class PlayerPanel implements ActionListener {
         player2name.setBounds(545, 60, 110, 20);
         player2name.setForeground(Color.WHITE);
         player2name.setText(null);
-        selectplayer2button.setBounds(545, 60, 110, 20);
+        selectplayer2button.setBounds(545, 60, 110, 30);
         frame.add(player2label);
         frame.add(selectplayer2button);
         frame.add(player2name);
