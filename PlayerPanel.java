@@ -126,9 +126,9 @@ public class PlayerPanel {
     }
 
     // add player method
-    public void addplayer(String username, int score, int victories, int losses) {
+    public void addplayer(String username, int score, int victories, int losses, int draws) {
         try {
-            Player player = new Player(username, score, victories, losses);
+            Player player = new Player(username, score, victories, losses, draws);
             FileOutputStream fileOut = new FileOutputStream("tuctactoe.ser");
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
             out.writeObject(player);
