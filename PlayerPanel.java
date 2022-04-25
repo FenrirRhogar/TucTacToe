@@ -14,8 +14,11 @@ public class PlayerPanel {
     JButton selectplayer1button = new JButton("Select Player");
     JButton selectplayer2button = new JButton("Select Player");
     GameBoard gameboard;
+    String[] players = new String[10];
+    PlayerRoster roster = new PlayerRoster();
+    int i = 0;
 
-    //create player panels
+    // create player panels
     public void playerpanelscreation(JFrame frame, JButton startbutton, String gamemode) {
         // create player 1 and 2 panels
         leftpanel(frame);
@@ -91,33 +94,29 @@ public class PlayerPanel {
 
     // popup window to choose exsisting or new player
     public String selectoraddpopup() {
-        String[] players = {"p1", "p2", "p3"}; //proswrino
+        // proswrino
         JFrame jFrame = new JFrame();
         String username = null;
-        String[] options = {"New Player", "Exsisting Player", "Cancel"};
-        int optionindex = JOptionPane.showOptionDialog(jFrame, "Add new player or select an exsisting?", null, JOptionPane.PLAIN_MESSAGE, JOptionPane.PLAIN_MESSAGE, null, options, null);
-        
-        //add new player
+        String[] options = { "New Player", "Exsisting Player", "Cancel" };
+        for (int j = 0; j < 10; j++) {
+            players[j] = roster.player[j].username;
+            System.out.println(players[j]);
+        }
+        players[i] = roster.player[i].username;
+        System.out.println(players[i]);
+        int optionindex = JOptionPane.showOptionDialog(jFrame, "Add new player or select an exsisting?", null,
+                JOptionPane.PLAIN_MESSAGE, JOptionPane.PLAIN_MESSAGE, null, options, null);
+
+        // add new player
         if (optionindex == 0) {
             username = JOptionPane.showInputDialog("Please enter the new player's name:", null);
-            //Player player = new Player(username, 0, 0, 0);
-            /*
-             * try {
-             * FileOutputStream fileOut = new FileOutputStream("tuctactoe.ser");
-             * ObjectOutputStream out = new ObjectOutputStream(fileOut);
-             * out.writeObject(player);
-             * out.close();
-             * fileOut.close();
-             * System.out.printf("Serialized data is saved in tuctactoe.ser");
-             * } catch (IOException i) {
-             * i.printStackTrace();
-             * }
-             */
+
             return username;
-            //select exsisting player
+            // select exsisting player
         } else if (optionindex == 1) {
             JFrame selectplayerframe = new JFrame();
-            username = (String) JOptionPane.showInputDialog(selectplayerframe, "Select Player:", null, JOptionPane.QUESTION_MESSAGE, null, players, players[0]);
+            username = (String) JOptionPane.showInputDialog(selectplayerframe, "Select Player:", null,
+                    JOptionPane.QUESTION_MESSAGE, null, roster.player, roster.player[0]);
             return username;
             // CANCEL
         } else if (optionindex == 2) {
@@ -139,5 +138,31 @@ public class PlayerPanel {
         } catch (IOException i) {
             i.printStackTrace();
         }
+        Player p = null;
+
+        // Deserialization
+        try {
+            // Reading the object from a file
+            FileInputStream FileIn = new FileInputStream("tuctactoe.ser");
+            ObjectInputStream in = new ObjectInputStream(FileIn);
+
+            // Method for deserialization of object
+            p = (Player) in.readObject();
+
+            in.close();
+            FileIn.close();
+
+            System.out.println("\nObject has been deserialized ");
+            roster.addPlayer(p);
+            System.out.println(roster.player[i].username);
+            i++;
+        } catch (IOException ex) {
+            System.out.println("IOException is caught");
+        }
+
+        catch (ClassNotFoundException ex) {
+            System.out.println("ClassNotFoundException is caught");
+        }
     }
+
 }

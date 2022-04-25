@@ -5,6 +5,10 @@ public class Player implements Serializable {
     public String username;
     public int score, victories, losses;
 
+    public Player() {
+
+    }
+
     public Player(String username, int score, int victories, int losses) {
         this.username = username;
         this.score = score;
