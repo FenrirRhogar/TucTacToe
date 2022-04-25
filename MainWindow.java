@@ -33,6 +33,7 @@ public class MainWindow extends Frame implements ActionListener {
     //mute music button configuration
     public void createmutebutton(JFrame gameframe, Clip clip) {
         ImageIcon muteicon = new ImageIcon("Images/mutebutton.png");
+        ImageIcon muteiconenabled = new ImageIcon("Images/mutebuttonenabled.png");
         mutebutton.setBounds(665, 5, 30, 30);
         gameframe.add(mutebutton);
         mutebutton.setIcon(muteicon);
@@ -45,6 +46,11 @@ public class MainWindow extends Frame implements ActionListener {
             @Override
             public void actionPerformed(ActionEvent e) {
                 mute(clip);
+                if(mutebutton.getIcon() == muteicon) {
+                    mutebutton.setIcon(muteiconenabled);
+                } else if(mutebutton.getIcon() == muteiconenabled) {
+                    mutebutton.setIcon(muteicon);
+                }
             }
 
         });
