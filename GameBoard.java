@@ -12,6 +12,7 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
     ImageIcon tictactoegameboard = new ImageIcon("Images/board.png");
     JButton boardbutton = new JButton(tictactoegameboard);
     JButton startbutton = new JButton("Start");
+    JButton playagainbutton = new JButton("Play Again");
     Board board = new Board();
     Music music = new Music();
     boolean turn = board.firstPlay();
@@ -150,7 +151,8 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
                 JOptionPane.showMessageDialog(jFrame, "Draw!");
             }
         }
-    }
+        playagainbutton.setVisible(true);
+        playagainbutton.setEnabled(true);    }
 
     //add start button
     public JButton createstartbutton(JFrame gameframe) {
@@ -173,9 +175,27 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
         return startbutton;
     }
 
+    //play again button
+    public void createplayagainbutton(JFrame gameframe) {
+        playagainbutton.setBounds(300, 350, 100, 35);
+        gameframe.add(playagainbutton);
+        playagainbutton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        playagainbutton.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new GameWindow();
+            }
+
+        });
+        playagainbutton.setVisible(false);
+        playagainbutton.setEnabled(false);
+    }
+
     // game board 9 buttons creation
     public void boardcreation(JFrame frame, String gamemode) {
         JButton button = createstartbutton(frame);
+        createplayagainbutton(frame);
         playerpanel.playerpanelscreation(frame, button, gamemode);
         boardbutton.setBounds(200, 10, 300, 300);
         frame.add(boardbutton);

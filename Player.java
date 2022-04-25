@@ -3,18 +3,20 @@ import java.io.Serializable;
 public class Player implements Serializable {
 
     public String username;
-    public int score, victories, losses;
+    public int victories, losses, draws, game;
+    public float score;
 
     public Player() {
 
     }
 
-    public Player(String username, int score, int victories, int losses) {
+    public Player(String username, float score, int victories, int losses, int draws) {
+
         this.username = username;
         this.score = score;
         this.victories = victories;
         this.losses = losses;
-
+        this.draws = draws;
     }
 
     public String getUsername() {
@@ -25,11 +27,11 @@ public class Player implements Serializable {
         this.username = username;
     }
 
-    public int getScore() {
+    public float getScore() {
         return score;
     }
 
-    public void setScore(int score) {
+    public void setScore(float score) {
         this.score = score;
     }
 
@@ -49,4 +51,25 @@ public class Player implements Serializable {
         this.losses = losses;
     }
 
+    public int getDraws() {
+        return draws;
+    }
+
+    public void setDraws(int draws) {
+        this.draws = draws;
+    }
+
+    public int getGame() {
+        return game;
+    }
+
+    public void setGame(int game) {
+        this.game = game;
+    }
+
+    public float calculateScore(int victories, int draws, int games) {
+        float result;
+        result = 50 * ((2 * victories + draws) / (games));
+        return result;
+    }
 }
