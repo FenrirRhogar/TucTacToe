@@ -107,24 +107,26 @@ public class PlayerPanel {
                 username = JOptionPane.showInputDialog("Please enter the new player's name:", null);
                 if (username.length() > 20 || username.charAt(0) == ' ' || username.charAt(username.length() - 1) == ' ') {
                     JOptionPane.showMessageDialog(null, "- Username cannot exeed 20 characters\n- First and last characters cannot be space", "Invalid username", JOptionPane.ERROR_MESSAGE);
-                } else if (username == "") {
+                } else if (username.isEmpty() == true) {
                     JOptionPane.showMessageDialog(null, "No input", "Invalid username", JOptionPane.ERROR_MESSAGE); //idk giati de douleuei auto
                 }
 
-            } while (username == "" || username.length() > 20 || username.charAt(0) == ' ' || username.charAt(username.length() - 1) == ' ');
-
+            } while (username.isEmpty() == true || username.length() > 20 || username.charAt(0) == ' ' || username.charAt(username.length() - 1) == ' ');
+            addplayer(username, 0, 0, 0, 0);
             return username;
             // select exsisting player
         } else if (optionindex == 1) {
-            for (int j = 0; j < 10; j++) {
-                players[j] = roster.player[j].username;
-                System.out.println(players[j]);
+            for (int j = 0; j < roster.player.length; j++) {
+                if(roster.player[j] != null) {
+                    players[j] = roster.player[j].username;
+                    System.out.println(players[j]);
+                }
             }
-            players[i] = roster.player[i].username;
-            System.out.println(players[i]);
+            /*players[i] = roster.player[i].username;
+            System.out.println(players[i]);*/
             JFrame selectplayerframe = new JFrame();
             username = (String) JOptionPane.showInputDialog(selectplayerframe, "Select Player:", null,
-                    JOptionPane.QUESTION_MESSAGE, null, roster.player, roster.player[0]);
+                    JOptionPane.QUESTION_MESSAGE, null, players, players[0]);
             return username;
             // CANCEL
         } else if (optionindex == 2) {

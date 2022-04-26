@@ -134,12 +134,16 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
                 boardbutton.setEnabled(false);
             }
             JOptionPane.showMessageDialog(jFrame, "Player 1 wins!");
+            playagainbutton.setVisible(true);
+            playagainbutton.setEnabled(true);  
         } else if (res == -1) {
             for (int i = 0; i < 9; i++) {
                 b[i].setEnabled(false);
                 boardbutton.setEnabled(false);
             }
             JOptionPane.showMessageDialog(jFrame, "Player 2 wins!");
+            playagainbutton.setVisible(true);
+            playagainbutton.setEnabled(true); 
         } else {
             if (b[0].getIcon() != null && b[1].getIcon() != null && b[2].getIcon() != null && b[3].getIcon() != null
                     && b[4].getIcon() != null && b[5].getIcon() != null && b[6].getIcon() != null
@@ -149,10 +153,11 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
                     boardbutton.setEnabled(false);
                 }
                 JOptionPane.showMessageDialog(jFrame, "Draw!");
+                playagainbutton.setVisible(true);
+                playagainbutton.setEnabled(true); 
             }
         }
-        playagainbutton.setVisible(true);
-        playagainbutton.setEnabled(true);    }
+    }
 
     //add start button
     public JButton createstartbutton(JFrame gameframe) {
@@ -176,7 +181,7 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
     }
 
     //play again button
-    public void createplayagainbutton(JFrame gameframe) {
+    public void createplayagainbutton(JFrame gameframe, String gamemode) {
         playagainbutton.setBounds(300, 350, 100, 35);
         gameframe.add(playagainbutton);
         playagainbutton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -184,7 +189,9 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                new GameWindow();
+                gameframe.dispose();
+                GameWindow gw = new GameWindow();
+                gw.gamewindowcreation(gamemode);
             }
 
         });
@@ -195,7 +202,7 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
     // game board 9 buttons creation
     public void boardcreation(JFrame frame, String gamemode) {
         JButton button = createstartbutton(frame);
-        createplayagainbutton(frame);
+        createplayagainbutton(frame, gamemode);
         playerpanel.playerpanelscreation(frame, button, gamemode);
         boardbutton.setBounds(200, 10, 300, 300);
         frame.add(boardbutton);
