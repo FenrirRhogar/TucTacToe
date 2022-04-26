@@ -98,22 +98,30 @@ public class PlayerPanel {
         JFrame jFrame = new JFrame();
         String username = null;
         String[] options = { "New Player", "Exsisting Player", "Cancel" };
-        for (int j = 0; j < 10; j++) {
-            players[j] = roster.player[j].username;
-            System.out.println(players[j]);
-        }
-        players[i] = roster.player[i].username;
-        System.out.println(players[i]);
         int optionindex = JOptionPane.showOptionDialog(jFrame, "Add new player or select an exsisting?", null,
                 JOptionPane.PLAIN_MESSAGE, JOptionPane.PLAIN_MESSAGE, null, options, null);
 
         // add new player
         if (optionindex == 0) {
-            username = JOptionPane.showInputDialog("Please enter the new player's name:", null);
+            do {
+                username = JOptionPane.showInputDialog("Please enter the new player's name:", null);
+                if (username.length() > 20 || username.charAt(0) == ' ' || username.charAt(username.length() - 1) == ' ') {
+                    JOptionPane.showMessageDialog(null, "- Username cannot exeed 20 characters\n- First and last characters cannot be space", "Invalid username", JOptionPane.ERROR_MESSAGE);
+                } else if (username == "") {
+                    JOptionPane.showMessageDialog(null, "No input", "Invalid username", JOptionPane.ERROR_MESSAGE); //idk giati de douleuei auto
+                }
+
+            } while (username == "" || username.length() > 20 || username.charAt(0) == ' ' || username.charAt(username.length() - 1) == ' ');
 
             return username;
             // select exsisting player
         } else if (optionindex == 1) {
+            for (int j = 0; j < 10; j++) {
+                players[j] = roster.player[j].username;
+                System.out.println(players[j]);
+            }
+            players[i] = roster.player[i].username;
+            System.out.println(players[i]);
             JFrame selectplayerframe = new JFrame();
             username = (String) JOptionPane.showInputDialog(selectplayerframe, "Select Player:", null,
                     JOptionPane.QUESTION_MESSAGE, null, roster.player, roster.player[0]);

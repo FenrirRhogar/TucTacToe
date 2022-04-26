@@ -5,7 +5,7 @@ public class AIplayer {
 
     GameBoard gb = new GameBoard();
     Board b = new Board();
-    Player p = new Player("Hal", 0, 0, 0);
+    Player p = new Player("Hal", 0, 0, 0, 0);
     Random random = new Random();
     int[] corner = { 0, 2, 6, 8 };
     int[] availablePos;
