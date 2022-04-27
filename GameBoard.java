@@ -1,3 +1,4 @@
+import javax.sound.sampled.Clip;
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.Cursor;
@@ -14,7 +15,6 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
     JButton startbutton = new JButton("Start");
     JButton playagainbutton = new JButton("Play Again");
     Board board = new Board();
-    Music music = new Music();
     boolean turn = board.firstPlay();
     int num, result;
 
@@ -181,7 +181,7 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
     }
 
     //play again button
-    public void createplayagainbutton(JFrame gameframe, String gamemode) {
+    public void createplayagainbutton(JFrame gameframe, String gamemode, Clip clip) {
         playagainbutton.setBounds(300, 350, 100, 35);
         gameframe.add(playagainbutton);
         playagainbutton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -189,6 +189,7 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                clip.close();
                 gameframe.dispose();
                 GameWindow gw = new GameWindow();
                 gw.gamewindowcreation(gamemode);
@@ -200,9 +201,9 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
     }
 
     // game board 9 buttons creation
-    public void boardcreation(JFrame frame, String gamemode) {
+    public void boardcreation(JFrame frame, String gamemode, Clip clip) {
         JButton button = createstartbutton(frame);
-        createplayagainbutton(frame, gamemode);
+        createplayagainbutton(frame, gamemode, clip);
         playerpanel.playerpanelscreation(frame, button, gamemode);
         boardbutton.setBounds(200, 10, 300, 300);
         frame.add(boardbutton);

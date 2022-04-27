@@ -22,9 +22,9 @@ public class GameWindow extends Frame implements ActionListener {
             @Override
             public void actionPerformed(ActionEvent e) {
                 gameframe.dispose();
+                clip.stop();
                 mainwindow = new MainWindow();
                 mainwindow.windowcreation();
-                clip.stop();
             }
 
         });
@@ -77,7 +77,7 @@ public class GameWindow extends Frame implements ActionListener {
         gameframe.setVisible(true);
         backbutton(gameframe, clip);
         createmutebutton(gameframe, clip);
-        gameboard.boardcreation(gameframe, gamemode);
+        gameboard.boardcreation(gameframe, gamemode, clip);
         return gameframe;
     }
 

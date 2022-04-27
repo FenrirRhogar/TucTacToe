@@ -97,6 +97,20 @@ public class MainWindow extends Frame implements ActionListener {
         settingsbutton.setBounds(275, 200, 150, 30);
         exitbutton.setBounds(275, 250, 150, 30);
         backtomenubutton.setBounds(520, 510, 150, 30);
+        backtomenubutton.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.remove(pvpbutton);
+                frame.remove(pvebutton);
+                frame.remove(evebutton);
+                frame.remove(backtomenubutton);
+                frame.revalidate();
+                frame.repaint();
+                windowcreation();
+            }
+            
+        });
         // actionlistener addition
         playbutton.addActionListener(new ActionListener() {
 
@@ -207,12 +221,7 @@ public class MainWindow extends Frame implements ActionListener {
             } else if (actionSource.equals(exitbutton)) {
                 System.exit(0);
             } else if (actionSource.equals(backtomenubutton)) {
-                frame.remove(pvpbutton);
-                frame.remove(pvebutton);
-                frame.remove(backtomenubutton);
-                frame.revalidate();
-                frame.repaint();
-                windowcreation();
+                
             }
         } catch (Exception ex) {
             System.out.println(ex);
