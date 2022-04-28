@@ -1,7 +1,11 @@
-public class PlayerRoster {
+import java.io.*;
+import java.io.Serializable;
+
+import javax.swing.SortingFocusTraversalPolicy;
+
+public class PlayerRoster implements Serializable {
 
     Player[] player;
-
     int pnum = 0;
 
     public PlayerRoster() {
@@ -11,6 +15,47 @@ public class PlayerRoster {
     public void addPlayer(Player p) {
         player[pnum] = p;
         pnum++;
+        storePlayer();
+    }
+
+    public void storePlayer() {
+        try {
+            FileOutputStream fileOut = new FileOutputStream("tuctactoe.ser");
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            for (Player player : this.player) {
+                out.writeObject(player);
+            }
+            out.close();
+            fileOut.close();
+            System.out.printf("\nSerialized data is saved in tuctactoe.ser");
+        } catch (IOException i) {
+            i.printStackTrace();
+        }
+    }
+
+    public void loadPlayer() {
+        int pos = 0;
+        // Deserialization
+        try {
+            // Reading the object from a file
+            FileInputStream FileIn = new FileInputStream("tuctactoe.ser");
+            ObjectInputStream in = new ObjectInputStream(FileIn);
+
+            while (FileIn.available() > 0) {
+                Player p = (Player) in.readObject();
+                this.player[pos++] = p;
+            }
+            in.close();
+            FileIn.close();
+
+            System.out.println("\nObject has been deserialized ");
+        } catch (IOException ex) {
+            System.out.println("IOException is caught");
+        }
+
+        catch (ClassNotFoundException ex) {
+            System.out.println("ClassNotFoundException is caught");
+        }
     }
 
     public String findPlayerNames(Player pl) {

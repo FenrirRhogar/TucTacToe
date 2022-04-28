@@ -16,6 +16,8 @@ public class PlayerPanel {
     GameBoard gameboard;
     String[] players = new String[10];
     PlayerRoster roster = new PlayerRoster();
+    Player p;
+
     int i = 0;
 
     // create player panels
@@ -97,33 +99,65 @@ public class PlayerPanel {
         // proswrino
         JFrame jFrame = new JFrame();
         String username = null;
+        Game g = new Game();
         String[] options = { "New Player", "Exsisting Player", "Cancel" };
         int optionindex = JOptionPane.showOptionDialog(jFrame, "Add new player or select an exsisting?", null,
                 JOptionPane.PLAIN_MESSAGE, JOptionPane.PLAIN_MESSAGE, null, options, null);
 
         // add new player
         if (optionindex == 0) {
+            roster.loadPlayer();
             do {
                 username = JOptionPane.showInputDialog("Please enter the new player's name:", null);
-                if (username.length() > 20 || username.charAt(0) == ' ' || username.charAt(username.length() - 1) == ' ') {
-                    JOptionPane.showMessageDialog(null, "- Username cannot exeed 20 characters\n- First and last characters cannot be space", "Invalid username", JOptionPane.ERROR_MESSAGE);
+                if (username.length() > 20 || username.charAt(0) == ' '
+                        || username.charAt(username.length() - 1) == ' ') {
+                    JOptionPane.showMessageDialog(null,
+                            "- Username cannot exeed 20 characters\n- First and last characters cannot be space",
+                            "Invalid username", JOptionPane.ERROR_MESSAGE);
                 } else if (username.isEmpty() == true) {
-                    JOptionPane.showMessageDialog(null, "No input", "Invalid username", JOptionPane.ERROR_MESSAGE); //idk giati de douleuei auto
+                    JOptionPane.showMessageDialog(null, "No input", "Invalid username", JOptionPane.ERROR_MESSAGE); // idk
+                                                                                                                    // giati
+                                                                                                                    // de
+                                                                                                                    // douleuei
+                                                                                                                    // auto
                 }
 
-            } while (username.isEmpty() == true || username.length() > 20 || username.charAt(0) == ' ' || username.charAt(username.length() - 1) == ' ');
-            addplayer(username, 0, 0, 0, 0);
+            } while (username.isEmpty() == true || username.length() > 20 || username.charAt(0) == ' '
+                    || username.charAt(username.length() - 1) == ' ');
+            p = new Player(username, 0, 0, 0, 0);
+            roster.pnum = g.playerroster.pnum;
+            System.out.println(roster.pnum);
+            roster.addPlayer(p);
+            for (int k = 0; k < roster.pnum; k++) {
+                System.out.println(roster.player[k].username);
+
+            }
+
+            // gia kapoio logo apothikeuei ton paikth ksana sth thesi 0 apo oti vlepw an
+            // xrisimopoihsw thn roster.addPlayer(p) kati prp na paizei me ton tropo kai
+            // to pou dhlwnoume tous paixtes an to vreis prin to vradi pes mou logika den
+            // einai polu zoriko alla nustazw opote ta leme aurio
+
+            // update fainetai na pernei kai ton epomeno paikth meta apo kati allages
+            // omws meta sto option 2 den tous gazei olous gia kapoio logo pou ontws tha dw
+            // aurio
+            // giati eprepe na xw koimithei ap thn wra pou egrafa to apo panw sxolio
+            // h arxikh ektimisi mou htan pws to kanei gt kati paizei me ton periorismo tou
+            // loadPlayer alla otan ton allaksa eixa error opote dne kserw ti ftaiei
+            // (an kai sunexizw na to pisteuw gt an to trekseis tha deis oti vgazei mnma gia
+            // apothikeusi 3 stoixeiwn)
+            // an to deis prin apo mena kai exeis oreksh tsekare to ligo
+
+            roster.storePlayer();
             return username;
             // select exsisting player
         } else if (optionindex == 1) {
+            roster.loadPlayer();
             for (int j = 0; j < roster.player.length; j++) {
-                if(roster.player[j] != null) {
+                if (roster.player[j] != null) {
                     players[j] = roster.player[j].username;
-                    System.out.println(players[j]);
                 }
             }
-            /*players[i] = roster.player[i].username;
-            System.out.println(players[i]);*/
             JFrame selectplayerframe = new JFrame();
             username = (String) JOptionPane.showInputDialog(selectplayerframe, "Select Player:", null,
                     JOptionPane.QUESTION_MESSAGE, null, players, players[0]);
@@ -136,43 +170,5 @@ public class PlayerPanel {
     }
 
     // add player method
-    public void addplayer(String username, int score, int victories, int losses, int draws) {
-        try {
-            Player player = new Player(username, score, victories, losses, draws);
-            FileOutputStream fileOut = new FileOutputStream("tuctactoe.ser");
-            ObjectOutputStream out = new ObjectOutputStream(fileOut);
-            out.writeObject(player);
-            out.close();
-            fileOut.close();
-            System.out.printf("Serialized data is saved in tuctactoe.ser");
-        } catch (IOException i) {
-            i.printStackTrace();
-        }
-        Player p = null;
-
-        // Deserialization
-        try {
-            // Reading the object from a file
-            FileInputStream FileIn = new FileInputStream("tuctactoe.ser");
-            ObjectInputStream in = new ObjectInputStream(FileIn);
-
-            // Method for deserialization of object
-            p = (Player) in.readObject();
-
-            in.close();
-            FileIn.close();
-
-            System.out.println("\nObject has been deserialized ");
-            roster.addPlayer(p);
-            System.out.println(roster.player[i].username);
-            i++;
-        } catch (IOException ex) {
-            System.out.println("IOException is caught");
-        }
-
-        catch (ClassNotFoundException ex) {
-            System.out.println("ClassNotFoundException is caught");
-        }
-    }
 
 }

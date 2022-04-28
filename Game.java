@@ -1,3 +1,4 @@
+
 public class Game {
 
     BannerPanel bannerpanel;
@@ -6,11 +7,12 @@ public class Game {
     GameRecord gamerecord;
     HallOfFame halloffame;
     MainWindow mainwindow;
-    Player player;
+    Player[] player;
     PlayerPanel playerpanel;
     PlayerRoster playerroster;
     PvE pve;
     PvP pvp;
+    int pnum = 0;
 
     public Game() {
         this.bannerpanel = new BannerPanel();
@@ -19,14 +21,16 @@ public class Game {
         this.gamerecord = new GameRecord();
         this.halloffame = new HallOfFame();
         this.mainwindow = new MainWindow();
+        player = new Player[10];
         // this.player = new Player(username, games, victories, losses);
         this.playerpanel = new PlayerPanel();
         this.playerroster = new PlayerRoster();
         this.pve = new PvE();
         this.pvp = new PvP();
 
-        playerpanel.addplayer("Mike", 0, 0, 0, 0);
-        playerpanel.addplayer("George", 0, 0, 0, 0);
+        playerroster.addPlayer(new Player("Mike", 0, 0, 0, 0));
+        playerroster.addPlayer(new Player("George", 0, 0, 0, 0));
 
     }
+
 }
