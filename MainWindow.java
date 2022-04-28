@@ -30,7 +30,7 @@ public class MainWindow extends Frame implements ActionListener {
     JButton backtomenubutton = new JButton("Back to Menu");
     JButton mutebutton = new JButton();
 
-    //mute music button configuration
+    // mute music button configuration
     public void createmutebutton(JFrame gameframe, Clip clip) {
         ImageIcon muteicon = new ImageIcon("Images/mutebutton.png");
         ImageIcon muteiconenabled = new ImageIcon("Images/mutebuttonenabled.png");
@@ -46,9 +46,9 @@ public class MainWindow extends Frame implements ActionListener {
             @Override
             public void actionPerformed(ActionEvent e) {
                 mute(clip);
-                if(mutebutton.getIcon() == muteicon) {
+                if (mutebutton.getIcon() == muteicon) {
                     mutebutton.setIcon(muteiconenabled);
-                } else if(mutebutton.getIcon() == muteiconenabled) {
+                } else if (mutebutton.getIcon() == muteiconenabled) {
                     mutebutton.setIcon(muteicon);
                 }
             }
@@ -60,9 +60,112 @@ public class MainWindow extends Frame implements ActionListener {
         music.muteMusic(clip);
     }
 
-    //create main window
+
+    // create main window
     public void windowcreation() {
         Clip clip = music.playMenuMusic();
+        menutitle.setText("TUC TAC TOE");
+        menutitle.setBounds(277, 10, 150, 50);
+        menutitle.setFont(new Font("Monaco", Font.BOLD, 20));
+        menutitle.setForeground(Color.RED);
+        menutitle.setVisible(false);
+        frame.add(menutitle);
+
+        playbutton.setBounds(275, 100, 150, 30);
+        playbutton.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                backtomenubutton.setVisible(true);
+                backtomenubutton.setEnabled(true);
+                menutitle.setVisible(false);
+                playbutton.setEnabled(false);
+                playbutton.setVisible(false);
+                backtomenubutton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                gamemodeselection(clip);
+            }
+
+        });
+        playbutton.setEnabled(false);
+        playbutton.setVisible(false);
+        playbutton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        frame.add(playbutton);
+
+        halloffamebutton.setBounds(275, 150, 150, 30);
+        halloffamebutton.setEnabled(false);
+        halloffamebutton.setVisible(false);
+        halloffamebutton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        frame.add(halloffamebutton);
+
+        settingsbutton.setBounds(275, 200, 150, 30);
+        settingsbutton.setEnabled(false);
+        settingsbutton.setVisible(false);
+        settingsbutton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        frame.add(settingsbutton);
+
+        exitbutton.setBounds(275, 250, 150, 30);
+        exitbutton.setEnabled(false);
+        exitbutton.setVisible(false);
+        exitbutton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        frame.add(exitbutton);
+
+        pvpbutton.setBounds(210, 150, 70, 30);
+        pvpbutton.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                clip.stop();
+                pvp.pvpopen(frame);
+            }
+
+        });
+        pvpbutton.setEnabled(false);
+        pvpbutton.setVisible(false);
+        pvpbutton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        frame.add(pvpbutton);
+
+        pvebutton.setBounds(310, 150, 70, 30);
+        pvebutton.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                clip.stop();
+                pve.pveopen(frame);
+            }
+
+        });
+        pvebutton.setEnabled(false);
+        pvebutton.setVisible(false);
+        pvebutton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        frame.add(pvebutton);
+
+        evebutton.setBounds(410, 150, 70, 30);
+        evebutton.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                clip.stop();
+                eve.eveopen(frame);
+            }
+
+        });
+        evebutton.setEnabled(false);
+        evebutton.setVisible(false);
+        evebutton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        frame.add(evebutton);
+
+        backtomenubutton.setBounds(520, 510, 150, 30);
+        backtomenubutton.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mainmenu(clip);
+            }
+
+        });
+        backtomenubutton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        frame.add(backtomenubutton);
+
         mainmenu(clip);
         // application image configuration
         ImageIcon arrowIcon = null;
@@ -84,128 +187,50 @@ public class MainWindow extends Frame implements ActionListener {
         frame.setVisible(true);
     }
 
-    //main menu
+    // main menu
     public void mainmenu(Clip clip) {
-        // menu title customization
-        menutitle.setText("TUC TAC TOE");
-        menutitle.setBounds(277, 10, 150, 50);
-        menutitle.setFont(new Font("Monaco", Font.BOLD, 20));
-        menutitle.setForeground(Color.RED);
-        // set component boundaries
-        playbutton.setBounds(275, 100, 150, 30);
-        halloffamebutton.setBounds(275, 150, 150, 30);
-        settingsbutton.setBounds(275, 200, 150, 30);
-        exitbutton.setBounds(275, 250, 150, 30);
-        backtomenubutton.setBounds(520, 510, 150, 30);
-        backtomenubutton.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                frame.remove(pvpbutton);
-                frame.remove(pvebutton);
-                frame.remove(evebutton);
-                frame.remove(backtomenubutton);
-                frame.revalidate();
-                frame.repaint();
-                windowcreation();
-            }
-            
-        });
-        // actionlistener addition
-        playbutton.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                frame.add(backtomenubutton);
-                backtomenubutton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-                gamemodeselection(clip);
-            }
-            
-        });
         halloffamebutton.addActionListener(this);
         settingsbutton.addActionListener(this);
         exitbutton.addActionListener(this);
-        backtomenubutton.addActionListener(this);
-        // add components to frame
-        frame.add(menutitle);
-        frame.add(playbutton);
-        frame.add(halloffamebutton);
-        frame.add(settingsbutton);
-        frame.add(exitbutton);
-        playbutton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        halloffamebutton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        settingsbutton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        exitbutton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 
+        menutitle.setVisible(true);
+        playbutton.setEnabled(true);
+        playbutton.setVisible(true);
+        halloffamebutton.setEnabled(true);
+        halloffamebutton.setVisible(true);
+        settingsbutton.setEnabled(true);
+        settingsbutton.setVisible(true);
+        exitbutton.setEnabled(true);
+        exitbutton.setVisible(true);
+
+        pvpbutton.setEnabled(false);
+        pvpbutton.setVisible(false);
+        pvebutton.setEnabled(false);
+        pvebutton.setVisible(false);
+        evebutton.setEnabled(false);
+        evebutton.setVisible(false);
+        backtomenubutton.setEnabled(false);
+        backtomenubutton.setVisible(false);
     }
 
-    //pvp or pve or eve
+    // pvp or pve or eve selection
     public void gamemodeselection(Clip clip) {
         // remove previous buttons
-        frame.remove(playbutton);
-        frame.remove(halloffamebutton);
-        frame.remove(settingsbutton);
-        frame.remove(exitbutton);
-        frame.revalidate();
-        frame.repaint();
-        // add game mode selection buttons
-        pvpbutton.setBounds(210, 150, 70, 30);
-        pvebutton.setBounds(310, 150, 70, 30);
-        evebutton.setBounds(410, 150, 70, 30);
-        pvpbutton.addActionListener(new ActionListener() {
+        playbutton.setVisible(false);
+        playbutton.setEnabled(false);
+        halloffamebutton.setVisible(false);
+        halloffamebutton.setEnabled(false);
+        settingsbutton.setVisible(false);
+        settingsbutton.setEnabled(false);
+        exitbutton.setVisible(false);
+        exitbutton.setEnabled(false);
 
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                frame.remove(pvpbutton);
-                frame.remove(pvebutton);
-                frame.remove(evebutton);
-                frame.remove(menutitle);
-                frame.remove(backtomenubutton);
-                frame.revalidate();
-                frame.repaint();
-                clip.stop();
-                pvp.pvpopen(frame);
-            }
-            
-        });
-        pvebutton.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                frame.remove(pvpbutton);
-                frame.remove(pvebutton);
-                frame.remove(evebutton);
-                frame.remove(menutitle);
-                frame.remove(backtomenubutton);
-                frame.revalidate();
-                frame.repaint();
-                clip.stop();
-                pve.pveopen(frame);
-            }
-            
-        });
-        evebutton.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                frame.remove(pvpbutton);
-                frame.remove(pvebutton);
-                frame.remove(evebutton);
-                frame.remove(menutitle);
-                frame.remove(backtomenubutton);
-                frame.revalidate();
-                frame.repaint();
-                clip.stop();
-                eve.eveopen(frame);
-            }
-            
-        });
-        frame.add(pvpbutton);
-        frame.add(pvebutton);
-        frame.add(evebutton);
-        pvpbutton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        pvebutton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        evebutton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        pvpbutton.setVisible(true);
+        pvpbutton.setEnabled(true);
+        pvebutton.setVisible(true);
+        pvebutton.setEnabled(true);
+        evebutton.setVisible(true);
+        evebutton.setEnabled(true);
     }
 
     // action for every button configuration
@@ -220,8 +245,6 @@ public class MainWindow extends Frame implements ActionListener {
                 System.out.println("Prits3");
             } else if (actionSource.equals(exitbutton)) {
                 System.exit(0);
-            } else if (actionSource.equals(backtomenubutton)) {
-                
             }
         } catch (Exception ex) {
             System.out.println(ex);
