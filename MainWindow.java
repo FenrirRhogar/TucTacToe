@@ -4,7 +4,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.Cursor;
 
-public class MainWindow extends Frame implements ActionListener {
+public class MainWindow extends Frame {
 
     // classes
     PlayerPanel playerpanel = new PlayerPanel();
@@ -17,7 +17,7 @@ public class MainWindow extends Frame implements ActionListener {
     EvE eve = new EvE();
     // main frame
     JFrame frame = new JFrame("Tuc Tac Toe");
-    // tuc tac toe label
+    // tuc tac toe title
     JLabel menutitle = new JLabel();
     // buttons
     JButton playbutton = new JButton("Play");
@@ -61,16 +61,18 @@ public class MainWindow extends Frame implements ActionListener {
     }
 
 
-    // create main window
+    // create window
     public void windowcreation() {
+        // play music
         Clip clip = music.playMenuMusic();
+        // menu title
         menutitle.setText("TUC TAC TOE");
         menutitle.setBounds(277, 10, 150, 50);
         menutitle.setFont(new Font("Monaco", Font.BOLD, 20));
         menutitle.setForeground(Color.RED);
         menutitle.setVisible(false);
         frame.add(menutitle);
-
+        // "Play" button
         playbutton.setBounds(275, 100, 150, 30);
         playbutton.addActionListener(new ActionListener() {
 
@@ -90,25 +92,75 @@ public class MainWindow extends Frame implements ActionListener {
         playbutton.setVisible(false);
         playbutton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         frame.add(playbutton);
-
+        // "Hall Of Fame" button
         halloffamebutton.setBounds(275, 150, 150, 30);
+        halloffamebutton.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Prits2");
+                
+            }
+
+        });
         halloffamebutton.setEnabled(false);
         halloffamebutton.setVisible(false);
         halloffamebutton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         frame.add(halloffamebutton);
-
+        // "Settings" button
         settingsbutton.setBounds(275, 200, 150, 30);
+        settingsbutton.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Prits3");
+            }
+
+        });
         settingsbutton.setEnabled(false);
         settingsbutton.setVisible(false);
         settingsbutton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         frame.add(settingsbutton);
-
+        // "Exit button"
         exitbutton.setBounds(275, 250, 150, 30);
+        exitbutton.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+
+        });
         exitbutton.setEnabled(false);
         exitbutton.setVisible(false);
         exitbutton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         frame.add(exitbutton);
+        // Gamemode buttons
+        gamemodeButtons(clip);
+        // "Back To Menu" button
+        backtomenubutton.setBounds(520, 510, 150, 30);
+        backtomenubutton.addActionListener(new ActionListener() {
 
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mainmenu(clip);
+            }
+
+        });
+        backtomenubutton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        frame.add(backtomenubutton);
+        // make menu buttons active
+        mainmenu(clip);
+        // application image configuration
+        applicationIcon();
+        // mute button
+        createmutebutton(frame, clip);
+        // window properties
+        frameSettings();
+    }
+
+    private void gamemodeButtons(Clip clip) {
+        // "PvP" gamemode button
         pvpbutton.setBounds(210, 150, 70, 30);
         pvpbutton.addActionListener(new ActionListener() {
 
@@ -123,7 +175,7 @@ public class MainWindow extends Frame implements ActionListener {
         pvpbutton.setVisible(false);
         pvpbutton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         frame.add(pvpbutton);
-
+        // "PvE" gamemode button
         pvebutton.setBounds(310, 150, 70, 30);
         pvebutton.addActionListener(new ActionListener() {
 
@@ -138,7 +190,7 @@ public class MainWindow extends Frame implements ActionListener {
         pvebutton.setVisible(false);
         pvebutton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         frame.add(pvebutton);
-
+        // "EvE" gamemode button
         evebutton.setBounds(410, 150, 70, 30);
         evebutton.addActionListener(new ActionListener() {
 
@@ -153,31 +205,9 @@ public class MainWindow extends Frame implements ActionListener {
         evebutton.setVisible(false);
         evebutton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         frame.add(evebutton);
+    }
 
-        backtomenubutton.setBounds(520, 510, 150, 30);
-        backtomenubutton.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                mainmenu(clip);
-            }
-
-        });
-        backtomenubutton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        frame.add(backtomenubutton);
-
-        mainmenu(clip);
-        // application image configuration
-        ImageIcon arrowIcon = null;
-        java.net.URL imgURL = MainWindow.class.getResource("Images/gb.png");
-        if (imgURL != null) {
-            arrowIcon = new ImageIcon(imgURL);
-            frame.setIconImage(arrowIcon.getImage());
-        } else {
-            JOptionPane.showMessageDialog(frame, "Icon image not found.");
-        }
-        createmutebutton(frame, clip);
-        // window properties
+    private void frameSettings() {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(714, 600);
         frame.getContentPane().setBackground(new Color(5, 65, 90));
@@ -187,12 +217,20 @@ public class MainWindow extends Frame implements ActionListener {
         frame.setVisible(true);
     }
 
+    private void applicationIcon() {
+        ImageIcon arrowIcon = null;
+        java.net.URL imgURL = MainWindow.class.getResource("Images/gb.png");
+        if (imgURL != null) {
+            arrowIcon = new ImageIcon(imgURL);
+            frame.setIconImage(arrowIcon.getImage());
+        } else {
+            JOptionPane.showMessageDialog(frame, "Icon image not found.");
+        }
+    }
+
     // main menu
     public void mainmenu(Clip clip) {
-        halloffamebutton.addActionListener(this);
-        settingsbutton.addActionListener(this);
-        exitbutton.addActionListener(this);
-
+        // enable new buttons
         menutitle.setVisible(true);
         playbutton.setEnabled(true);
         playbutton.setVisible(true);
@@ -202,7 +240,7 @@ public class MainWindow extends Frame implements ActionListener {
         settingsbutton.setVisible(true);
         exitbutton.setEnabled(true);
         exitbutton.setVisible(true);
-
+        // disable previous buttons
         pvpbutton.setEnabled(false);
         pvpbutton.setVisible(false);
         pvebutton.setEnabled(false);
@@ -215,7 +253,7 @@ public class MainWindow extends Frame implements ActionListener {
 
     // pvp or pve or eve selection
     public void gamemodeselection(Clip clip) {
-        // remove previous buttons
+        // disabe previous buttons
         playbutton.setVisible(false);
         playbutton.setEnabled(false);
         halloffamebutton.setVisible(false);
@@ -224,30 +262,12 @@ public class MainWindow extends Frame implements ActionListener {
         settingsbutton.setEnabled(false);
         exitbutton.setVisible(false);
         exitbutton.setEnabled(false);
-
+        // enable new buttons
         pvpbutton.setVisible(true);
         pvpbutton.setEnabled(true);
         pvebutton.setVisible(true);
         pvebutton.setEnabled(true);
         evebutton.setVisible(true);
         evebutton.setEnabled(true);
-    }
-
-    // action for every button configuration
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        try {
-            JButton actionSource = (JButton) e.getSource();
-
-            if (actionSource.equals(halloffamebutton)) {
-                System.out.println("Prits2");
-            } else if (actionSource.equals(settingsbutton)) {
-                System.out.println("Prits3");
-            } else if (actionSource.equals(exitbutton)) {
-                System.exit(0);
-            }
-        } catch (Exception ex) {
-            System.out.println(ex);
-        }
     }
 }

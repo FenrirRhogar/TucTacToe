@@ -171,6 +171,7 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
                 for (int i = 0; i < 9; i++) {
                     b[i].setEnabled(true);
                 }
+                boardbutton.setEnabled(true);
                 startbutton.setEnabled(false);
                 startbutton.setVisible(false);
             }
@@ -206,6 +207,7 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
         createplayagainbutton(frame, gamemode, clip);
         playerpanel.playerpanelscreation(frame, button, gamemode);
         boardbutton.setBounds(200, 10, 300, 300);
+        boardbutton.setEnabled(false);
         frame.add(boardbutton);
         JLayeredPane layeredPane = frame.getLayeredPane();
         layeredPane.add(boardbutton, Integer.valueOf(0));

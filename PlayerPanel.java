@@ -11,6 +11,8 @@ public class PlayerPanel {
     JLabel player2label = new JLabel("Player 2");
     JLabel player1name = new JLabel();
     JLabel player2name = new JLabel();
+    JLabel player1score = new JLabel();
+    JLabel player2score = new JLabel();
     JButton selectplayer1button = new JButton("Select Player");
     JButton selectplayer2button = new JButton("Select Player");
     GameBoard gameboard;
@@ -31,7 +33,9 @@ public class PlayerPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // select player
-                player1name.setText(selectoraddpopup());
+                Player player = selectoraddpopup();
+                player1name.setText(player.username);
+                player1score.setText("Score: " + player.score);
                 // if player has been selected discard the button
                 if (player1name.getText() != null) {
                     selectplayer1button.setEnabled(false);
@@ -49,7 +53,9 @@ public class PlayerPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // select player
-                player2name.setText(selectoraddpopup());
+                Player player = selectoraddpopup();
+                player2name.setText(player.username);
+                player2score.setText("Score: " + player.score);
                 // if player has been selected discard the button
                 if (player2name.getText() != null) {
                     selectplayer2button.setEnabled(false);
@@ -72,10 +78,14 @@ public class PlayerPanel {
         player1name.setBounds(45, 60, 110, 20);
         player1name.setForeground(Color.WHITE);
         player1name.setText(null);
+        player1score.setBounds(45, 80, 110, 20);
+        player1score.setForeground(Color.WHITE);
+        // player1info.setBounds();
         selectplayer1button.setBounds(45, 60, 110, 30);
         frame.add(player1label);
         frame.add(selectplayer1button);
         frame.add(player1name);
+        frame.add(player1score);
         selectplayer1button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     }
 
@@ -87,18 +97,23 @@ public class PlayerPanel {
         player2name.setBounds(545, 60, 110, 20);
         player2name.setForeground(Color.WHITE);
         player2name.setText(null);
+        player2score.setBounds(545, 80, 110, 20);
+        player2score.setForeground(Color.WHITE);
+        // player2info.setBounds();
         selectplayer2button.setBounds(545, 60, 110, 30);
         frame.add(player2label);
         frame.add(selectplayer2button);
         frame.add(player2name);
+        frame.add(player2score);
         selectplayer2button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     }
 
     // popup window to choose exsisting or new player
-    public String selectoraddpopup() {
+    public Player selectoraddpopup() {
         // proswrino
         JFrame jFrame = new JFrame();
         String username = null;
+        Player player;
         Game g = new Game();
         String[] options = { "New Player", "Exsisting Player", "Cancel" };
         int optionindex = JOptionPane.showOptionDialog(jFrame, "Add new player or select an exsisting?", null,
@@ -149,7 +164,7 @@ public class PlayerPanel {
             // an to deis prin apo mena kai exeis oreksh tsekare to ligo
 
             roster.storePlayer();
-            return username;
+            return p;
             // select exsisting player
         } else if (optionindex == 1) {
             roster.loadPlayer();
@@ -161,7 +176,8 @@ public class PlayerPanel {
             JFrame selectplayerframe = new JFrame();
             username = (String) JOptionPane.showInputDialog(selectplayerframe, "Select Player:", null,
                     JOptionPane.QUESTION_MESSAGE, null, players, players[0]);
-            return username;
+            player = roster.findPlayer(username);
+            return player;
             // CANCEL
         } else if (optionindex == 2) {
             return null;
