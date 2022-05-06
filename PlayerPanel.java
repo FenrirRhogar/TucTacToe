@@ -33,6 +33,7 @@ public class PlayerPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // select player
+
                 Player player = selectoraddpopup();
                 player1name.setText(player.username);
                 player1score.setText("Score: " + player.score);
@@ -122,6 +123,7 @@ public class PlayerPanel {
         // add new player
         if (optionindex == 0) {
             roster.loadPlayer();
+
             do {
                 username = JOptionPane.showInputDialog("Please enter the new player's name:", null);
                 if (username.length() > 20 || username.charAt(0) == ' '
@@ -140,33 +142,17 @@ public class PlayerPanel {
             } while (username.isEmpty() == true || username.length() > 20 || username.charAt(0) == ' '
                     || username.charAt(username.length() - 1) == ' ');
             p = new Player(username, 0, 0, 0, 0);
-            roster.pnum = g.playerroster.pnum;
-            System.out.println(roster.pnum);
+
+            // players[roster.pnum] = p.username;
+
+            System.out.println(g.playerroster.addPlayer(p));
             roster.addPlayer(p);
-            for (int k = 0; k < roster.pnum; k++) {
-                System.out.println(roster.player[k].username);
+            // roster.storePlayer();
 
-            }
-
-            // gia kapoio logo apothikeuei ton paikth ksana sth thesi 0 apo oti vlepw an
-            // xrisimopoihsw thn roster.addPlayer(p) kati prp na paizei me ton tropo kai
-            // to pou dhlwnoume tous paixtes an to vreis prin to vradi pes mou logika den
-            // einai polu zoriko alla nustazw opote ta leme aurio
-
-            // update fainetai na pernei kai ton epomeno paikth meta apo kati allages
-            // omws meta sto option 2 den tous gazei olous gia kapoio logo pou ontws tha dw
-            // aurio
-            // giati eprepe na xw koimithei ap thn wra pou egrafa to apo panw sxolio
-            // h arxikh ektimisi mou htan pws to kanei gt kati paizei me ton periorismo tou
-            // loadPlayer alla otan ton allaksa eixa error opote dne kserw ti ftaiei
-            // (an kai sunexizw na to pisteuw gt an to trekseis tha deis oti vgazei mnma gia
-            // apothikeusi 3 stoixeiwn)
-            // an to deis prin apo mena kai exeis oreksh tsekare to ligo
-
-            roster.storePlayer();
             return p;
             // select exsisting player
         } else if (optionindex == 1) {
+
             roster.loadPlayer();
             for (int j = 0; j < roster.player.length; j++) {
                 if (roster.player[j] != null) {

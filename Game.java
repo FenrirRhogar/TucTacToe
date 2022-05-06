@@ -12,7 +12,6 @@ public class Game {
     PlayerRoster playerroster;
     PvE pve;
     PvP pvp;
-    int pnum = 0;
 
     public Game() {
         this.bannerpanel = new BannerPanel();
@@ -28,9 +27,8 @@ public class Game {
         this.pve = new PvE();
         this.pvp = new PvP();
 
-        playerroster.addPlayer(new Player("Mike", 0, 0, 0, 0));
-        playerroster.addPlayer(new Player("George", 0, 0, 0, 0));
-
+        // playerroster.addPlayer(new Player("Panos", 0, 0, 0, 0));
+        // playerroster.addPlayer(new Player("Christian", 0, 0, 0, 0));
     }
 
 }

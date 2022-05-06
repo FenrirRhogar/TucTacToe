@@ -12,16 +12,19 @@ public class PlayerRoster implements Serializable {
         this.player = new Player[50];
     }
 
-    public void addPlayer(Player p) {
+    public int addPlayer(Player p) {
         player[pnum] = p;
         pnum++;
         storePlayer();
+        return pnum;
     }
 
     public void storePlayer() {
+        FileOutputStream fileOut = null;
+        ObjectOutputStream out = null;
         try {
-            FileOutputStream fileOut = new FileOutputStream("tuctactoe.ser");
-            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            fileOut = new FileOutputStream("tuctactoe.ser");
+            out = new ObjectOutputStream(fileOut);
             for (Player player : this.player) {
                 out.writeObject(player);
             }
@@ -35,15 +38,18 @@ public class PlayerRoster implements Serializable {
 
     public void loadPlayer() {
         int pos = 0;
+        FileInputStream FileIn = null;
+        ObjectInputStream in = null;
         // Deserialization
         try {
             // Reading the object from a file
-            FileInputStream FileIn = new FileInputStream("tuctactoe.ser");
-            ObjectInputStream in = new ObjectInputStream(FileIn);
+            FileIn = new FileInputStream("tuctactoe.ser");
+            in = new ObjectInputStream(FileIn);
 
             while (FileIn.available() > 0) {
                 Player p = (Player) in.readObject();
-                this.player[pos++] = p;
+                this.player[pos] = p;
+                pos++;
             }
             in.close();
             FileIn.close();
