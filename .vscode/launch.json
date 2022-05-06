@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch Console",
+            "request": "launch",
+            "mainClass": "Console",
+            "projectName": "TucTacToe_8baf1838"
+        },
+        {
+            "type": "java",
             "name": "Launch Music",
             "request": "launch",
             "mainClass": "Music",

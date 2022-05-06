@@ -145,8 +145,15 @@ public class PlayerPanel {
 
             // players[roster.pnum] = p.username;
 
-            System.out.println(g.playerroster.addPlayer(p));
-            roster.addPlayer(p);
+            for (int i = 0; i < 50; i++) {
+                if (roster.player[i] == null) {
+                    roster.addPlayer(p, i);
+                    System.out.println(i);
+                    break;
+                }
+
+            }
+
             // roster.storePlayer();
 
             return p;

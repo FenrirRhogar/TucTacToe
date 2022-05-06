@@ -12,7 +12,7 @@ public class PlayerRoster implements Serializable {
         this.player = new Player[50];
     }
 
-    public int addPlayer(Player p) {
+    public int addPlayer(Player p, int pnum) {
         player[pnum] = p;
         pnum++;
         storePlayer();
