@@ -3,7 +3,7 @@ import java.io.Serializable;
 public class Player implements Serializable {
 
     public String username;
-    public int victories, losses, draws, game;
+    public int victories, losses, draws, games;
     public float score;
 
     public Player() {
@@ -59,17 +59,22 @@ public class Player implements Serializable {
         this.draws = draws;
     }
 
-    public int getGame() {
-        return game;
+    public int getGames() {
+        return games;
     }
 
-    public void setGame(int game) {
-        this.game = game;
+    public void setGames(int games) {
+        this.games = games;
     }
 
     public float calculateScore(int victories, int draws, int games) {
         float result;
-        result = 50 * ((2 * victories + draws) / (games));
+        if (games == 0) {
+            result = 0;
+        } else {
+            result = (float) (50.0 * ((2.0 * (float) victories + (float) draws) / ((float) games)));
+        }
+
         return result;
     }
 }

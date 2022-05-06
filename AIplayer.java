@@ -1,4 +1,6 @@
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
+
 import javax.swing.JButton;
 
 public class AIplayer {
@@ -10,7 +12,8 @@ public class AIplayer {
     int[] corner = { 0, 2, 6, 8 };
     int[] availablePos;
 
-    public void PerfectPlayer() {
+    public void PerfectPlayer() throws InterruptedException {
+        TimeUnit.SECONDS.sleep(2);
         int bestVal = Integer.MAX_VALUE;
         int bestMove = corner[random.nextInt(corner.length)];
         if (b.Player1 && p.getUsername() == "Hal") { // Wrong

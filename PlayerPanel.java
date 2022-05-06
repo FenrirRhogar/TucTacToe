@@ -33,10 +33,10 @@ public class PlayerPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // select player
-
+                roster.loadPlayer();
                 Player player = selectoraddpopup();
                 player1name.setText(player.username);
-                player1score.setText("Score: " + player.score);
+                player1score.setText("Score: " + player.calculateScore(player.victories, player.draws, player.games));
                 // if player has been selected discard the button
                 if (player1name.getText() != null) {
                     selectplayer1button.setEnabled(false);
@@ -56,7 +56,7 @@ public class PlayerPanel {
                 // select player
                 Player player = selectoraddpopup();
                 player2name.setText(player.username);
-                player2score.setText("Score: " + player.score);
+                player2score.setText("Score: " + player.calculateScore(player.victories, player.draws, player.games));
                 // if player has been selected discard the button
                 if (player2name.getText() != null) {
                     selectplayer2button.setEnabled(false);
@@ -115,7 +115,6 @@ public class PlayerPanel {
         JFrame jFrame = new JFrame();
         String username = null;
         Player player;
-        Game g = new Game();
         String[] options = { "New Player", "Exsisting Player", "Cancel" };
         int optionindex = JOptionPane.showOptionDialog(jFrame, "Add new player or select an exsisting?", null,
                 JOptionPane.PLAIN_MESSAGE, JOptionPane.PLAIN_MESSAGE, null, options, null);
@@ -143,8 +142,6 @@ public class PlayerPanel {
                     || username.charAt(username.length() - 1) == ' ');
             p = new Player(username, 0, 0, 0, 0);
 
-            // players[roster.pnum] = p.username;
-
             for (int i = 0; i < 50; i++) {
                 if (roster.player[i] == null) {
                     roster.addPlayer(p, i);
@@ -153,8 +150,6 @@ public class PlayerPanel {
                 }
 
             }
-
-            // roster.storePlayer();
 
             return p;
             // select exsisting player

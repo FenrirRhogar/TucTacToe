@@ -134,16 +134,26 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
                 boardbutton.setEnabled(false);
             }
             JOptionPane.showMessageDialog(jFrame, "Player 1 wins!");
+            Player player1 = playerpanel.roster.findPlayer(playerpanel.player1name.getText());
+            Player player2 = playerpanel.roster.findPlayer(playerpanel.player2name.getText());
+            player1.setVictories(player1.victories + 1);
+            player2.setLosses(player2.losses + 1);
+            player1.setGames(player1.games + 1);
+            player2.setGames(player2.games + 1);
             playagainbutton.setVisible(true);
-            playagainbutton.setEnabled(true);  
+            playagainbutton.setEnabled(true);
         } else if (res == -1) {
             for (int i = 0; i < 9; i++) {
                 b[i].setEnabled(false);
                 boardbutton.setEnabled(false);
             }
             JOptionPane.showMessageDialog(jFrame, "Player 2 wins!");
+            playerpanel.roster.findPlayer(playerpanel.player2name.getText()).victories++;
+            playerpanel.roster.findPlayer(playerpanel.player1name.getText()).losses++;
+            playerpanel.roster.findPlayer(playerpanel.player1name.getText()).games++;
+            playerpanel.roster.findPlayer(playerpanel.player2name.getText()).games++;
             playagainbutton.setVisible(true);
-            playagainbutton.setEnabled(true); 
+            playagainbutton.setEnabled(true);
         } else {
             if (b[0].getIcon() != null && b[1].getIcon() != null && b[2].getIcon() != null && b[3].getIcon() != null
                     && b[4].getIcon() != null && b[5].getIcon() != null && b[6].getIcon() != null
@@ -153,13 +163,17 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
                     boardbutton.setEnabled(false);
                 }
                 JOptionPane.showMessageDialog(jFrame, "Draw!");
+                playerpanel.roster.findPlayer(playerpanel.player1name.getText()).draws++;
+                playerpanel.roster.findPlayer(playerpanel.player2name.getText()).draws++;
+                playerpanel.roster.findPlayer(playerpanel.player1name.getText()).games++;
+                playerpanel.roster.findPlayer(playerpanel.player2name.getText()).games++;
                 playagainbutton.setVisible(true);
-                playagainbutton.setEnabled(true); 
+                playagainbutton.setEnabled(true);
             }
         }
     }
 
-    //add start button
+    // add start button
     public JButton createstartbutton(JFrame gameframe) {
         startbutton.setBounds(300, 350, 100, 35);
         gameframe.add(startbutton);
@@ -181,7 +195,7 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
         return startbutton;
     }
 
-    //play again button
+    // play again button
     public void createplayagainbutton(JFrame gameframe, String gamemode, Clip clip) {
         playagainbutton.setBounds(300, 350, 100, 35);
         gameframe.add(playagainbutton);
