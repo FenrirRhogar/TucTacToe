@@ -1,6 +1,7 @@
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
+import javax.swing.Icon;
 import javax.swing.JButton;
 
 public class AIplayer {
@@ -12,44 +13,43 @@ public class AIplayer {
     int[] corner = { 0, 2, 6, 8 };
     int[] availablePos;
 
-    public void PerfectPlayer() throws InterruptedException {
+    public void PerfectPlayer(Icon ic) throws InterruptedException {
         TimeUnit.SECONDS.sleep(2);
         int bestVal = Integer.MAX_VALUE;
         int bestMove = corner[random.nextInt(corner.length)];
-        if (b.Player1 && p.getUsername() == "Hal") { // Wrong
-            for (int i = 0; i < 9; i++) {
-                if (gb.b[i].getIcon() == null) {
-                    gb.b[i].setIcon(b.getIc1());
-                    int value = gb.minmax(false);
-                    gb.b[i].setIcon(null);
-                    if (value < bestVal) {
-                        bestVal = value;
-                        bestMove = i;
+        for (int i = 0; i < 9; i++) {
+            if (gb.b[i].getIcon() == null) {
+                gb.b[i].setIcon(ic);
+                int value = gb.minmax(false);
+                gb.b[i].setIcon(null);
+                if (value < bestVal) {
+                    bestVal = value;
+                    bestMove = i;
 
-                    }
-                    if (value == -1) {
-                        break;
-                    }
+                }
+                if (value == -1) {
+                    break;
                 }
             }
-            gb.b[bestMove].setIcon(b.getIc1());
+            gb.b[bestMove].setIcon(ic);
             gb.Result(gb.ResultCheck());
 
         }
-
     }
 
-    public void RandomPlayer() {
+    public void RandomPlayer(Icon ic) throws InterruptedException {
         int sel = 0;
+        TimeUnit.SECONDS.sleep(2);
         for (int i = 0; i < 9; i++) {
             if (gb.b[i].getIcon() == null) {
                 availablePos[i] = i;
             }
-            sel = availablePos[random.nextInt(availablePos.length)];
+            sel = availablePos[random.nextInt(availablePos[i])];
 
         }
-        gb.b[sel].setIcon(b.getIc1());
+        gb.b[sel].setIcon(ic);
         gb.Result(gb.ResultCheck());
+
     }
 
 }

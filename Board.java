@@ -59,6 +59,7 @@ public class Board {
     public boolean firstPlay() {
         if (random.nextInt(2) == 0) {
             Player1 = true;
+            System.out.println("P1");
             return Player1;
             // print (-player 1 name- turn in screen)
         } else {

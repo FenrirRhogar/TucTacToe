@@ -15,6 +15,7 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
     JButton startbutton = new JButton("Start");
     JButton playagainbutton = new JButton("Play Again");
     Board board = new Board();
+    AIplayer ai;
     boolean turn = board.firstPlay();
     int num, result;
 
@@ -247,6 +248,7 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
             b[i].setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 
             b[i].addActionListener(this);
+
         }
     }
 
@@ -290,7 +292,31 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
             JButton actionSource = (JButton) e.getSource();
 
             for (int i = 0; i < 9; i++) {
-                if (actionSource == b[i]) {
+                if (actionSource == b[i]
+                        && (playerpanel.player1name.getText() == "Hal" || playerpanel.player2name.getText() == "Hal")) {
+                    try {
+                        if (playerpanel.player1name.getText() == "Hal") {
+                            ai.PerfectPlayer(board.ic1);
+                        } else {
+                            ai.PerfectPlayer(board.ic2);
+                        }
+
+                    } catch (InterruptedException ex) {
+
+                        ex.printStackTrace();
+                    }
+                } else if (actionSource == b[i] && (playerpanel.player1name.getText() == "Mr.Bean"
+                        || playerpanel.player2name.getText() == "Mr.Bean")) {
+                    try {
+                        if (playerpanel.player1name.getText() == "Mr.Bean") {
+                            ai.RandomPlayer(board.ic1);
+                        } else {
+                            ai.RandomPlayer(board.ic2);
+                        }
+                    } catch (InterruptedException ex) {
+                        ex.printStackTrace();
+                    }
+                } else {
                     if (turn) {
                         if (b[i].getIcon() == null) {
                             b[i].setIcon(board.getIc1());

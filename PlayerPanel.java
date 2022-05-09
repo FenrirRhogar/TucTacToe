@@ -16,9 +16,11 @@ public class PlayerPanel {
     JButton selectplayer1button = new JButton("Select Player");
     JButton selectplayer2button = new JButton("Select Player");
     GameBoard gameboard;
+    AIplayer ai;
     String[] players = new String[10];
     PlayerRoster roster = new PlayerRoster();
     Player p;
+    int aiver;
 
     int i = 0;
 
@@ -46,6 +48,12 @@ public class PlayerPanel {
                 if (selectplayer1button.isVisible() == false && selectplayer2button.isVisible() == false) {
                     startbutton.setEnabled(true);
                 }
+                if (player.username == "Hal") {
+                    aiver = 1;
+                } else if (player.username == "Mr.Bean") {
+                    aiver = 2;
+                }
+
             }
 
         });
@@ -115,6 +123,9 @@ public class PlayerPanel {
         JFrame jFrame = new JFrame();
         String username = null;
         Player player;
+
+        roster.addPlayer(new Player("Hal", 0, 0, 0, 0), 0);
+        roster.addPlayer(new Player("Mr.Bean", 0, 0, 0, 0), 1);
         String[] options = { "New Player", "Exsisting Player", "Cancel" };
         int optionindex = JOptionPane.showOptionDialog(jFrame, "Add new player or select an exsisting?", null,
                 JOptionPane.PLAIN_MESSAGE, JOptionPane.PLAIN_MESSAGE, null, options, null);
