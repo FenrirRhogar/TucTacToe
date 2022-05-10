@@ -192,6 +192,7 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
                 startbutton1.setVisible(false);
                 startbutton2.setEnabled(false);
                 startbutton2.setVisible(false);
+                // ksekinaei o 1
             }
 
         });
@@ -215,6 +216,7 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
                 startbutton1.setVisible(false);
                 startbutton2.setEnabled(false);
                 startbutton2.setVisible(false);
+                // ksekinaei o 2
             }
 
         });
