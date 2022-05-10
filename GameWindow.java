@@ -45,9 +45,9 @@ public class GameWindow extends Frame implements ActionListener {
             @Override
             public void actionPerformed(ActionEvent e) {
                 mute(clip);
-                if (mutebutton.getIcon() == muteicon) {
+                if(mutebutton.getIcon() == muteicon) {
                     mutebutton.setIcon(muteiconenabled);
-                } else if (mutebutton.getIcon() == muteiconenabled) {
+                } else if(mutebutton.getIcon() == muteiconenabled) {
                     mutebutton.setIcon(muteicon);
                 }
             }

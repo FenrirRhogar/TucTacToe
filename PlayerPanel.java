@@ -25,7 +25,7 @@ public class PlayerPanel {
     int i = 0;
 
     // create player panels
-    public void playerpanelscreation(JFrame frame, JButton startbutton, String gamemode) {
+    public void playerpanelscreation(JFrame frame, JButton startbutton1, JButton startbutton2, String gamemode) {
         // create player 1 and 2 panels
         leftpanel(frame);
         rightpanel(frame);
@@ -46,7 +46,8 @@ public class PlayerPanel {
                 }
                 // if players have been selected, enable start button
                 if (selectplayer1button.isVisible() == false && selectplayer2button.isVisible() == false) {
-                    startbutton.setEnabled(true);
+                    startbutton1.setEnabled(true);
+                    startbutton2.setEnabled(true);
                 }
                 if (player.username == "Hal") {
                     aiver = 1;
@@ -72,7 +73,8 @@ public class PlayerPanel {
                 }
                 // if players have been selected, enable start button
                 if (selectplayer1button.isVisible() == false && selectplayer2button.isVisible() == false) {
-                    startbutton.setEnabled(true);
+                    startbutton1.setEnabled(true);
+                    startbutton2.setEnabled(true);
                 }
             }
 
