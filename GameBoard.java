@@ -136,12 +136,7 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
                 boardbutton.setEnabled(false);
             }
             JOptionPane.showMessageDialog(jFrame, "Player 1 wins!");
-            Player player1 = playerpanel.roster.findPlayer(playerpanel.player1name.getText());
-            Player player2 = playerpanel.roster.findPlayer(playerpanel.player2name.getText());
-            player1.setVictories(player1.victories + 1);
-            player2.setLosses(player2.losses + 1);
-            player1.setGames(player1.games + 1);
-            player2.setGames(player2.games + 1);
+            playerpanel.roster.player1wins(playerpanel.player1name.getText(), playerpanel.player2name.getText());
             playagainbutton.setVisible(true);
             playagainbutton.setEnabled(true);
         } else if (res == -1) {
@@ -150,10 +145,7 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
                 boardbutton.setEnabled(false);
             }
             JOptionPane.showMessageDialog(jFrame, "Player 2 wins!");
-            playerpanel.roster.findPlayer(playerpanel.player2name.getText()).victories++;
-            playerpanel.roster.findPlayer(playerpanel.player1name.getText()).losses++;
-            playerpanel.roster.findPlayer(playerpanel.player1name.getText()).games++;
-            playerpanel.roster.findPlayer(playerpanel.player2name.getText()).games++;
+            playerpanel.roster.player2wins(playerpanel.player1name.getText(), playerpanel.player2name.getText());
             playagainbutton.setVisible(true);
             playagainbutton.setEnabled(true);
         } else {
@@ -165,10 +157,7 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
                     boardbutton.setEnabled(false);
                 }
                 JOptionPane.showMessageDialog(jFrame, "Draw!");
-                playerpanel.roster.findPlayer(playerpanel.player1name.getText()).draws++;
-                playerpanel.roster.findPlayer(playerpanel.player2name.getText()).draws++;
-                playerpanel.roster.findPlayer(playerpanel.player1name.getText()).games++;
-                playerpanel.roster.findPlayer(playerpanel.player2name.getText()).games++;
+                playerpanel.roster.playerdraw(playerpanel.player1name.getText(), playerpanel.player2name.getText());
                 playagainbutton.setVisible(true);
                 playagainbutton.setEnabled(true);
             }
