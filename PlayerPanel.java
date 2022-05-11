@@ -27,62 +27,106 @@ public class PlayerPanel {
     // create player panels
     public void playerpanelscreation(JFrame frame, JButton startbutton1, JButton startbutton2, String gamemode) {
         // create player 1 and 2 panels
-        leftpanel(frame);
-        rightpanel(frame);
-        // add actions to select player buttons
-        selectplayer1button.addActionListener(new ActionListener() {
+        if(gamemode == "pvp") {
+            leftplayerpanel(frame);
+            selectplayer1button.addActionListener(new ActionListener() {
 
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // select player
-                roster.loadPlayer();
-                Player player = selectoraddpopup();
-                player1name.setText(player.username);
-                player1score.setText("Score: " + player.calculateScore(player.victories, player.draws, player.games));
-                // if player has been selected discard the button
-                if (player1name.getText() != null) {
-                    selectplayer1button.setEnabled(false);
-                    selectplayer1button.setVisible(false);
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    // select player
+                    Player player = selectoraddpopup();
+                    player1name.setText(player.username);
+                    player1score.setText("Score: " + player.calculateScore(player.victories, player.draws, player.games));
+                    // if player has been selected discard the button
+                    if (player1name.getText() != null) {
+                        selectplayer1button.setEnabled(false);
+                        selectplayer1button.setVisible(false);
+                    }
+                    // if players have been selected, enable start button
+                    if (selectplayer1button.isVisible() == false && selectplayer2button.isVisible() == false) {
+                        startbutton1.setEnabled(true);
+                        startbutton2.setEnabled(true);
+                    }
                 }
-                // if players have been selected, enable start button
-                if (selectplayer1button.isVisible() == false && selectplayer2button.isVisible() == false) {
-                    startbutton1.setEnabled(true);
-                    startbutton2.setEnabled(true);
-                }
-                if (player.username == "Hal") {
-                    aiver = 1;
-                } else if (player.username == "Mr.Bean") {
-                    aiver = 2;
-                }
+    
+            });
+            rightplayerpanel(frame);
+            selectplayer2button.addActionListener(new ActionListener() {
 
-            }
-
-        });
-        selectplayer2button.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // select player
-                Player player = selectoraddpopup();
-                player2name.setText(player.username);
-                player2score.setText("Score: " + player.calculateScore(player.victories, player.draws, player.games));
-                // if player has been selected discard the button
-                if (player2name.getText() != null) {
-                    selectplayer2button.setEnabled(false);
-                    selectplayer2button.setVisible(false);
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    // select player
+                    Player player = selectoraddpopup();
+                    player2name.setText(player.username);
+                    player2score.setText("Score: " + player.calculateScore(player.victories, player.draws, player.games));
+                    // if player has been selected discard the button
+                    if (player2name.getText() != null) {
+                        selectplayer2button.setEnabled(false);
+                        selectplayer2button.setVisible(false);
+                    }
+                    // if players have been selected, enable start button
+                    if (selectplayer1button.isVisible() == false && selectplayer2button.isVisible() == false) {
+                        startbutton1.setEnabled(true);
+                        startbutton2.setEnabled(true);
+                    }
                 }
-                // if players have been selected, enable start button
-                if (selectplayer1button.isVisible() == false && selectplayer2button.isVisible() == false) {
-                    startbutton1.setEnabled(true);
-                    startbutton2.setEnabled(true);
-                }
-            }
+    
+            });
+        } else if(gamemode == "pve") {
+            leftplayerpanel(frame);
+            selectplayer1button.addActionListener(new ActionListener() {
 
-        });
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    // select player
+                    Player player = selectoraddpopup();
+                    player1name.setText(player.username);
+                    player1score.setText("Score: " + player.calculateScore(player.victories, player.draws, player.games));
+                    // if player has been selected discard the button
+                    if (player1name.getText() != null) {
+                        selectplayer1button.setEnabled(false);
+                        selectplayer1button.setVisible(false);
+                    }
+                    // if players have been selected, enable start button
+                    if (selectplayer1button.isVisible() == false && selectplayer2button.isVisible() == false) {
+                        startbutton1.setEnabled(true);
+                        startbutton2.setEnabled(true);
+                    }
+                }
+    
+            });
+            rightaipanel(frame);
+            selectplayer2button.addActionListener(new ActionListener() {
+
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    // select player
+                    Player player = selectoraddpopup();
+                    player2name.setText(player.username);
+                    player2score.setText("Score: " + player.calculateScore(player.victories, player.draws, player.games));
+                    // if player has been selected discard the button
+                    if (player2name.getText() != null) {
+                        selectplayer2button.setEnabled(false);
+                        selectplayer2button.setVisible(false);
+                    }
+                    // if players have been selected, enable start button
+                    if (selectplayer1button.isVisible() == false && selectplayer2button.isVisible() == false) {
+                        startbutton1.setEnabled(true);
+                        startbutton2.setEnabled(true);
+                    }
+                }
+    
+            });
+        } else if(gamemode == "eve") {
+
+        }
+        
+
+        
     }
 
     // player 1 panel
-    public void leftpanel(JFrame frame) {
+    public void leftplayerpanel(JFrame frame) {
         player1label.setBounds(60, 10, 100, 50);
         player1label.setFont(new Font("Monaco", Font.BOLD, 20));
         player1label.setForeground(Color.GREEN);
@@ -101,7 +145,7 @@ public class PlayerPanel {
     }
 
     // player 2 panel
-    public void rightpanel(JFrame frame) {
+    public void rightplayerpanel(JFrame frame) {
         player2label.setBounds(560, 10, 100, 50);
         player2label.setFont(new Font("Monaco", Font.BOLD, 20));
         player2label.setForeground(Color.GREEN);
@@ -111,6 +155,40 @@ public class PlayerPanel {
         player2score.setBounds(545, 80, 110, 20);
         player2score.setForeground(Color.WHITE);
         // player2info.setBounds();
+        selectplayer2button.setBounds(545, 60, 110, 30);
+        frame.add(player2label);
+        frame.add(selectplayer2button);
+        frame.add(player2name);
+        frame.add(player2score);
+        selectplayer2button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+    }
+
+    public void leftaipanel(JFrame frame) {
+        player1label.setBounds(60, 10, 100, 50);
+        player1label.setFont(new Font("Monaco", Font.BOLD, 20));
+        player1label.setForeground(Color.GREEN);
+        player1name.setBounds(45, 60, 110, 20);
+        player1name.setForeground(Color.WHITE);
+        player1name.setText(null);
+        player1score.setBounds(45, 80, 110, 20);
+        player1score.setForeground(Color.WHITE);
+        selectplayer1button.setBounds(45, 60, 110, 30);
+        frame.add(player1label);
+        frame.add(selectplayer1button);
+        frame.add(player1name);
+        frame.add(player1score);
+        selectplayer1button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+    }
+
+    public void rightaipanel(JFrame frame) {
+        player1label.setBounds(60, 10, 100, 50);
+        player1label.setFont(new Font("Monaco", Font.BOLD, 20));
+        player1label.setForeground(Color.GREEN);
+        player1name.setBounds(45, 60, 110, 20);
+        player1name.setForeground(Color.WHITE);
+        player1name.setText(null);
+        player2score.setBounds(545, 80, 110, 20);
+        player2score.setForeground(Color.WHITE);
         selectplayer2button.setBounds(545, 60, 110, 30);
         frame.add(player2label);
         frame.add(selectplayer2button);
