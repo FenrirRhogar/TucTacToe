@@ -56,17 +56,8 @@ public class Board {
         BoardState = boardState;
     }
 
-    public boolean firstPlay() {
-        if (random.nextInt(2) == 0) {
-            Player1 = true;
-            System.out.println("P1");
-            return Player1;
-            // print (-player 1 name- turn in screen)
-        } else {
-            Player1 = false;
-            return Player1;
-            // print (-player 2 name -turn in screen)
-        }
+    public boolean firstPlay(boolean p) {
+        return p;
     }
 
     public boolean nextPlay() {

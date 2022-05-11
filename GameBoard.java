@@ -17,7 +17,7 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
     JButton playagainbutton = new JButton("Play Again");
     Board board = new Board();
     AIplayer ai;
-    boolean turn = board.firstPlay();
+    boolean turn;
     int num, result;
 
     public int ResultCheck() {
@@ -192,6 +192,8 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
                 startbutton1.setVisible(false);
                 startbutton2.setEnabled(false);
                 startbutton2.setVisible(false);
+                board.Player1 = true;
+                turn = board.firstPlay(board.Player1);
                 // ksekinaei o 1
             }
 
@@ -216,6 +218,8 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
                 startbutton1.setVisible(false);
                 startbutton2.setEnabled(false);
                 startbutton2.setVisible(false);
+                board.Player1 = false;
+                turn = board.firstPlay(board.Player1);
                 // ksekinaei o 2
             }
 
@@ -321,31 +325,8 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
             JButton actionSource = (JButton) e.getSource();
 
             for (int i = 0; i < 9; i++) {
-                if (actionSource == b[i]
-                        && (playerpanel.player1name.getText() == "Hal" || playerpanel.player2name.getText() == "Hal")) {
-                    try {
-                        if (playerpanel.player1name.getText() == "Hal") {
-                            ai.PerfectPlayer(board.ic1);
-                        } else {
-                            ai.PerfectPlayer(board.ic2);
-                        }
 
-                    } catch (InterruptedException ex) {
-
-                        ex.printStackTrace();
-                    }
-                } else if (actionSource == b[i] && (playerpanel.player1name.getText() == "Mr.Bean"
-                        || playerpanel.player2name.getText() == "Mr.Bean")) {
-                    try {
-                        if (playerpanel.player1name.getText() == "Mr.Bean") {
-                            ai.RandomPlayer(board.ic1);
-                        } else {
-                            ai.RandomPlayer(board.ic2);
-                        }
-                    } catch (InterruptedException ex) {
-                        ex.printStackTrace();
-                    }
-                } else {
+                if (actionSource == b[i]) {
                     if (turn) {
                         if (b[i].getIcon() == null) {
                             b[i].setIcon(board.getIc1());
@@ -363,9 +344,9 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
                             // P1 turn
                         }
                     }
+
                 }
             }
-
         } catch (Exception ex) {
             System.out.println(ex);
         }
