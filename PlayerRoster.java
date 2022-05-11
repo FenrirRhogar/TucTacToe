@@ -84,4 +84,28 @@ public class PlayerRoster implements Serializable {
     public void findHallOfFame(int number) {
 
     }
+
+    public void player1wins(String name1, String name2) {
+        loadPlayer();
+        findPlayer(name1).victories++;
+        findPlayer(name2).losses++;
+        findPlayer(name1).games++;
+        findPlayer(name2).games++;
+    }
+
+    public void player2wins(String name1, String name2) {
+        loadPlayer();
+        findPlayer(name2).victories++;
+        findPlayer(name1).losses++;
+        findPlayer(name1).games++;
+        findPlayer(name2).games++;
+    }
+
+    public void playerdraw(String name1, String name2) {
+        loadPlayer();
+        findPlayer(name1).draws++;
+        findPlayer(name2).draws++;
+        findPlayer(name1).games++;
+        findPlayer(name2).games++;
+    }
 }
