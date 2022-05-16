@@ -2,11 +2,11 @@ package view;
 
 import javax.swing.*;
 
-<<<<<<< HEAD:view/PlayerPanel.java
+//<<<<<<< HEAD:view/PlayerPanel.java
 import model.*;
-=======
+//=======
 import junit.framework.Test;
->>>>>>> d4888ebca92e5fa981cb439dd75dadc09327de86:PlayerPanel.java
+//>>>>>>> d4888ebca92e5fa981cb439dd75dadc09327de86:PlayerPanel.java
 
 import java.awt.*;
 import java.awt.event.*;
@@ -139,10 +139,10 @@ public class PlayerPanel {
         } else if (gamemode == "eve") {
 
         }
-<<<<<<< HEAD:view/PlayerPanel.java
+//<<<<<<< HEAD:view/PlayerPanel.java
 
-=======
->>>>>>> d4888ebca92e5fa981cb439dd75dadc09327de86:PlayerPanel.java
+//=======
+//>>>>>>> d4888ebca92e5fa981cb439dd75dadc09327de86:PlayerPanel.java
     }
 
     // player 1 panel
@@ -237,12 +237,12 @@ public class PlayerPanel {
                 Boolean same;
                 do {
                     same = false;
-                    username = JOptionPane.showInputDialog("Please enter the new player's name:", null);
+                    username = JOptionPane.showInputDialog("Please enter the new player's name", null);
                     for (int i = 0; i < 50; i++) {
-                        if(roster.player[i] == null){
+                        if(roster.getPlayer()[i] == null){
                             break;
                         }
-                        if(roster.player[i].username.equals(username) == true){
+                        if(roster.getPlayer()[i].username.equals(username) == true){
                             same = true;
                             JOptionPane.showMessageDialog(null, "This name already exists.", "Existing name", JOptionPane.ERROR_MESSAGE);
                             break;
