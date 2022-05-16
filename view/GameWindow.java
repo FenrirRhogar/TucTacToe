@@ -65,9 +65,10 @@ public class GameWindow extends Frame implements ActionListener {
 
     public JFrame gamewindowcreation(String gamemode) {
         Clip clip = music.playGameMusic();
+
+        ImageIcon arrowIcon = null;
+        // java.net.URL imgURL = MainWindow.class.getResource("Images/gb.png");
         /*
-         * ImageIcon arrowIcon = null;
-         * java.net.URL imgURL = MainWindow.class.getResource("Images/gb.png");
          * if (imgURL != null) {
          * arrowIcon = new ImageIcon(imgURL);
          * gameframe.setIconImage(arrowIcon.getImage());
@@ -75,6 +76,8 @@ public class GameWindow extends Frame implements ActionListener {
          * JOptionPane.showMessageDialog(gameframe, "Icon image not found.");
          * }
          */
+        ImageIcon appicon = new ImageIcon("Images/gb.png");
+        gameframe.setIconImage(appicon.getImage());
         gameframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         gameframe.setSize(714, 600);
         gameframe.getContentPane().setBackground(new Color(5, 65, 90));
