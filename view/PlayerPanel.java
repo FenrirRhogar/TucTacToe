@@ -2,7 +2,11 @@ package view;
 
 import javax.swing.*;
 
+<<<<<<< HEAD:view/PlayerPanel.java
 import model.*;
+=======
+import junit.framework.Test;
+>>>>>>> d4888ebca92e5fa981cb439dd75dadc09327de86:PlayerPanel.java
 
 import java.awt.*;
 import java.awt.event.*;
@@ -39,7 +43,13 @@ public class PlayerPanel {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     // select player
-                    Player player = selectoraddpopup();
+                    Player player = new Player();
+                    //do{
+                    player = selectoraddpopup();
+                        /*if(player.username == player2name.getText()){
+                            JOptionPane.showMessageDialog(null, "Cannot choose the same player!", "Player error", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } while(player.username == player2name.getText());*/
                     player1name.setText(player.username);
                     player1score
                             .setText("Score: " + player.calculateScore(player.victories, player.draws, player.games));
@@ -129,7 +139,10 @@ public class PlayerPanel {
         } else if (gamemode == "eve") {
 
         }
+<<<<<<< HEAD:view/PlayerPanel.java
 
+=======
+>>>>>>> d4888ebca92e5fa981cb439dd75dadc09327de86:PlayerPanel.java
     }
 
     // player 1 panel
@@ -212,17 +225,30 @@ public class PlayerPanel {
         Player player;
 
         roster.addPlayer(new Player("Hal", 0, 0, 0, 0), 0);
-        roster.addPlayer(new Player("Mr.Bean", 0, 0, 0, 0), 1);
+        roster.addPlayer(new Player("Mr. Bean", 0, 0, 0, 0), 1);
         String[] options = { "New Player", "Exsisting Player", "Cancel" };
         int optionindex = JOptionPane.showOptionDialog(jFrame, "Add new player or select an exsisting?", null,
                 JOptionPane.PLAIN_MESSAGE, JOptionPane.PLAIN_MESSAGE, null, options, null);
-
+ 
         // add new player
         if (optionindex == 0) {
             roster.loadPlayer();
-
             do {
-                username = JOptionPane.showInputDialog("Please enter the new player's name:", null);
+                Boolean same;
+                do {
+                    same = false;
+                    username = JOptionPane.showInputDialog("Please enter the new player's name:", null);
+                    for (int i = 0; i < 50; i++) {
+                        if(roster.player[i] == null){
+                            break;
+                        }
+                        if(roster.player[i].username.equals(username) == true){
+                            same = true;
+                            JOptionPane.showMessageDialog(null, "This name already exists.", "Existing name", JOptionPane.ERROR_MESSAGE);
+                            break;
+                        }
+                    }
+                } while (same == true);
                 if (username.length() > 20 || username.charAt(0) == ' '
                         || username.charAt(username.length() - 1) == ' ') {
                     JOptionPane.showMessageDialog(null,
