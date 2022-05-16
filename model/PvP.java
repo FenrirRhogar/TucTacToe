@@ -1,12 +1,17 @@
+package model;
+
 import javax.swing.*;
 
-public class EvE {
+import view.GameBoard;
+import view.GameWindow;
+
+public class PvP {
 
     GameBoard gameboard = new GameBoard();
     GameWindow gamewindow = new GameWindow();
-    String mode = "eve";
+    String mode = "pvp";
 
-    public void eveopen(JFrame frame) {
+    public void pvpopen(JFrame frame) {
         frame.dispose();
         gamewindow.gamewindowcreation(mode);
     }

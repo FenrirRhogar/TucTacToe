@@ -1,5 +1,14 @@
+package view;
+
 import javax.sound.sampled.Clip;
 import javax.swing.*;
+
+import Music.Music;
+import controller.GameControler;
+import model.EvE;
+import model.PvE;
+import model.PvP;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.Cursor;
@@ -7,6 +16,7 @@ import java.awt.Cursor;
 public class MainWindow extends Frame {
 
     // classes
+    GameControler gc = new GameControler();
     PlayerPanel playerpanel = new PlayerPanel();
     BannerPanel bannerpanel = new BannerPanel();
     HallOfFame halloffame = new HallOfFame();
@@ -60,7 +70,6 @@ public class MainWindow extends Frame {
         music.muteMusic(clip);
     }
 
-
     // create window
     public void windowcreation() {
         // play music
@@ -99,7 +108,7 @@ public class MainWindow extends Frame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("Prits2");
-                
+
             }
 
         });
@@ -152,7 +161,7 @@ public class MainWindow extends Frame {
         // make menu buttons active
         mainmenu(clip);
         // application image configuration
-        applicationIcon();
+        // applicationIcon();
         // mute button
         createmutebutton(frame, clip);
         // window properties
@@ -216,17 +225,18 @@ public class MainWindow extends Frame {
         frame.setLayout(null);
         frame.setVisible(true);
     }
-
-    private void applicationIcon() {
-        ImageIcon arrowIcon = null;
-        java.net.URL imgURL = MainWindow.class.getResource("Images/gb.png");
-        if (imgURL != null) {
-            arrowIcon = new ImageIcon(imgURL);
-            frame.setIconImage(arrowIcon.getImage());
-        } else {
-            JOptionPane.showMessageDialog(frame, "Icon image not found.");
-        }
-    }
+    /*
+     * private void applicationIcon() {
+     * ImageIcon arrowIcon = null;
+     * java.net.URL imgURL = MainWindow.class.getResource("Images/gb.png");
+     * if (imgURL != null) {
+     * arrowIcon = new ImageIcon(imgURL);
+     * frame.setIconImage(arrowIcon.getImage());
+     * } else {
+     * JOptionPane.showMessageDialog(frame, "Icon image not found.");
+     * }
+     * }
+     */
 
     // main menu
     public void mainmenu(Clip clip) {

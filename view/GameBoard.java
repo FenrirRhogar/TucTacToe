@@ -1,14 +1,19 @@
+package view;
+
 import javax.sound.sampled.Clip;
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.Cursor;
 import javax.swing.JOptionPane;
 
+import model.*;
+import model.Board;
+
 public class GameBoard extends JFrame implements ItemListener, ActionListener {
 
     MainWindow mainwindow;
     PlayerPanel playerpanel = new PlayerPanel();
-    JButton b[] = new JButton[9];
+    public JButton b[] = new JButton[9];
     JPanel boardpanel = new JPanel();
     ImageIcon tictactoegameboard = new ImageIcon("Images/board.png");
     JButton boardbutton = new JButton(tictactoegameboard);
@@ -181,19 +186,19 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
                 startbutton1.setVisible(false);
                 startbutton2.setEnabled(false);
                 startbutton2.setVisible(false);
-                board.Player1 = true;
-                turn = board.firstPlay(board.Player1);
+                board.setPlayer1(true);
+                turn = board.firstPlay(board.isPlayer1());
                 System.out.println(playerpanel.player1name.getText());
                 if (playerpanel.player1name.getText() == "Hal") {
                     try {
-                        ai.PerfectPlayer(board.ic1);
+                        ai.PerfectPlayer(board.getIc1());
                     } catch (InterruptedException e1) {
                         e1.printStackTrace();
                     }
                 }
                 if (playerpanel.player1name.getText() == "Mr.Bean") {
                     try {
-                        ai.RandomPlayer(board.ic1);
+                        ai.RandomPlayer(board.getIc1());
                     } catch (InterruptedException e1) {
 
                         e1.printStackTrace();
@@ -223,8 +228,8 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
                 startbutton1.setVisible(false);
                 startbutton2.setEnabled(false);
                 startbutton2.setVisible(false);
-                board.Player1 = false;
-                turn = board.firstPlay(board.Player1);
+                board.setPlayer1(false);
+                turn = board.firstPlay(board.isPlayer1());
                 // ksekinaei o 2
             }
 

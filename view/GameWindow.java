@@ -1,7 +1,12 @@
+package view;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.JOptionPane;
+
+import Music.Music;
+import Images.*;
 import javax.sound.sampled.Clip;
 
 public class GameWindow extends Frame implements ActionListener {
@@ -45,9 +50,9 @@ public class GameWindow extends Frame implements ActionListener {
             @Override
             public void actionPerformed(ActionEvent e) {
                 mute(clip);
-                if(mutebutton.getIcon() == muteicon) {
+                if (mutebutton.getIcon() == muteicon) {
                     mutebutton.setIcon(muteiconenabled);
-                } else if(mutebutton.getIcon() == muteiconenabled) {
+                } else if (mutebutton.getIcon() == muteiconenabled) {
                     mutebutton.setIcon(muteicon);
                 }
             }
@@ -60,14 +65,16 @@ public class GameWindow extends Frame implements ActionListener {
 
     public JFrame gamewindowcreation(String gamemode) {
         Clip clip = music.playGameMusic();
-        ImageIcon arrowIcon = null;
-        java.net.URL imgURL = MainWindow.class.getResource("Images/gb.png");
-        if (imgURL != null) {
-            arrowIcon = new ImageIcon(imgURL);
-            gameframe.setIconImage(arrowIcon.getImage());
-        } else {
-            JOptionPane.showMessageDialog(gameframe, "Icon image not found.");
-        }
+        /*
+         * ImageIcon arrowIcon = null;
+         * java.net.URL imgURL = MainWindow.class.getResource("Images/gb.png");
+         * if (imgURL != null) {
+         * arrowIcon = new ImageIcon(imgURL);
+         * gameframe.setIconImage(arrowIcon.getImage());
+         * } else {
+         * JOptionPane.showMessageDialog(gameframe, "Icon image not found.");
+         * }
+         */
         gameframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         gameframe.setSize(714, 600);
         gameframe.getContentPane().setBackground(new Color(5, 65, 90));

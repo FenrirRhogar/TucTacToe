@@ -1,3 +1,5 @@
+package Music;
+
 import java.io.File;
 import javax.sound.sampled.AudioInputStream;
 import java.io.IOException;

@@ -1,4 +1,9 @@
+package view;
+
 import javax.swing.*;
+
+import model.*;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
@@ -27,7 +32,7 @@ public class PlayerPanel {
     // create player panels
     public void playerpanelscreation(JFrame frame, JButton startbutton1, JButton startbutton2, String gamemode) {
         // create player 1 and 2 panels
-        if(gamemode == "pvp") {
+        if (gamemode == "pvp") {
             leftplayerpanel(frame);
             selectplayer1button.addActionListener(new ActionListener() {
 
@@ -36,7 +41,8 @@ public class PlayerPanel {
                     // select player
                     Player player = selectoraddpopup();
                     player1name.setText(player.username);
-                    player1score.setText("Score: " + player.calculateScore(player.victories, player.draws, player.games));
+                    player1score
+                            .setText("Score: " + player.calculateScore(player.victories, player.draws, player.games));
                     // if player has been selected discard the button
                     if (player1name.getText() != null) {
                         selectplayer1button.setEnabled(false);
@@ -48,7 +54,7 @@ public class PlayerPanel {
                         startbutton2.setEnabled(true);
                     }
                 }
-    
+
             });
             rightplayerpanel(frame);
             selectplayer2button.addActionListener(new ActionListener() {
@@ -58,7 +64,8 @@ public class PlayerPanel {
                     // select player
                     Player player = selectoraddpopup();
                     player2name.setText(player.username);
-                    player2score.setText("Score: " + player.calculateScore(player.victories, player.draws, player.games));
+                    player2score
+                            .setText("Score: " + player.calculateScore(player.victories, player.draws, player.games));
                     // if player has been selected discard the button
                     if (player2name.getText() != null) {
                         selectplayer2button.setEnabled(false);
@@ -70,9 +77,9 @@ public class PlayerPanel {
                         startbutton2.setEnabled(true);
                     }
                 }
-    
+
             });
-        } else if(gamemode == "pve") {
+        } else if (gamemode == "pve") {
             leftplayerpanel(frame);
             selectplayer1button.addActionListener(new ActionListener() {
 
@@ -81,7 +88,8 @@ public class PlayerPanel {
                     // select player
                     Player player = selectoraddpopup();
                     player1name.setText(player.username);
-                    player1score.setText("Score: " + player.calculateScore(player.victories, player.draws, player.games));
+                    player1score
+                            .setText("Score: " + player.calculateScore(player.victories, player.draws, player.games));
                     // if player has been selected discard the button
                     if (player1name.getText() != null) {
                         selectplayer1button.setEnabled(false);
@@ -93,7 +101,7 @@ public class PlayerPanel {
                         startbutton2.setEnabled(true);
                     }
                 }
-    
+
             });
             rightaipanel(frame);
             selectplayer2button.addActionListener(new ActionListener() {
@@ -103,7 +111,8 @@ public class PlayerPanel {
                     // select player
                     Player player = selectoraddpopup();
                     player2name.setText(player.username);
-                    player2score.setText("Score: " + player.calculateScore(player.victories, player.draws, player.games));
+                    player2score
+                            .setText("Score: " + player.calculateScore(player.victories, player.draws, player.games));
                     // if player has been selected discard the button
                     if (player2name.getText() != null) {
                         selectplayer2button.setEnabled(false);
@@ -115,14 +124,12 @@ public class PlayerPanel {
                         startbutton2.setEnabled(true);
                     }
                 }
-    
+
             });
-        } else if(gamemode == "eve") {
+        } else if (gamemode == "eve") {
 
         }
-        
 
-        
     }
 
     // player 1 panel
@@ -234,7 +241,7 @@ public class PlayerPanel {
             p = new Player(username, 0, 0, 0, 0);
 
             for (int i = 0; i < 50; i++) {
-                if (roster.player[i] == null) {
+                if (roster.getPlayer()[i] == null) {
                     roster.addPlayer(p, i);
                     System.out.println(i);
                     break;
@@ -247,9 +254,9 @@ public class PlayerPanel {
         } else if (optionindex == 1) {
 
             roster.loadPlayer();
-            for (int j = 0; j < roster.player.length; j++) {
-                if (roster.player[j] != null) {
-                    players[j] = roster.player[j].username;
+            for (int j = 0; j < roster.getPlayer().length; j++) {
+                if (roster.getPlayer()[j] != null) {
+                    players[j] = roster.getPlayer()[j].username;
                 }
             }
             JFrame selectplayerframe = new JFrame();

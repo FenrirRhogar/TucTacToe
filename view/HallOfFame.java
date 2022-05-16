@@ -1,4 +1,8 @@
+package view;
+
 import javax.swing.*;
+
+import model.Player;
 
 public class HallOfFame {
 
@@ -11,11 +15,11 @@ public class HallOfFame {
     }
 
     public void printhalloffamelist() {
-        //JLabel list = new JLabel();
-        //sort players
-        for(int i = 0; i < 10; i++){
-            //list.setText(i+1 + ". " + player.username);
-            
+        // JLabel list = new JLabel();
+        // sort players
+        for (int i = 0; i < 10; i++) {
+            // list.setText(i+1 + ". " + player.username);
+
         }
     }
 }

@@ -1,3 +1,6 @@
+package view;
+
+import model.*;
 
 public class Game {
 
@@ -20,7 +23,6 @@ public class Game {
         this.gamerecord = new GameRecord();
         this.halloffame = new HallOfFame();
         this.mainwindow = new MainWindow();
-        player = new Player[10];
         // this.player = new Player(username, games, victories, losses);
         this.playerpanel = new PlayerPanel();
         this.playerroster = new PlayerRoster();

@@ -8,6 +8,20 @@
             "type": "java",
             "name": "Launch Console",
             "request": "launch",
+            "mainClass": "app.Console",
+            "projectName": "TucTacToe_8baf1838"
+        },
+        {
+            "type": "java",
+            "name": "Launch Console",
+            "request": "launch",
+            "mainClass": "view.Console",
+            "projectName": "TucTacToe_8baf1838"
+        },
+        {
+            "type": "java",
+            "name": "Launch Console",
+            "request": "launch",
             "mainClass": "Console",
             "projectName": "TucTacToe_8baf1838"
         },

@@ -1,3 +1,5 @@
+package model;
+
 import java.io.*;
 import java.io.Serializable;
 
@@ -10,6 +12,14 @@ public class PlayerRoster implements Serializable {
 
     public PlayerRoster() {
         this.player = new Player[50];
+    }
+
+    public Player[] getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Player[] player) {
+        this.player = player;
     }
 
     public int addPlayer(Player p, int pnum) {
