@@ -183,6 +183,22 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
                 startbutton2.setVisible(false);
                 board.Player1 = true;
                 turn = board.firstPlay(board.Player1);
+                System.out.println(playerpanel.player1name.getText());
+                if (playerpanel.player1name.getText() == "Hal") {
+                    try {
+                        ai.PerfectPlayer(board.ic1);
+                    } catch (InterruptedException e1) {
+                        e1.printStackTrace();
+                    }
+                }
+                if (playerpanel.player1name.getText() == "Mr.Bean") {
+                    try {
+                        ai.RandomPlayer(board.ic1);
+                    } catch (InterruptedException e1) {
+
+                        e1.printStackTrace();
+                    }
+                }
                 // ksekinaei o 1
             }
 
