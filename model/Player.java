@@ -79,4 +79,24 @@ public class Player implements Serializable {
 
         return result;
     }
+
+    public float totalWon(int victories, int games) {
+        float result;
+        if (games == 0) {
+            result = 0;
+        } else {
+            result = ((float) victories / (float) games) * 100;
+        }
+        return result;
+    }
+
+    public float totalLost(int losses, int games) {
+        float result;
+        if (games == 0) {
+            result = 0;
+        } else {
+            result = ((float) losses / (float) games) * 100;
+        }
+        return result;
+    }
 }

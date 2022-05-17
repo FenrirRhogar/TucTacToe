@@ -103,6 +103,7 @@ public class PlayerRoster implements Serializable {
         findPlayer(name2).losses++;
         findPlayer(name1).games++;
         findPlayer(name2).games++;
+        storePlayer();
     }
 
     public void player2wins(String name1, String name2) {
@@ -111,6 +112,7 @@ public class PlayerRoster implements Serializable {
         findPlayer(name1).losses++;
         findPlayer(name1).games++;
         findPlayer(name2).games++;
+        storePlayer();
     }
 
     public void playerdraw(String name1, String name2) {
@@ -119,5 +121,6 @@ public class PlayerRoster implements Serializable {
         findPlayer(name2).draws++;
         findPlayer(name1).games++;
         findPlayer(name2).games++;
+        storePlayer();
     }
 }

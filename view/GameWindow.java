@@ -65,8 +65,6 @@ public class GameWindow extends Frame implements ActionListener {
 
     public JFrame gamewindowcreation(String gamemode) {
         Clip clip = music.playGameMusic();
-
-        ImageIcon arrowIcon = null;
         // java.net.URL imgURL = MainWindow.class.getResource("Images/gb.png");
         /*
          * if (imgURL != null) {

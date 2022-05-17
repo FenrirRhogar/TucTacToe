@@ -20,6 +20,12 @@ public class PlayerPanel {
     JLabel player2name = new JLabel();
     JLabel player1score = new JLabel();
     JLabel player2score = new JLabel();
+    JLabel player1totalgames = new JLabel();
+    JLabel player2totalgames = new JLabel();
+    JLabel player1totalwon = new JLabel();
+    JLabel player2totalwon = new JLabel();
+    JLabel player1totallost = new JLabel();
+    JLabel player2totallost = new JLabel();
     JButton selectplayer1button = new JButton("Select Player");
     JButton selectplayer2button = new JButton("Select Player");
     GameBoard gameboard;
@@ -28,8 +34,7 @@ public class PlayerPanel {
     PlayerRoster roster = new PlayerRoster();
     Player p;
     int aiver;
-
-    int i = 0;
+    //int i = 0;
 
     // create player panels
     public void playerpanelscreation(JFrame frame, JButton startbutton1, JButton startbutton2, String gamemode) {
@@ -41,19 +46,13 @@ public class PlayerPanel {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     // select player
-
-                    // do{
                     Player player = selectoraddpopup();
-                    /*
-                     * if(player.username == player2name.getText()){
-                     * JOptionPane.showMessageDialog(null, "Cannot choose the same player!",
-                     * "Player error", JOptionPane.ERROR_MESSAGE);
-                     * }
-                     * } while(player.username == player2name.getText());
-                     */
                     player1name.setText(player.username);
                     player1score
-                            .setText("Score: " + player.calculateScore(player.victories, player.draws, player.games));
+                            .setText("Score: " + (int) player.calculateScore(player.victories, player.draws, player.games));
+                    player1totalgames.setText("Total games: " + player.games);
+                    player1totalwon.setText("Won: " + (int) player.totalWon(player.victories, player.games) + "%");
+                    player1totallost.setText("Lost: " + (int) player.totalLost(player.losses, player.games) + "%");
                     // if player has been selected discard the button
                     if (player1name.getText() != null) {
                         selectplayer1button.setEnabled(false);
@@ -76,7 +75,10 @@ public class PlayerPanel {
                     Player player = selectoraddpopup();
                     player2name.setText(player.username);
                     player2score
-                            .setText("Score: " + player.calculateScore(player.victories, player.draws, player.games));
+                            .setText("Score: " + (int) player.calculateScore(player.victories, player.draws, player.games));
+                    player2totalgames.setText("Total games: " + player.games);
+                    player2totalwon.setText("Won: " + (int) player.totalWon(player.victories, player.games) + "%");
+                    player2totallost.setText("Lost: " + (int) player.totalLost(player.losses, player.games) + "%");
                     // if player has been selected discard the button
                     if (player2name.getText() != null) {
                         selectplayer2button.setEnabled(false);
@@ -100,7 +102,10 @@ public class PlayerPanel {
                     Player player = selectoraddpopup();
                     player1name.setText(player.username);
                     player1score
-                            .setText("Score: " + player.calculateScore(player.victories, player.draws, player.games));
+                            .setText("Score: " + (int) player.calculateScore(player.victories, player.draws, player.games));
+                    player1totalgames.setText("Total games: " + player.games);
+                    player1totalwon.setText("Won: " + (int) player.totalWon(player.victories, player.games) + "%");
+                    player1totallost.setText("Lost :" + (int) player.totalLost(player.losses, player.games) + "%");
                     // if player has been selected discard the button
                     if (player1name.getText() != null) {
                         selectplayer1button.setEnabled(false);
@@ -123,7 +128,10 @@ public class PlayerPanel {
                     Player player = selectoraddpopup();
                     player2name.setText(player.username);
                     player2score
-                            .setText("Score: " + player.calculateScore(player.victories, player.draws, player.games));
+                            .setText("Score: " + (int) player.calculateScore(player.victories, player.draws, player.games));
+                    player2totalgames.setText("Total games: " + player.games);
+                    player2totalwon.setText("Won: " + (int) player.totalWon(player.victories, player.games) + "%");
+                    player2totallost.setText("Lost: " + (int) player.totalLost(player.losses, player.games) + "%");
                     // if player has been selected discard the button
                     if (player2name.getText() != null) {
                         selectplayer2button.setEnabled(false);
@@ -153,12 +161,20 @@ public class PlayerPanel {
         player1name.setText(null);
         player1score.setBounds(45, 80, 110, 20);
         player1score.setForeground(Color.WHITE);
-        // player1info.setBounds();
+        player1totalgames.setBounds(45, 100, 110, 20);
+        player1totalgames.setForeground(Color.WHITE);
+        player1totalwon.setBounds(45, 120, 110, 20);
+        player1totalwon.setForeground(Color.WHITE);
+        player1totallost.setBounds(45, 140, 110, 20);
+        player1totallost.setForeground(Color.WHITE);
         selectplayer1button.setBounds(45, 60, 110, 30);
         frame.add(player1label);
         frame.add(selectplayer1button);
         frame.add(player1name);
         frame.add(player1score);
+        frame.add(player1totalgames);
+        frame.add(player1totalwon);
+        frame.add(player1totallost);
         selectplayer1button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     }
 
@@ -172,12 +188,21 @@ public class PlayerPanel {
         player2name.setText(null);
         player2score.setBounds(545, 80, 110, 20);
         player2score.setForeground(Color.WHITE);
+        player2totalgames.setBounds(545, 100, 110, 20);
+        player2totalgames.setForeground(Color.WHITE);
+        player2totalwon.setBounds(545, 120, 110, 20);
+        player2totalwon.setForeground(Color.WHITE);
+        player2totallost.setBounds(545, 140, 110, 20);
+        player2totallost.setForeground(Color.WHITE);
         // player2info.setBounds();
         selectplayer2button.setBounds(545, 60, 110, 30);
         frame.add(player2label);
         frame.add(selectplayer2button);
         frame.add(player2name);
         frame.add(player2score);
+        frame.add(player2totalgames);
+        frame.add(player2totalwon);
+        frame.add(player2totallost);
         selectplayer2button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     }
 
@@ -190,11 +215,20 @@ public class PlayerPanel {
         player1name.setText(null);
         player1score.setBounds(45, 80, 110, 20);
         player1score.setForeground(Color.WHITE);
+        player1totalgames.setBounds(45, 100, 110, 20);
+        player1totalgames.setForeground(Color.WHITE);
+        player1totalwon.setBounds(45, 120, 110, 20);
+        player1totalwon.setForeground(Color.WHITE);
+        player1totallost.setBounds(45, 140, 110, 20);
+        player1totallost.setForeground(Color.WHITE);
         selectplayer1button.setBounds(45, 60, 110, 30);
         frame.add(player1label);
         frame.add(selectplayer1button);
         frame.add(player1name);
         frame.add(player1score);
+        frame.add(player1totalgames);
+        frame.add(player1totalwon);
+        frame.add(player1totallost);
         selectplayer1button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     }
 
@@ -207,11 +241,20 @@ public class PlayerPanel {
         player1name.setText(null);
         player2score.setBounds(545, 80, 110, 20);
         player2score.setForeground(Color.WHITE);
+        player2totalgames.setBounds(545, 100, 110, 20);
+        player2totalgames.setForeground(Color.WHITE);
+        player2totalwon.setBounds(545, 120, 110, 20);
+        player2totalwon.setForeground(Color.WHITE);
+        player2totallost.setBounds(545, 140, 110, 20);
+        player2totallost.setForeground(Color.WHITE);
         selectplayer2button.setBounds(545, 60, 110, 30);
         frame.add(player2label);
         frame.add(selectplayer2button);
         frame.add(player2name);
         frame.add(player2score);
+        frame.add(player2totalgames);
+        frame.add(player2totalwon);
+        frame.add(player2totallost);
         selectplayer2button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     }
 
@@ -298,7 +341,4 @@ public class PlayerPanel {
         }
         return null;
     }
-
-    // add player method
-
 }
