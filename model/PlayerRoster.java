@@ -8,10 +8,12 @@ import javax.swing.SortingFocusTraversalPolicy;
 public class PlayerRoster implements Serializable {
 
     Player[] player;
-    int pnum = 0;
+    int pnum = 2;
 
     public PlayerRoster() {
         this.player = new Player[50];
+        player[0] = new Player("Hal", 0, 0, 0, 0);
+        player[1] = new Player("Mr. Bean", 0, 0, 0, 0);
     }
 
     public Player[] getPlayer() {

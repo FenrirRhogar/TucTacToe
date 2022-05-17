@@ -19,4 +19,20 @@ public class GameControler {
         System.exit(0);
     }
 
+    public MainWindow getView() {
+        return view;
+    }
+
+    public void setView(MainWindow view) {
+        this.view = view;
+    }
+
+    public GameModel getModel() {
+        return model;
+    }
+
+    public void setModel(GameModel model) {
+        this.model = model;
+    }
+
 }

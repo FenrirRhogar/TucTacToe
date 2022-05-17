@@ -2,11 +2,9 @@ package view;
 
 import javax.swing.*;
 
-//<<<<<<< HEAD:view/PlayerPanel.java
 import model.*;
-//=======
+
 import junit.framework.Test;
-//>>>>>>> d4888ebca92e5fa981cb439dd75dadc09327de86:PlayerPanel.java
 
 import java.awt.*;
 import java.awt.event.*;
@@ -43,13 +41,16 @@ public class PlayerPanel {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     // select player
-                    Player player = new Player();
-                    //do{
-                    player = selectoraddpopup();
-                        /*if(player.username == player2name.getText()){
-                            JOptionPane.showMessageDialog(null, "Cannot choose the same player!", "Player error", JOptionPane.ERROR_MESSAGE);
-                        }
-                    } while(player.username == player2name.getText());*/
+
+                    // do{
+                    Player player = selectoraddpopup();
+                    /*
+                     * if(player.username == player2name.getText()){
+                     * JOptionPane.showMessageDialog(null, "Cannot choose the same player!",
+                     * "Player error", JOptionPane.ERROR_MESSAGE);
+                     * }
+                     * } while(player.username == player2name.getText());
+                     */
                     player1name.setText(player.username);
                     player1score
                             .setText("Score: " + player.calculateScore(player.victories, player.draws, player.games));
@@ -139,10 +140,7 @@ public class PlayerPanel {
         } else if (gamemode == "eve") {
 
         }
-//<<<<<<< HEAD:view/PlayerPanel.java
 
-//=======
-//>>>>>>> d4888ebca92e5fa981cb439dd75dadc09327de86:PlayerPanel.java
     }
 
     // player 1 panel
@@ -224,12 +222,10 @@ public class PlayerPanel {
         String username = null;
         Player player;
 
-        roster.addPlayer(new Player("Hal", 0, 0, 0, 0), 0);
-        roster.addPlayer(new Player("Mr. Bean", 0, 0, 0, 0), 1);
         String[] options = { "New Player", "Exsisting Player", "Cancel" };
         int optionindex = JOptionPane.showOptionDialog(jFrame, "Add new player or select an exsisting?", null,
                 JOptionPane.PLAIN_MESSAGE, JOptionPane.PLAIN_MESSAGE, null, options, null);
- 
+
         // add new player
         if (optionindex == 0) {
             roster.loadPlayer();
@@ -239,12 +235,13 @@ public class PlayerPanel {
                     same = false;
                     username = JOptionPane.showInputDialog("Please enter the new player's name", null);
                     for (int i = 0; i < 50; i++) {
-                        if(roster.getPlayer()[i] == null){
+                        if (roster.getPlayer()[i] == null) {
                             break;
                         }
-                        if(roster.getPlayer()[i].username.equals(username) == true){
+                        if (roster.getPlayer()[i].username.equals(username) == true) {
                             same = true;
-                            JOptionPane.showMessageDialog(null, "This name already exists.", "Existing name", JOptionPane.ERROR_MESSAGE);
+                            JOptionPane.showMessageDialog(null, "This name already exists.", "Existing name",
+                                    JOptionPane.ERROR_MESSAGE);
                             break;
                         }
                     }
@@ -269,7 +266,6 @@ public class PlayerPanel {
             for (int i = 0; i < 50; i++) {
                 if (roster.getPlayer()[i] == null) {
                     roster.addPlayer(p, i);
-                    System.out.println(i);
                     break;
                 }
 

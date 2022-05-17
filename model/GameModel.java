@@ -10,8 +10,7 @@ public class GameModel {
 
     public GameModel(GameControler gc) {
         this.gc = gc;
-        gamePlayers = new Player[2];
-        roster = new PlayerRoster();
+        gamePlayers = new Player[10];
     }
 
     public Player[] getGamePlayers() {
@@ -38,5 +37,9 @@ public class GameModel {
         if (pos < 0 && pos > 1)
             return;
         gamePlayers[pos] = player;
+    }
+
+    public void takePLayer(Player p) {
+
     }
 }
