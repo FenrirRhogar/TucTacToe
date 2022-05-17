@@ -3,7 +3,7 @@ package model;
 import java.io.*;
 import java.io.Serializable;
 
-import javax.swing.SortingFocusTraversalPolicy;
+//import javax.swing.SortingFocusTraversalPolicy;
 
 public class PlayerRoster implements Serializable {
 

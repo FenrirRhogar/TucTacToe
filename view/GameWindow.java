@@ -3,10 +3,10 @@ package view;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import javax.swing.JOptionPane;
+//import javax.swing.JOptionPane;
 
 import Music.Music;
-import Images.*;
+//import Images.*;
 import javax.sound.sampled.Clip;
 
 public class GameWindow extends Frame implements ActionListener {
