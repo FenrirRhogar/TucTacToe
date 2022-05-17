@@ -282,8 +282,14 @@ public class PlayerPanel {
                 }
             }
             JFrame selectplayerframe = new JFrame();
-            username = (String) JOptionPane.showInputDialog(selectplayerframe, "Select Player:", null,
-                    JOptionPane.QUESTION_MESSAGE, null, players, players[0]);
+            do {
+                username = (String) JOptionPane.showInputDialog(selectplayerframe, "Select Player:", null,
+                        JOptionPane.QUESTION_MESSAGE, null, players, players[0]);
+                if (username.equals(player1name.getText()) || username.equals(player2name.getText())) {
+                    JOptionPane.showMessageDialog(null, "This player is already selected!", "Already selected",
+                            JOptionPane.ERROR_MESSAGE);
+                }
+            } while (username.equals(player1name.getText()) || username.equals(player2name.getText()));
             player = roster.findPlayer(username);
             return player;
             // CANCEL
