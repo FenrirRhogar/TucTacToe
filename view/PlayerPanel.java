@@ -20,6 +20,8 @@ public class PlayerPanel {
     JLabel player2name = new JLabel();
     JLabel player1score = new JLabel();
     JLabel player2score = new JLabel();
+    JLabel player1recentscore = new JLabel();
+    JLabel player2recentscore = new JLabel();
     JLabel player1totalgames = new JLabel();
     JLabel player2totalgames = new JLabel();
     JLabel player1totalwon = new JLabel();
@@ -162,6 +164,8 @@ public class PlayerPanel {
         player1totalwon.setForeground(Color.WHITE);
         player1totallost.setBounds(45, 140, 110, 20);
         player1totallost.setForeground(Color.WHITE);
+        player1recentscore.setBounds(45, 180, 110, 20);
+        player1recentscore.setForeground(Color.WHITE);
         selectplayer1button.setBounds(45, 60, 110, 30);
         frame.add(player1label);
         frame.add(selectplayer1button);
@@ -189,6 +193,8 @@ public class PlayerPanel {
         player2totalwon.setForeground(Color.WHITE);
         player2totallost.setBounds(545, 140, 110, 20);
         player2totallost.setForeground(Color.WHITE);
+        player2recentscore.setBounds(545, 180, 110, 20);
+        player2recentscore.setForeground(Color.WHITE);
         selectplayer2button.setBounds(545, 60, 110, 30);
         frame.add(player2label);
         frame.add(selectplayer2button);

@@ -76,7 +76,7 @@ public class MainWindow extends Frame {
         Clip clip = music.playMenuMusic();
         // menu title
         menutitle.setText("TUC TAC TOE");
-        menutitle.setBounds(277, 10, 150, 50);
+        menutitle.setBounds(278, 10, 150, 50);
         menutitle.setFont(new Font("Monaco", Font.BOLD, 20));
         menutitle.setForeground(Color.RED);
         menutitle.setVisible(false);

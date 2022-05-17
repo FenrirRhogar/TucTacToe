@@ -4,8 +4,7 @@ import javax.sound.sampled.Clip;
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.Cursor;
-import javax.swing.JOptionPane;
-
+import java.awt.*;
 import model.*;
 import model.Board;
 
@@ -21,6 +20,9 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
     JButton startbutton2 = new JButton("Start");
     JButton playagainbutton = new JButton("Play Again");
     JButton playagainbutton2 = new JButton("Play Again with the same Players");
+    JLabel nowplaying = new JLabel();
+    JLabel activeplayer = new JLabel();
+    JPanel activeplayerpanel = new JPanel();
     Board board = new Board();
     AIplayer ai;
     boolean turn;
@@ -185,6 +187,7 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                activeplayer.setText(playerpanel.player1name.getText());
                 for (int i = 0; i < 9; i++) {
                     b[i].setEnabled(true);
                 }
@@ -193,6 +196,8 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
                 startbutton1.setVisible(false);
                 startbutton2.setEnabled(false);
                 startbutton2.setVisible(false);
+                nowplaying.setVisible(true);
+                activeplayer.setVisible(true);
                 board.setPlayer1(true);
                 turn = board.firstPlay(board.isPlayer1());
                 System.out.println(playerpanel.player1name.getText());
@@ -213,7 +218,6 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
                 }
                 // ksekinaei o 1
             }
-
         });
         startbutton1.setEnabled(false);
         return startbutton1;
@@ -227,6 +231,7 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                activeplayer.setText(playerpanel.player2name.getText());
                 for (int i = 0; i < 9; i++) {
                     b[i].setEnabled(true);
                 }
@@ -235,6 +240,8 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
                 startbutton1.setVisible(false);
                 startbutton2.setEnabled(false);
                 startbutton2.setVisible(false);
+                nowplaying.setVisible(true);
+                activeplayer.setVisible(true);
                 board.setPlayer1(false);
                 turn = board.firstPlay(board.isPlayer1());
                 // ksekinaei o 2
@@ -247,8 +254,8 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
 
     // play again button
     public void createplayagainbuttons(JFrame gameframe, String gamemode, Clip clip) {
-        playagainbutton.setBounds(300, 350, 100, 35);
-        playagainbutton2.setBounds(240, 390, 220, 35);
+        playagainbutton.setBounds(300, 420, 100, 35);
+        playagainbutton2.setBounds(240, 460, 220, 35);
         gameframe.add(playagainbutton);
         gameframe.add(playagainbutton2);
         playagainbutton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -281,7 +288,6 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
                 gw.gameboard.startbutton1.setVisible(true);
                 gw.gameboard.startbutton2.setVisible(true);
             }
-
         });
         playagainbutton.setVisible(false);
         playagainbutton.setEnabled(false);
@@ -295,14 +301,29 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
         JButton startbutton2 = createstartbutton2(frame);
         createplayagainbuttons(frame, gamemode, clip);
         playerpanel.playerpanelscreation(frame, startbutton1, startbutton2, gamemode);
-        boardbutton.setBounds(200, 10, 300, 300);
+        boardbutton.setBounds(200, 110, 300, 300);
         boardbutton.setEnabled(false);
         frame.add(boardbutton);
+        nowplaying.setBounds(290, 20, 200, 30);
+        nowplaying.setFont(new Font("Monaco", Font.BOLD, 20));
+        nowplaying.setForeground(Color.YELLOW);
+        nowplaying.setText("Now playing:");
+        nowplaying.setVisible(false);
+        frame.add(nowplaying);
+        activeplayer.setFont(new Font("Monaco", Font.BOLD, 20));
+        activeplayer.setForeground(Color.YELLOW);
+        activeplayer.setVisible(false);
+        activeplayer.setAlignmentY(JLabel.CENTER_ALIGNMENT);
+        activeplayerpanel.setBounds(200, 50, 300, 50);
+        activeplayerpanel.setBackground(new Color(5, 65, 90));
+        activeplayer.setAlignmentY(JLabel.CENTER_ALIGNMENT);
+        activeplayerpanel.add(activeplayer);
+        frame.add(activeplayerpanel);
         JLayeredPane layeredPane = frame.getLayeredPane();
         layeredPane.add(boardbutton, Integer.valueOf(0));
         int i, j, x, y;
         x = 200;
-        y = 10;
+        y = 110;
         j = 0;
         for (i = 0; i <= 8; i++, x += 100, j++) {
             b[i] = new JButton();
@@ -369,6 +390,7 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
                 if (actionSource == b[i]) {
                     if (turn) {
                         if (b[i].getIcon() == null) {
+                            activeplayer.setText(playerpanel.player2name.getText());
                             b[i].setIcon(board.getIc1());
                             turn = board.nextPlay();
                             Result(ResultCheck());
@@ -377,6 +399,7 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
                         }
                     } else {
                         if (b[i].getIcon() == null) {
+                            activeplayer.setText(playerpanel.player1name.getText());
                             b[i].setIcon(board.getIc2());
                             turn = board.nextPlay();
                             Result(ResultCheck());
