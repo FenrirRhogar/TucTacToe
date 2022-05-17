@@ -45,7 +45,7 @@ public class PlayerPanel {
                 String type = "p";
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    leftbuttonaction(startbutton1, startbutton2, type);
+                    leftbuttonaction(startbutton1, startbutton2, type, null);
                 }
 
             });
@@ -54,7 +54,7 @@ public class PlayerPanel {
                 String type = "p";
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    rightbuttonaction(startbutton1, startbutton2, type);
+                    rightbuttonaction(startbutton1, startbutton2, type, null);
                 }
 
             });
@@ -64,7 +64,7 @@ public class PlayerPanel {
                 String type = "p";
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    leftbuttonaction(startbutton1, startbutton2, type);
+                    leftbuttonaction(startbutton1, startbutton2, type, null);
                 }
 
             });
@@ -73,7 +73,7 @@ public class PlayerPanel {
                 String type = "e";
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    rightbuttonaction(startbutton1, startbutton2, type);
+                    rightbuttonaction(startbutton1, startbutton2, type, null);
                 }
 
             });
@@ -83,7 +83,7 @@ public class PlayerPanel {
                 String type = "e";
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    leftbuttonaction(startbutton1, startbutton2, type);
+                    leftbuttonaction(startbutton1, startbutton2, type, null);
                 }
 
             });
@@ -92,7 +92,7 @@ public class PlayerPanel {
                 String type = "e";
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    rightbuttonaction(startbutton1, startbutton2, type);
+                    rightbuttonaction(startbutton1, startbutton2, type, null);
                 }
 
             });
@@ -100,9 +100,11 @@ public class PlayerPanel {
 
     }
 
-    public void leftbuttonaction(JButton startbutton1, JButton startbutton2, String type) {
+    public void leftbuttonaction(JButton startbutton1, JButton startbutton2, String type, Player player) {
         // select player
-        Player player = selectoraddpopup(type);
+        if (player == null) {
+            player = selectoraddpopup(type);
+        }
         player1name.setText(player.username);
         player1score
                 .setText("Score: " + (int) player.calculateScore(player.victories, player.draws, player.games));
@@ -121,9 +123,11 @@ public class PlayerPanel {
         }
     }
 
-    public void rightbuttonaction(JButton startbutton1, JButton startbutton2, String gamemode) {
+    public void rightbuttonaction(JButton startbutton1, JButton startbutton2, String type, Player player) {
         // select player
-        Player player = selectoraddpopup(gamemode);
+        if (player == null) {
+            player = selectoraddpopup(type);
+        }
         player2name.setText(player.username);
         player2score
                 .setText("Score: " + (int) player.calculateScore(player.victories, player.draws, player.games));

@@ -20,6 +20,7 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
     JButton startbutton1 = new JButton("Start");
     JButton startbutton2 = new JButton("Start");
     JButton playagainbutton = new JButton("Play Again");
+    JButton playagainbutton2 = new JButton("Play Again with the same Players");
     Board board = new Board();
     AIplayer ai;
     boolean turn;
@@ -144,6 +145,8 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
             playerpanel.roster.player1wins(playerpanel.player1name.getText(), playerpanel.player2name.getText());
             playagainbutton.setVisible(true);
             playagainbutton.setEnabled(true);
+            playagainbutton2.setVisible(true);
+            playagainbutton2.setEnabled(true);
         } else if (res == -1) {
             for (int i = 0; i < 9; i++) {
                 b[i].setEnabled(false);
@@ -153,6 +156,8 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
             playerpanel.roster.player2wins(playerpanel.player1name.getText(), playerpanel.player2name.getText());
             playagainbutton.setVisible(true);
             playagainbutton.setEnabled(true);
+            playagainbutton2.setVisible(true);
+            playagainbutton2.setEnabled(true);
         } else {
             if (b[0].getIcon() != null && b[1].getIcon() != null && b[2].getIcon() != null && b[3].getIcon() != null
                     && b[4].getIcon() != null && b[5].getIcon() != null && b[6].getIcon() != null
@@ -165,6 +170,8 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
                 playerpanel.roster.playerdraw(playerpanel.player1name.getText(), playerpanel.player2name.getText());
                 playagainbutton.setVisible(true);
                 playagainbutton.setEnabled(true);
+                playagainbutton2.setVisible(true);
+                playagainbutton2.setEnabled(true);
             }
         }
     }
@@ -239,10 +246,13 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
     }
 
     // play again button
-    public void createplayagainbutton(JFrame gameframe, String gamemode, Clip clip) {
+    public void createplayagainbuttons(JFrame gameframe, String gamemode, Clip clip) {
         playagainbutton.setBounds(300, 350, 100, 35);
+        playagainbutton2.setBounds(240, 390, 220, 35);
         gameframe.add(playagainbutton);
+        gameframe.add(playagainbutton2);
         playagainbutton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        playagainbutton2.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         playagainbutton.addActionListener(new ActionListener() {
 
             @Override
@@ -254,15 +264,36 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
             }
 
         });
+        playagainbutton2.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Player player1 = playerpanel.roster.findPlayer(playerpanel.player1name.getText());
+                Player player2 = playerpanel.roster.findPlayer(playerpanel.player2name.getText());
+                clip.close();
+                gameframe.dispose();
+                GameWindow gw = new GameWindow();
+                gw.gamewindowcreation(gamemode);
+                gw.gameboard.playerpanel.leftbuttonaction(startbutton1, startbutton2, null, player1);
+                gw.gameboard.playerpanel.rightbuttonaction(startbutton1, startbutton2, null, player2);
+                gw.gameboard.startbutton1.setEnabled(true);
+                gw.gameboard.startbutton2.setEnabled(true);
+                gw.gameboard.startbutton1.setVisible(true);
+                gw.gameboard.startbutton2.setVisible(true);
+            }
+
+        });
         playagainbutton.setVisible(false);
         playagainbutton.setEnabled(false);
+        playagainbutton2.setVisible(false);
+        playagainbutton2.setEnabled(false);
     }
 
     // game board 9 buttons creation
     public void boardcreation(JFrame frame, String gamemode, Clip clip) {
         JButton startbutton1 = createstartbutton1(frame);
         JButton startbutton2 = createstartbutton2(frame);
-        createplayagainbutton(frame, gamemode, clip);
+        createplayagainbuttons(frame, gamemode, clip);
         playerpanel.playerpanelscreation(frame, startbutton1, startbutton2, gamemode);
         boardbutton.setBounds(200, 10, 300, 300);
         boardbutton.setEnabled(false);
@@ -289,7 +320,6 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
             b[i].setContentAreaFilled(false);
             b[i].setBorderPainted(false);
             b[i].setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-
             b[i].addActionListener(this);
 
         }
