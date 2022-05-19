@@ -33,6 +33,7 @@ public class PlayerPanel {
     GameBoard gameboard;
     AIplayer ai;
     String[] players = new String[10];
+    String[] ais = new String[10];
     PlayerRoster roster = new PlayerRoster();
     Player p;
     int aiver;
@@ -264,7 +265,6 @@ public class PlayerPanel {
         JFrame jFrame = new JFrame();
         String username = null;
         Player player;
-
         String[] options = { "New Player", "Exsisting Player", "Cancel" };
         int optionindex = JOptionPane.showOptionDialog(jFrame, "Add new player or select an exsisting?", null,
                 JOptionPane.PLAIN_MESSAGE, JOptionPane.PLAIN_MESSAGE, null, options, null);
@@ -313,33 +313,49 @@ public class PlayerPanel {
             // select exsisting player
         } else if (optionindex == 1) {
             roster.loadPlayer();
-            for (int j = 0; j < roster.getPlayer().length; j++) {
+            /*for (int j = 0; j < roster.getPlayer().length; j++) {
                 if (roster.getPlayer()[j] != null) {
                     players[j] = roster.getPlayer()[j].username;
                 }
-            }
-            /*if (type.equals("p")) {
+            }*/
+            if (type.equals("p")) {
+                int i = 0;
                 for (int j = 0; j < roster.getPlayer().length; j++) {
-                    if (roster.getPlayer()[j] != null && roster.getPlayer()[j].username.equals("Mr. Bean") == false && roster.getPlayer()[j].username.equals("Hal") == false) {
-                        players[j] = roster.getPlayer()[j].username;
+                    if (roster.getPlayer()[j] == null) {
+                        break;
+                    }
+                    if (roster.getPlayer()[j].username.equals("Mr. Bean") == false && roster.getPlayer()[j].username.equals("Hal") == false) {
+                        players[i] = roster.getPlayer()[j].username;
+                        i++;
                     }
                 }
             } else if (type.equals("e")) {
+                int i = 0;
                 for (int j = 0; j < roster.getPlayer().length; j++) {
-                    if (roster.getPlayer()[j] != null && roster.getPlayer()[j].username.equals("Mr. Bean") == true && roster.getPlayer()[j].username.equals("Hal") == true) {
-                        players[j] = roster.getPlayer()[j].username;
+                    if (roster.getPlayer()[j] == null) {
+                        break;
+                    }
+                    if (roster.getPlayer()[j].username.equals("Mr. Bean") == true || roster.getPlayer()[j].username.equals("Hal") == true) {
+                        ais[i] = roster.getPlayer()[j].username;
+                        i++;
                     }
                 }
-            }*/
+            }
             JFrame selectplayerframe = new JFrame();
             do {
-                username = (String) JOptionPane.showInputDialog(selectplayerframe, "Select Player:", null,
+                if (type == "p") {
+                    username = (String) JOptionPane.showInputDialog(selectplayerframe, "Select Player:", null,
                         JOptionPane.QUESTION_MESSAGE, null, players, players[0]);
+                } else if (type == "e") {
+                    username = (String) JOptionPane.showInputDialog(selectplayerframe, "Select Player:", null,
+                        JOptionPane.QUESTION_MESSAGE, null, ais, ais[0]);
+                }
                 if (username.equals(player1name.getText()) || username.equals(player2name.getText())) {
                     JOptionPane.showMessageDialog(null, "This player is already selected!", "Already selected",
                             JOptionPane.ERROR_MESSAGE);
                 }
             } while (username.equals(player1name.getText()) || username.equals(player2name.getText()));
+
             player = roster.findPlayer(username);
             return player;
             // CANCEL

@@ -9,6 +9,13 @@ import view.Game;
 
 public class Console {
 
+    /*public static void main(String[] args) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
+        // open window
+        GameControler gc = new GameControler();
+        gc.start();
+
+    }*/
+    
     public static void main(String[] args) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
         // open window
         GameControler gc = new GameControler();
