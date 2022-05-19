@@ -13,8 +13,6 @@ public class Game {
     Player[] player;
     PlayerPanel playerpanel;
     PlayerRoster playerroster;
-    PvE pve;
-    PvP pvp;
 
     public Game() {
         this.bannerpanel = new BannerPanel();
@@ -26,8 +24,6 @@ public class Game {
         // this.player = new Player(username, games, victories, losses);
         this.playerpanel = new PlayerPanel();
         this.playerroster = new PlayerRoster();
-        this.pve = new PvE();
-        this.pvp = new PvP();
 
         // playerroster.addPlayer(new Player("Panos", 0, 0, 0, 0));
         // playerroster.addPlayer(new Player("Christian", 0, 0, 0, 0));

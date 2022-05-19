@@ -5,9 +5,6 @@ import javax.swing.*;
 
 import Music.Music;
 import controller.GameControler;
-import model.EvE;
-import model.PvE;
-import model.PvP;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -22,9 +19,6 @@ public class MainWindow extends Frame {
     HallOfFame halloffame = new HallOfFame();
     GameBoard gameboard = new GameBoard();
     Music music = new Music();
-    PvP pvp = new PvP();
-    PvE pve = new PvE();
-    EvE eve = new EvE();
     // main frame
     JFrame frame = new JFrame("Tuc Tac Toe");
     // tuc tac toe title
@@ -175,8 +169,11 @@ public class MainWindow extends Frame {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                String mode = "pvp";
                 clip.stop();
-                pvp.pvpopen(frame);
+                frame.dispose();
+                GameWindow gw = new GameWindow();
+                gw.gamewindowcreation(mode);
             }
 
         });
@@ -190,8 +187,11 @@ public class MainWindow extends Frame {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                String mode = "pve";
                 clip.stop();
-                pve.pveopen(frame);
+                frame.dispose();
+                GameWindow gw = new GameWindow();
+                gw.gamewindowcreation(mode);
             }
 
         });
@@ -205,8 +205,11 @@ public class MainWindow extends Frame {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                String mode = "eve";
                 clip.stop();
-                eve.eveopen(frame);
+                frame.dispose();
+                GameWindow gw = new GameWindow();
+                gw.gamewindowcreation(mode);
             }
 
         });
