@@ -142,7 +142,7 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
 
     }
 
-    public void Result(int res) {
+    public Boolean Result(int res) {
         JFrame jFrame = new JFrame();
         if (res == 1) {
             for (int i = 0; i < 9; i++) {
@@ -155,6 +155,7 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
             playagainbutton.setEnabled(true);
             playagainbutton2.setVisible(true);
             playagainbutton2.setEnabled(true);
+            return true;
         } else if (res == -1) {
             for (int i = 0; i < 9; i++) {
                 b[i].setEnabled(false);
@@ -166,6 +167,7 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
             playagainbutton.setEnabled(true);
             playagainbutton2.setVisible(true);
             playagainbutton2.setEnabled(true);
+            return true;
         } else {
             if (b[0].getIcon() != null && b[1].getIcon() != null && b[2].getIcon() != null && b[3].getIcon() != null
                     && b[4].getIcon() != null && b[5].getIcon() != null && b[6].getIcon() != null
@@ -180,8 +182,10 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
                 playagainbutton.setEnabled(true);
                 playagainbutton2.setVisible(true);
                 playagainbutton2.setEnabled(true);
+                return true;
             }
         }
+        return false;
     }
 
     // add start buttons
@@ -206,7 +210,27 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
                 activeplayer.setVisible(true);
                 board.setPlayer1(true);
                 turn = board.firstPlay(board.isPlayer1());
-
+                if (playerpanel.player1name.getText().equals("Mr. Bean") == true) {
+                    try {
+                        RandomPlayer(board.getIc1());
+                        turn = board.nextPlay();
+                    } catch (InterruptedException e1) {
+                        // TODO Auto-generated catch block
+                        e1.printStackTrace();
+                    }
+                    return;
+                } /*
+                   * else if (playerpanel.player1name.getText().equals("Hal") == true) {
+                   * try {
+                   * PerfectPlayer(board.getIc1());
+                   * turn = board.nextPlay();
+                   * } catch (InterruptedException e1) {
+                   * // TODO Auto-generated catch block
+                   * e1.printStackTrace();
+                   * }
+                   * return;
+                   * }
+                   */
                 // ksekinaei o 1
             }
 
@@ -236,16 +260,27 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
                 activeplayer.setVisible(true);
                 board.setPlayer1(false);
                 turn = board.firstPlay(board.isPlayer1());
-                /*
-                 * if (playerpanel.player2name.getText() == "Hal") {
-                 * try {
-                 * ai.PerfectPlayer(board.getIc2());
-                 * } catch (InterruptedException e1) {
-                 * // TODO Auto-generated catch block
-                 * e1.printStackTrace();
-                 * }
-                 * }
-                 */
+                if (playerpanel.player2name.getText().equals("Mr. Bean") == true) {
+                    try {
+                        RandomPlayer(board.getIc2());
+                        turn = board.nextPlay();
+                    } catch (InterruptedException e1) {
+                        // TODO Auto-generated catch block
+                        e1.printStackTrace();
+                    }
+                    return;
+                } /*
+                   * else if (playerpanel.player2name.getText().equals("Hal") == true) {
+                   * try {
+                   * PerfectPlayer(board.getIc2());
+                   * turn = board.nextPlay();
+                   * } catch (InterruptedException e1) {
+                   * // TODO Auto-generated catch block
+                   * e1.printStackTrace();
+                   * }
+                   * return;
+                   * }
+                   */
                 // ksekinaei o 2
             }
 
@@ -466,8 +501,6 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
         } while (sel == 10);
 
         b[sel].setIcon(ic);
-        Result(ResultCheck());
-
     }
 
     /*
@@ -523,13 +556,15 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
      * 
      * }
      */
-    public void gameplay(int i) {
+    public Boolean gameplay(int i) {
 
         if (turn) {
             if (b[i].getIcon() == null) {
                 b[i].setIcon(board.getIc1());
                 turn = board.nextPlay();
-                Result(ResultCheck());
+                if (Result(ResultCheck()) == true) {
+                    return true;
+                }
                 // cheking return number
                 // P2 turn
             }
@@ -537,11 +572,14 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
             if (b[i].getIcon() == null) {
                 b[i].setIcon(board.getIc2());
                 turn = board.nextPlay();
-                Result(ResultCheck());
+                if (Result(ResultCheck()) == true) {
+                    return true;
+                }
                 // checking return number
                 // P1 turn
             }
         }
+        return false;
     }
 
     @Override
@@ -549,7 +587,7 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
         try {
             JButton actionSource = (JButton) e.getSource();
 
-            for (int i = 0; i < 9; i++) {
+            for (int i = 0; i <= 9; i++) {
 
                 if (playerpanel.player1name.getText().equals("Hal")
                         || playerpanel.player2name.getText().equals("Hal")) {
@@ -561,8 +599,9 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
                             turn = board.nextPlay();
                         } else {
                             if (actionSource == b[i]) {
-                                gameplay(i);
-
+                                if (gameplay(i) == true) {
+                                    return;
+                                }
                             }
 
                         }
@@ -570,13 +609,17 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
                     } else {
                         if (turn) {
                             actionSource = b[i];
-                            gameplay(i);
+                            if (gameplay(i) == true) {
+                                return;
+                            }
 
                         } else {
                             // actionSource = null;
                             minimax(turn, board.getIc2(), Integer.MIN_VALUE, Integer.MAX_VALUE, 0);
                             turn = board.nextPlay();
-                            Result(ResultCheck());
+                            if (Result(ResultCheck()) == true) {
+                                return;
+                            }
                         }
 
                         // gameplay(i);
@@ -591,7 +634,9 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
                             turn = board.nextPlay();
                         } else {
                             if (actionSource == b[i]) {
-                                gameplay(i);
+                                if (gameplay(i) == true) {
+                                    return;
+                                }
 
                             }
 
@@ -600,14 +645,18 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
                     } else {
                         if (turn) {
                             if (actionSource == b[i]) {
-                                gameplay(i);
+                                if (gameplay(i) == true) {
+                                    return;
+                                }
 
                             }
                         } else {
                             actionSource = null;
                             RandomPlayer(board.getIc2());
                             turn = board.nextPlay();
-                            Result(ResultCheck());
+                            if (Result(ResultCheck()) == true) {
+                                return;
+                            }
                             actionSource = b[i];
                         }
 
@@ -615,7 +664,9 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
                     }
                 } else {
                     if (actionSource == b[i]) {
-                        gameplay(i);
+                        if (gameplay(i) == true) {
+                            return;
+                        }
                     }
 
                 }
