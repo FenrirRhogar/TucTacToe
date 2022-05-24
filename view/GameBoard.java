@@ -455,10 +455,16 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
         for (i = 0; i < 9; i++) {
             if (b[i].getIcon() == null) {
                 availablePos[i] = i;
+            } else {
+                availablePos[i] = 10;
             }
 
         }
-        sel = availablePos[random.nextInt(availablePos.length)];
+        do {
+            sel = availablePos[random.nextInt(availablePos.length)];
+
+        } while (sel == 10);
+
         b[sel].setIcon(ic);
         Result(ResultCheck());
 
@@ -598,10 +604,11 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
 
                             }
                         } else {
-
+                            actionSource = null;
                             RandomPlayer(board.getIc2());
                             turn = board.nextPlay();
                             Result(ResultCheck());
+                            actionSource = b[i];
                         }
 
                         // gameplay(i);
