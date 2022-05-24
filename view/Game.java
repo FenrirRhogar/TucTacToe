@@ -1,5 +1,6 @@
 package view;
 
+import controller.GameControler;
 import model.*;
 
 public class Game {
@@ -13,6 +14,7 @@ public class Game {
     Player[] player;
     PlayerPanel playerpanel;
     PlayerRoster playerroster;
+    GameControler gc;
 
     public Game() {
         this.bannerpanel = new BannerPanel();
@@ -27,6 +29,7 @@ public class Game {
 
         // playerroster.addPlayer(new Player("Panos", 0, 0, 0, 0));
         // playerroster.addPlayer(new Player("Christian", 0, 0, 0, 0));
+
     }
 
 }

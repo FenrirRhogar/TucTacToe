@@ -9,6 +9,13 @@
             "name": "Launch Console",
             "request": "launch",
             "mainClass": "app.Console",
+            "projectName": "TucTacToe"
+        },
+        {
+            "type": "java",
+            "name": "Launch Console",
+            "request": "launch",
+            "mainClass": "app.Console",
             "projectName": "TucTacToe_1f34d3c7"
         },
         {

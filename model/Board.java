@@ -63,6 +63,7 @@ public class Board {
     }
 
     public boolean nextPlay() {
+        // return Player1 ? false : true;
         if (Player1 == true) {
             Player1 = false;
             return Player1;

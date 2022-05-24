@@ -14,11 +14,6 @@ public class GameControler {
         view.windowcreation();
     }
 
-    public void quit() {
-        System.out.println("bye bye...");
-        System.exit(0);
-    }
-
     public MainWindow getView() {
         return view;
     }
