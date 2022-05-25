@@ -111,6 +111,7 @@ public class PlayerPanel {
         player1name.setText(player.username);
         player1score
                 .setText("Score: " + (int) player.calculateScore(player.victories, player.draws, player.games));
+        //player1recentscore.setText("Recent score: ");        
         player1totalgames.setText("Total games: " + player.games);
         player1totalwon.setText("Won: " + (int) player.totalWon(player.victories, player.games) + "%");
         player1totallost.setText("Lost: " + (int) player.totalLost(player.losses, player.games) + "%");
@@ -172,6 +173,7 @@ public class PlayerPanel {
         frame.add(selectplayer1button);
         frame.add(player1name);
         frame.add(player1score);
+        frame.add(player1recentscore);
         frame.add(player1totalgames);
         frame.add(player1totalwon);
         frame.add(player1totallost);
@@ -201,6 +203,7 @@ public class PlayerPanel {
         frame.add(selectplayer2button);
         frame.add(player2name);
         frame.add(player2score);
+        frame.add(player1recentscore);
         frame.add(player2totalgames);
         frame.add(player2totalwon);
         frame.add(player2totallost);
@@ -222,11 +225,14 @@ public class PlayerPanel {
         player1totalwon.setForeground(Color.WHITE);
         player1totallost.setBounds(45, 140, 110, 20);
         player1totallost.setForeground(Color.WHITE);
+        player1recentscore.setBounds(45, 180, 110, 20);
+        player1recentscore.setForeground(Color.WHITE);
         selectplayer1button.setBounds(45, 60, 110, 30);
         frame.add(player1label);
         frame.add(selectplayer1button);
         frame.add(player1name);
         frame.add(player1score);
+        frame.add(player1recentscore);
         frame.add(player1totalgames);
         frame.add(player1totalwon);
         frame.add(player1totallost);
@@ -248,11 +254,14 @@ public class PlayerPanel {
         player2totalwon.setForeground(Color.WHITE);
         player2totallost.setBounds(545, 140, 110, 20);
         player2totallost.setForeground(Color.WHITE);
+        player2recentscore.setBounds(45, 180, 110, 20);
+        player2recentscore.setForeground(Color.WHITE);
         selectplayer2button.setBounds(545, 60, 110, 30);
         frame.add(player2label);
         frame.add(selectplayer2button);
         frame.add(player2name);
         frame.add(player2score);
+        frame.add(player2recentscore);
         frame.add(player2totalgames);
         frame.add(player2totalwon);
         frame.add(player2totallost);

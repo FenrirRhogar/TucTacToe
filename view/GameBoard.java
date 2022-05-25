@@ -624,8 +624,7 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
 
                         // gameplay(i);
                     }
-                } else if (playerpanel.player1name.getText().equals("Mr. Bean")
-                        || playerpanel.player2name.getText().equals("Mr. Bean")) {
+                } else if (playerpanel.player1name.getText().equals("Mr. Bean") || playerpanel.player2name.getText().equals("Mr. Bean")) {
 
                     if (playerpanel.player1name.getText().equals("Mr. Bean")) {
                         if (turn) {
@@ -648,7 +647,6 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
                                 if (gameplay(i) == true) {
                                     return;
                                 }
-
                             }
                         } else {
                             actionSource = null;
