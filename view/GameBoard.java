@@ -505,59 +505,42 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
         b[sel].setIcon(ic);
     }
 
-    /*
-     * public int minmax(boolean turn) {
-     * if (ResultCheck() != 0) {
-     * return result;
-     * }
-     * if (turn) {
-     * int j = Integer.MAX_VALUE;
-     * for (int i = 0; i < 9; i++) {
-     * if (b[i].getIcon() == null) {
-     * b[i].setIcon(board.getIc1());
-     * int value = minmax(false);
-     * b[i].setIcon(null);
-     * if (value == -1) {
-     * return value;
-     * }
-     * j = Math.min(value, j);
-     * }
-     * }
-     * return j;
-     * }
-     * int bestVal = Integer.MIN_VALUE;
-     * for (int k = 0; k < 9; k++) {
-     * if (b[k].getIcon() == null) {
-     * b[k].setIcon(board.getIc2());
-     * int value = minmax(true);
-     * b[k].setIcon(null);
-     * if (value == 1) {
-     * return value;
-     * }
-     * bestVal = Math.max(bestVal, value);
-     * }
-     * }
-     * return bestVal;
-     * }
-     * 
-     * int[] corner = { 0, 2, 6, 8 };
-     * int[] availablePos;
-     * 
-     * public void RandomPlayer(Icon ic) throws InterruptedException {
-     * int sel = 0;
-     * // TimeUnit.SECONDS.sleep(2);
-     * for (int i = 0; i < 9; i++) {
-     * if (b[i].getIcon() == null) {
-     * availablePos[i] = i;
-     * }
-     * sel = availablePos[random.nextInt(availablePos[i])];
-     * 
-     * }
-     * b[sel].setIcon(ic);
-     * Result(ResultCheck());
-     * 
-     * }
-     */
+    
+    
+     public int minmax(boolean turn) {
+      if (ResultCheck() != 0) {
+      return result;
+      }
+      if (turn) {
+      int j = Integer.MAX_VALUE;
+      for (int i = 0; i < 9; i++) {
+      if (b[i].getIcon() == null) {
+      b[i].setIcon(board.getIc1());
+      int value = minmax(false);
+      b[i].setIcon(null);
+      if (value == -1) {
+      return value;
+      }
+      j = Math.min(value, j);
+      }
+      }
+      return j;
+      }
+      int bestVal = Integer.MIN_VALUE;
+      for (int k = 0; k < 9; k++) {
+      if (b[k].getIcon() == null) {
+      b[k].setIcon(board.getIc2());
+      int value = minmax(true);
+      b[k].setIcon(null);
+      if (value == 1) {
+      return value;
+      }
+      bestVal = Math.max(bestVal, value);
+      }
+      }
+      return bestVal;
+      }
+     
     public Boolean gameplay(int i) {
 
         if (turn) {
@@ -644,6 +627,7 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
 
                             }
 
+                        
                         }
                         // gameplay(i);
                     } else {

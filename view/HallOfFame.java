@@ -29,20 +29,25 @@ public class HallOfFame {
         // JLabel list = new JLabel();
         roster.loadPlayer();
         // sort players
+        String[] plr = new String[10];
         for (int i = 0; i < roster.getPlayer().length; i++) {
             if (roster.getPlayer()[i] != null) {
-                for (int j = 1; j < roster.getPlayer().length; j++) {
+
+                for (int j = i + 1; j < roster.getPlayer().length; j++) {
                     if (roster.getPlayer()[j] != null) {
-                        if (roster.getPlayer()[i].score > roster.getPlayer()[j].score) {
-                            continue;
-                        } else {
+
+                        if (roster.getPlayer()[i].getScore() < roster.getPlayer()[j].getScore()) {
+                            Player p = roster.getPlayer()[j];
                             roster.getPlayer()[j] = roster.getPlayer()[i];
+                            roster.getPlayer()[i] = p;
                         }
+
                     }
                 }
+
+                // list.setText(i+1 + ". " + player.username);
                 System.out.println(roster.getPlayer()[i].getScore());
             }
-            // list.setText(i+1 + ". " + player.username);
         }
     }
 }
