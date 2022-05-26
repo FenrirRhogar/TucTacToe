@@ -26,7 +26,6 @@ public class MainWindow extends Frame {
     // buttons
     JButton playbutton = new JButton("Play");
     JButton halloffamebutton = new JButton("Hall Of Fame");
-    JButton settingsbutton = new JButton("Settings");
     JButton exitbutton = new JButton("Exit");
     JButton pvpbutton = new JButton("PvP");
     JButton pvebutton = new JButton("PvE");
@@ -38,7 +37,7 @@ public class MainWindow extends Frame {
     public void createmutebutton(JFrame gameframe, Clip clip) {
         ImageIcon muteicon = new ImageIcon("Images/mutebutton.png");
         ImageIcon muteiconenabled = new ImageIcon("Images/mutebuttonenabled.png");
-        mutebutton.setBounds(665, 5, 30, 30);
+        mutebutton.setBounds(375, 5, 30, 30);
         gameframe.add(mutebutton);
         mutebutton.setIcon(muteicon);
         mutebutton.setOpaque(false);
@@ -70,13 +69,13 @@ public class MainWindow extends Frame {
         Clip clip = music.playMenuMusic();
         // menu title
         menutitle.setText("TUC TAC TOE");
-        menutitle.setBounds(278, 10, 150, 50);
+        menutitle.setBounds(140, 10, 150, 50);
         menutitle.setFont(new Font("Monaco", Font.BOLD, 20));
         menutitle.setForeground(Color.RED);
         menutitle.setVisible(false);
         frame.add(menutitle);
         // "Play" button
-        playbutton.setBounds(275, 100, 150, 30);
+        playbutton.setBounds(135, 100, 150, 30);
         playbutton.addActionListener(new ActionListener() {
 
             @Override
@@ -93,7 +92,7 @@ public class MainWindow extends Frame {
         playbutton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         frame.add(playbutton);
         // "Hall Of Fame" button
-        halloffamebutton.setBounds(275, 150, 150, 30);
+        halloffamebutton.setBounds(135, 150, 150, 30);
         halloffamebutton.addActionListener(new ActionListener() {
 
             @Override
@@ -104,8 +103,6 @@ public class MainWindow extends Frame {
                 playbutton.setEnabled(false);
                 halloffamebutton.setVisible(false);
                 halloffamebutton.setEnabled(false);
-                settingsbutton.setVisible(false);
-                settingsbutton.setEnabled(false);
                 exitbutton.setVisible(false);
                 exitbutton.setEnabled(false);
                 backtomenubutton.setVisible(true);
@@ -120,7 +117,7 @@ public class MainWindow extends Frame {
         halloffamebutton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         frame.add(halloffamebutton);
         // "Settings" button
-        settingsbutton.setBounds(275, 200, 150, 30);
+        /*settingsbutton.setBounds(275, 200, 150, 30);
         settingsbutton.addActionListener(new ActionListener() {
 
             @Override
@@ -132,9 +129,9 @@ public class MainWindow extends Frame {
         settingsbutton.setEnabled(false);
         settingsbutton.setVisible(false);
         settingsbutton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        frame.add(settingsbutton);
+        frame.add(settingsbutton);*/
         // "Exit button"
-        exitbutton.setBounds(275, 250, 150, 30);
+        exitbutton.setBounds(135, 200, 150, 30);
         exitbutton.addActionListener(new ActionListener() {
 
             @Override
@@ -150,7 +147,7 @@ public class MainWindow extends Frame {
         // Gamemode buttons
         gamemodeButtons(clip);
         // "Back To Menu" button
-        backtomenubutton.setBounds(520, 510, 150, 30);
+        backtomenubutton.setBounds(135, 370, 150, 30);
         backtomenubutton.addActionListener(new ActionListener() {
 
             @Override
@@ -196,7 +193,7 @@ public class MainWindow extends Frame {
 
     private void gamemodeButtons(Clip clip) {
         // "PvP" gamemode button
-        pvpbutton.setBounds(210, 150, 70, 30);
+        pvpbutton.setBounds(70, 150, 70, 30);
         pvpbutton.addActionListener(new ActionListener() {
 
             @Override
@@ -214,7 +211,7 @@ public class MainWindow extends Frame {
         pvpbutton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         frame.add(pvpbutton);
         // "PvE" gamemode button
-        pvebutton.setBounds(310, 150, 70, 30);
+        pvebutton.setBounds(170, 150, 70, 30);
         pvebutton.addActionListener(new ActionListener() {
 
             @Override
@@ -232,7 +229,7 @@ public class MainWindow extends Frame {
         pvebutton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         frame.add(pvebutton);
         // "EvE" gamemode button
-        evebutton.setBounds(410, 150, 70, 30);
+        evebutton.setBounds(270, 150, 70, 30);
         evebutton.addActionListener(new ActionListener() {
 
             @Override
@@ -253,7 +250,7 @@ public class MainWindow extends Frame {
 
     private void frameSettings() {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(714, 600);
+        frame.setSize(425, 450);
         frame.getContentPane().setBackground(new Color(5, 65, 90));
         frame.setLocationRelativeTo(null);
         frame.setResizable(false);
@@ -290,8 +287,6 @@ public class MainWindow extends Frame {
         playbutton.setVisible(true);
         halloffamebutton.setEnabled(true);
         halloffamebutton.setVisible(true);
-        settingsbutton.setEnabled(true);
-        settingsbutton.setVisible(true);
         exitbutton.setEnabled(true);
         exitbutton.setVisible(true);
         // disable previous buttons
@@ -313,8 +308,6 @@ public class MainWindow extends Frame {
         playbutton.setEnabled(false);
         halloffamebutton.setVisible(false);
         halloffamebutton.setEnabled(false);
-        settingsbutton.setVisible(false);
-        settingsbutton.setEnabled(false);
         exitbutton.setVisible(false);
         exitbutton.setEnabled(false);
         // enable new buttons

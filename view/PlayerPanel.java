@@ -46,6 +46,7 @@ public class PlayerPanel {
             leftplayerpanel(frame);
             selectplayer1button.addActionListener(new ActionListener() {
                 String type = "p";
+
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     leftbuttonaction(startbutton1, startbutton2, type, null);
@@ -55,6 +56,7 @@ public class PlayerPanel {
             rightplayerpanel(frame);
             selectplayer2button.addActionListener(new ActionListener() {
                 String type = "p";
+
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     rightbuttonaction(startbutton1, startbutton2, type, null);
@@ -65,6 +67,7 @@ public class PlayerPanel {
             leftplayerpanel(frame);
             selectplayer1button.addActionListener(new ActionListener() {
                 String type = "p";
+
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     leftbuttonaction(startbutton1, startbutton2, type, null);
@@ -74,6 +77,7 @@ public class PlayerPanel {
             rightaipanel(frame);
             selectplayer2button.addActionListener(new ActionListener() {
                 String type = "e";
+
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     rightbuttonaction(startbutton1, startbutton2, type, null);
@@ -84,6 +88,7 @@ public class PlayerPanel {
             leftaipanel(frame);
             selectplayer1button.addActionListener(new ActionListener() {
                 String type = "e";
+
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     leftbuttonaction(startbutton1, startbutton2, type, null);
@@ -93,6 +98,7 @@ public class PlayerPanel {
             rightaipanel(frame);
             selectplayer2button.addActionListener(new ActionListener() {
                 String type = "e";
+
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     rightbuttonaction(startbutton1, startbutton2, type, null);
@@ -112,7 +118,7 @@ public class PlayerPanel {
         player1score
                 .setText("Score: " + (int) player.calculateScore(player.victories, player.draws, player.games));
         player1score.setText("Score: " + (int) player.getScore());
-        //player1recentscore.setText("Recent score: ");        
+        // player1recentscore.setText("Recent score: ");
         player1totalgames.setText("Total games: " + player.games);
         player1totalwon.setText("Won: " + (int) player.totalWon(player.victories, player.games) + "%");
         player1totallost.setText("Lost: " + (int) player.totalLost(player.losses, player.games) + "%");
@@ -134,8 +140,11 @@ public class PlayerPanel {
             player = selectoraddpopup(type);
         }
         player2name.setText(player.username);
-        /*player2score
-                .setText("Score: " + (int) player.calculateScore(player.victories, player.draws, player.games));*/
+        /*
+         * player2score
+         * .setText("Score: " + (int) player.calculateScore(player.victories,
+         * player.draws, player.games));
+         */
         player2score.setText("Score: " + (int) player.getScore());
         player2totalgames.setText("Total games: " + player.games);
         player2totalwon.setText("Won: " + (int) player.totalWon(player.victories, player.games) + "%");
@@ -277,6 +286,29 @@ public class PlayerPanel {
         String username = null;
         Player player;
         String[] options = { "New Player", "Exsisting Player", "Cancel" };
+        if (type.equals("e")) {
+            int i = 0;
+            for (int j = 0; j < roster.getPlayer().length; j++) {
+                if (roster.getPlayer()[j] == null) {
+                    break;
+                }
+                if (roster.getPlayer()[j].username.equals("Mr. Bean") == true
+                        || roster.getPlayer()[j].username.equals("Hal") == true) {
+                    ais[i] = roster.getPlayer()[j].username;
+                    i++;
+                }
+            }
+            do {
+                username = (String) JOptionPane.showInputDialog(null, "Select Player:", null,
+                        JOptionPane.QUESTION_MESSAGE, null, ais, ais[0]);
+                if (username.equals(player1name.getText()) || username.equals(player2name.getText())) {
+                    JOptionPane.showMessageDialog(null, "This player is already selected!", "Already selected",
+                            JOptionPane.ERROR_MESSAGE);
+                }
+            } while (username.equals(player1name.getText()) || username.equals(player2name.getText()));
+            player = roster.findPlayer(username);
+            return player;
+        }
         int optionindex = JOptionPane.showOptionDialog(jFrame, "Add new player or select an exsisting?", null,
                 JOptionPane.PLAIN_MESSAGE, JOptionPane.PLAIN_MESSAGE, null, options, null);
 
@@ -324,18 +356,14 @@ public class PlayerPanel {
             // select exsisting player
         } else if (optionindex == 1) {
             roster.loadPlayer();
-            /*for (int j = 0; j < roster.getPlayer().length; j++) {
-                if (roster.getPlayer()[j] != null) {
-                    players[j] = roster.getPlayer()[j].username;
-                }
-            }*/
             if (type.equals("p")) {
                 int i = 0;
                 for (int j = 0; j < roster.getPlayer().length; j++) {
                     if (roster.getPlayer()[j] == null) {
                         break;
                     }
-                    if (roster.getPlayer()[j].username.equals("Mr. Bean") == false && roster.getPlayer()[j].username.equals("Hal") == false) {
+                    if (roster.getPlayer()[j].username.equals("Mr. Bean") == false
+                            && roster.getPlayer()[j].username.equals("Hal") == false) {
                         players[i] = roster.getPlayer()[j].username;
                         i++;
                     }
@@ -346,7 +374,8 @@ public class PlayerPanel {
                     if (roster.getPlayer()[j] == null) {
                         break;
                     }
-                    if (roster.getPlayer()[j].username.equals("Mr. Bean") == true || roster.getPlayer()[j].username.equals("Hal") == true) {
+                    if (roster.getPlayer()[j].username.equals("Mr. Bean") == true
+                            || roster.getPlayer()[j].username.equals("Hal") == true) {
                         ais[i] = roster.getPlayer()[j].username;
                         i++;
                     }
@@ -356,10 +385,10 @@ public class PlayerPanel {
             do {
                 if (type == "p") {
                     username = (String) JOptionPane.showInputDialog(selectplayerframe, "Select Player:", null,
-                        JOptionPane.QUESTION_MESSAGE, null, players, players[0]);
+                            JOptionPane.QUESTION_MESSAGE, null, players, players[0]);
                 } else if (type == "e") {
                     username = (String) JOptionPane.showInputDialog(selectplayerframe, "Select Player:", null,
-                        JOptionPane.QUESTION_MESSAGE, null, ais, ais[0]);
+                            JOptionPane.QUESTION_MESSAGE, null, ais, ais[0]);
                 }
                 if (username.equals(player1name.getText()) || username.equals(player2name.getText())) {
                     JOptionPane.showMessageDialog(null, "This player is already selected!", "Already selected",

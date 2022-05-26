@@ -353,7 +353,7 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
         nowplaying.setText("Now playing:");
         nowplaying.setVisible(false);
         frame.add(nowplaying);
-        activeplayer.setFont(new Font("Monaco", Font.BOLD, 20));
+        activeplayer.setFont(new Font("Monaco", Font.BOLD, 19));
         activeplayer.setForeground(Color.YELLOW);
         activeplayer.setVisible(false);
         activeplayerpanel.setBounds(200, 50, 300, 50);
