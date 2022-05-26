@@ -356,7 +356,6 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
         activeplayer.setFont(new Font("Monaco", Font.BOLD, 20));
         activeplayer.setForeground(Color.YELLOW);
         activeplayer.setVisible(false);
-        activeplayer.setAlignmentY(JLabel.CENTER_ALIGNMENT);
         activeplayerpanel.setBounds(200, 50, 300, 50);
         activeplayerpanel.setBackground(new Color(5, 65, 90));
         activeplayer.setAlignmentY(JLabel.CENTER_ALIGNMENT);

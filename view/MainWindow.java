@@ -83,9 +83,6 @@ public class MainWindow extends Frame {
             public void actionPerformed(ActionEvent e) {
                 backtomenubutton.setVisible(true);
                 backtomenubutton.setEnabled(true);
-                menutitle.setVisible(false);
-                playbutton.setEnabled(false);
-                playbutton.setVisible(false);
                 backtomenubutton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 gamemodeselection(clip);
             }
@@ -101,13 +98,19 @@ public class MainWindow extends Frame {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                /*System.out.println("Prits2");
+                System.out.println("Prits2");
+                menutitle.setVisible(false);
+                playbutton.setVisible(false);
+                playbutton.setEnabled(false);
+                halloffamebutton.setVisible(false);
+                halloffamebutton.setEnabled(false);
+                settingsbutton.setVisible(false);
+                settingsbutton.setEnabled(false);
+                exitbutton.setVisible(false);
+                exitbutton.setEnabled(false);
                 backtomenubutton.setVisible(true);
                 backtomenubutton.setEnabled(true);
-                menutitle.setVisible(false);
-                playbutton.setEnabled(false);
-                playbutton.setVisible(false);
-                backtomenubutton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));*/
+                backtomenubutton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 halloffame.halloffameboard(frame);
             }
 
@@ -152,6 +155,29 @@ public class MainWindow extends Frame {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                frame.remove(halloffame.titlepanel);
+                frame.remove(halloffame.player1);
+                frame.remove(halloffame.player2);
+                frame.remove(halloffame.player3);
+                frame.remove(halloffame.player4);
+                frame.remove(halloffame.player5);
+                frame.remove(halloffame.player6);
+                frame.remove(halloffame.player7);
+                frame.remove(halloffame.player8);
+                frame.remove(halloffame.player9);
+                frame.remove(halloffame.player10);
+                frame.remove(halloffame.score1);
+                frame.remove(halloffame.score2);
+                frame.remove(halloffame.score3);
+                frame.remove(halloffame.score4);
+                frame.remove(halloffame.score5);
+                frame.remove(halloffame.score6);
+                frame.remove(halloffame.score7);
+                frame.remove(halloffame.score8);
+                frame.remove(halloffame.score9);
+                frame.remove(halloffame.score10);
+                frame.revalidate();
+                frame.repaint();
                 mainmenu(clip);
             }
 
@@ -247,8 +273,13 @@ public class MainWindow extends Frame {
          * }
          */
 
-        ImageIcon appicon = new ImageIcon("Images/gb.png");
-        frame.setIconImage(appicon.getImage());
+        try {
+            ImageIcon appicon = new ImageIcon("Images/gb.png");
+            frame.setIconImage(appicon.getImage());
+        } catch (Exception e) {
+            System.out.println("Icon image not found.");
+        }
+        
     }
 
     // main menu
@@ -276,6 +307,7 @@ public class MainWindow extends Frame {
 
     // pvp or pve or eve selection
     public void gamemodeselection(Clip clip) {
+        menutitle.setVisible(false);
         // disabe previous buttons
         playbutton.setVisible(false);
         playbutton.setEnabled(false);
