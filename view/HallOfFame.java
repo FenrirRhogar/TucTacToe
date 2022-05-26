@@ -1,6 +1,8 @@
 package view;
 
 import javax.swing.*;
+import java.awt.*;
+import java.util.Arrays;
 
 import model.Player;
 import model.PlayerRoster;
@@ -14,15 +16,18 @@ public class HallOfFame {
         this.roster = new PlayerRoster();
     }
 
-    public void halloffameboard() {
+    public void halloffameboard(JFrame frame) {
         JLabel title = new JLabel("Hall Of Fame");
-        title.setBounds(50, 50, 100, 30);
-        printhalloffamelist();
+        title.setBounds(278, 10, 150, 50);
+        title.setFont(new Font("Monaco", Font.BOLD, 20));
+        title.setForeground(Color.RED);
+        title.setVisible(false);
+        // printhalloffamelist(frame);
     }
 
     public void printhalloffamelist() {
         // JLabel list = new JLabel();
-        String[] plr = new String[roster.getPlayer().length];
+
         roster.loadPlayer();
         // sort players
         for (int i = 0; i < roster.getPlayer().length; i++) {
