@@ -111,6 +111,7 @@ public class PlayerPanel {
         player1name.setText(player.username);
         player1score
                 .setText("Score: " + (int) player.calculateScore(player.victories, player.draws, player.games));
+        player1score.setText("Score: " + (int) player.getScore());
         //player1recentscore.setText("Recent score: ");        
         player1totalgames.setText("Total games: " + player.games);
         player1totalwon.setText("Won: " + (int) player.totalWon(player.victories, player.games) + "%");
@@ -133,8 +134,9 @@ public class PlayerPanel {
             player = selectoraddpopup(type);
         }
         player2name.setText(player.username);
-        player2score
-                .setText("Score: " + (int) player.calculateScore(player.victories, player.draws, player.games));
+        /*player2score
+                .setText("Score: " + (int) player.calculateScore(player.victories, player.draws, player.games));*/
+        player2score.setText("Score: " + (int) player.getScore());
         player2totalgames.setText("Total games: " + player.games);
         player2totalwon.setText("Won: " + (int) player.totalWon(player.victories, player.games) + "%");
         player2totallost.setText("Lost: " + (int) player.totalLost(player.losses, player.games) + "%");

@@ -22,23 +22,26 @@ public class HallOfFame {
         title.setFont(new Font("Monaco", Font.BOLD, 20));
         title.setForeground(Color.RED);
         title.setVisible(false);
-        // printhalloffamelist(frame);
+        printhalloffamelist(frame);
     }
 
-    public void printhalloffamelist() {
+    public void printhalloffamelist(JFrame frame) {
         // JLabel list = new JLabel();
-
         roster.loadPlayer();
         // sort players
         for (int i = 0; i < roster.getPlayer().length; i++) {
-            for (int j = 1; j < roster.getPlayer().length; j++) {
-                if (roster.getPlayer()[i].score > roster.getPlayer()[j].score) {
-                    continue;
-                } else {
-                    j = i;
+            if (roster.getPlayer()[i] != null) {
+                for (int j = 1; j < roster.getPlayer().length; j++) {
+                    if (roster.getPlayer()[j] != null) {
+                        if (roster.getPlayer()[i].score > roster.getPlayer()[j].score) {
+                            continue;
+                        } else {
+                            roster.getPlayer()[j] = roster.getPlayer()[i];
+                        }
+                    }
                 }
+                System.out.println(roster.getPlayer()[i].getScore());
             }
-            System.out.println(roster.getPlayer()[i].score);
             // list.setText(i+1 + ". " + player.username);
         }
     }

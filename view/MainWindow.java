@@ -101,13 +101,13 @@ public class MainWindow extends Frame {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Prits2");
+                /*System.out.println("Prits2");
                 backtomenubutton.setVisible(true);
                 backtomenubutton.setEnabled(true);
                 menutitle.setVisible(false);
                 playbutton.setEnabled(false);
                 playbutton.setVisible(false);
-                backtomenubutton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                backtomenubutton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));*/
                 halloffame.halloffameboard(frame);
             }
 

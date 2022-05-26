@@ -30,11 +30,11 @@ public class Player implements Serializable {
     }
 
     public float getScore() {
-        return score;
+        return calculateScore(victories, draws, games);
     }
 
     public void setScore(float score) {
-        this.score = score;
+        this.score = calculateScore(victories, draws, games);
     }
 
     public int getVictories() {
@@ -76,7 +76,6 @@ public class Player implements Serializable {
         } else {
             result = (float) (50.0 * ((2.0 * (float) victories + (float) draws) / ((float) games)));
         }
-
         return result;
     }
 
