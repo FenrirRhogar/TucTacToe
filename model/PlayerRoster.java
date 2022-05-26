@@ -3,6 +3,8 @@ package model;
 import java.io.*;
 import java.io.Serializable;
 
+import view.Game;
+
 //import javax.swing.SortingFocusTraversalPolicy;
 
 public class PlayerRoster implements Serializable {
@@ -40,6 +42,7 @@ public class PlayerRoster implements Serializable {
             for (Player player : this.player) {
                 out.writeObject(player);
             }
+
             out.close();
             fileOut.close();
             System.out.printf("\nSerialized data is saved in tuctactoe.ser");
@@ -63,6 +66,7 @@ public class PlayerRoster implements Serializable {
                 this.player[pos] = p;
                 pos++;
             }
+
             in.close();
             FileIn.close();
 
