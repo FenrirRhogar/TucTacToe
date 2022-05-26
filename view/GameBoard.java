@@ -213,6 +213,7 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
                 if (playerpanel.player1name.getText().equals("Mr. Bean") == true) {
                     try {
                         RandomPlayer(board.getIc1());
+                        activeplayer.setText(playerpanel.player2name.getText());
                         turn = board.nextPlay();
                     } catch (InterruptedException e1) {
                         // TODO Auto-generated catch block
@@ -263,6 +264,7 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
                 if (playerpanel.player2name.getText().equals("Mr. Bean") == true) {
                     try {
                         RandomPlayer(board.getIc2());
+                        activeplayer.setText(playerpanel.player1name.getText());
                         turn = board.nextPlay();
                     } catch (InterruptedException e1) {
                         // TODO Auto-generated catch block
@@ -560,6 +562,7 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
 
         if (turn) {
             if (b[i].getIcon() == null) {
+                activeplayer.setText(playerpanel.player2name.getText());
                 b[i].setIcon(board.getIc1());
                 turn = board.nextPlay();
                 if (Result(ResultCheck()) == true) {
@@ -570,6 +573,7 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
             }
         } else {
             if (b[i].getIcon() == null) {
+                activeplayer.setText(playerpanel.player1name.getText());
                 b[i].setIcon(board.getIc2());
                 turn = board.nextPlay();
                 if (Result(ResultCheck()) == true) {
@@ -630,6 +634,7 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
                         if (turn) {
 
                             RandomPlayer(board.getIc1());
+                            activeplayer.setText(playerpanel.player1name.getText());
                             turn = board.nextPlay();
                         } else {
                             if (actionSource == b[i]) {
@@ -651,6 +656,7 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
                         } else {
                             actionSource = null;
                             RandomPlayer(board.getIc2());
+                            activeplayer.setText(playerpanel.player1name.getText());
                             turn = board.nextPlay();
                             if (Result(ResultCheck()) == true) {
                                 return;
