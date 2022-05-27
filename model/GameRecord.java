@@ -9,17 +9,17 @@ import java.time.LocalDateTime;
 
 public class GameRecord {
 
-    Game[] game;
-    int pnum = 0;
+    GameR[] game;
+    int gnum = 0;
 
     public LocalDateTime getDateTime() {
         LocalDateTime current = LocalDateTime.now();
         return current;
     }
 
-    public int addGame(Game g, int gnum) {
+    public int addGame(GameR g, int gnum) {
         game[gnum] = g;
-        pnum++;
+        gnum++;
         storeGame();
         return gnum;
     }
@@ -30,7 +30,7 @@ public class GameRecord {
         try {
             fileOut = new FileOutputStream("tuctactoe.ser");
             out = new ObjectOutputStream(fileOut);
-            for (Game game : this.game) {
+            for (GameR game : this.game) {
                 out.writeObject(game);
             }
 
@@ -53,7 +53,7 @@ public class GameRecord {
             in = new ObjectInputStream(FileIn);
 
             while (FileIn.available() > 0) {
-                Game g = (Game) in.readObject();
+                GameR g = (GameR) in.readObject();
                 this.game[pos] = g;
                 pos++;
             }
@@ -71,8 +71,8 @@ public class GameRecord {
         }
     }
 
-    public Game findGame(String player) {
-        for (Game g : this.game) {
+    public GameR findGame(String player) {
+        for (GameR g : this.game) {
             if (player != null && player.equals(g.player1.username) || player.equals(g.player2.username)) {
                 return g;
             }
@@ -80,11 +80,11 @@ public class GameRecord {
         return null;
     }
 
-    public Game[] getGame() {
+    public GameR[] getGame() {
         return game;
     }
 
-    public void setGame(Game[] game) {
+    public void setGame(GameR[] game) {
         this.game = game;
     }
 

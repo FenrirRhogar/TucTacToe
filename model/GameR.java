@@ -2,7 +2,7 @@ package model;
 
 import java.time.LocalDateTime;
 
-public class Game {
+public class GameR {
     Player player1;
     Player player2;
     float winnerScore;
@@ -10,7 +10,7 @@ public class Game {
     int winner; //1 for player1, 2 for player2, 0 for draw
     LocalDateTime DateTime;
 
-    public Game(Player player1, Player player2, float winnerScore, float loserScore, int winner) {
+    public GameR(Player player1, Player player2, float winnerScore, float loserScore, int winner) {
         this.player1 = player1;
         this.player2 = player2;
         this.winnerScore = winnerScore;

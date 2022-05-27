@@ -8,7 +8,7 @@ import javax.swing.JOptionPane;
 
 import java.awt.*;
 import model.*;
-import model.Game;
+import model.GameR;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -145,8 +145,8 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
 
     public Boolean Result(int res) {
         JFrame jFrame = new JFrame();
-        // gamerecord.loadGame();
         if (res == 1) {
+            //gamerecord.loadGame();
             for (int i = 0; i < 9; i++) {
                 b[i].setEnabled(false);
                 boardbutton.setEnabled(false);
@@ -156,20 +156,12 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
             playagainbutton.setEnabled(true);
             playagainbutton2.setVisible(true);
             playagainbutton2.setEnabled(true);
-            /*
-             * Game g = new
-             * Game(playerpanel.roster.findPlayer(playerpanel.player1name.getText()),
-             * playerpanel.roster.findPlayer(playerpanel.player2name.getText()),
-             * playerpanel.roster.findPlayer(playerpanel.player1name.getText()).getScore(),
-             * playerpanel.roster.findPlayer(playerpanel.player1name.getText()).getScore(),
-             * 1);
-             * for (int i = 0; i < 50; i++) {
-             * if (gamerecord.getGame()[i] == null) {
-             * gamerecord.addGame(g, i);
-             * break;
-             * }
-             * }
-             */
+            System.out.println();
+            GameR g = new GameR(playerpanel.roster.findPlayer(playerpanel.player1name.getText()),
+                    playerpanel.roster.findPlayer(playerpanel.player2name.getText()),
+                    playerpanel.roster.findPlayer(playerpanel.player1name.getText()).getScore(),
+                    playerpanel.roster.findPlayer(playerpanel.player1name.getText()).getScore(),
+                    1);          
             playerpanel.roster.player1wins(playerpanel.player1name.getText(), playerpanel.player2name.getText());
             return true;
         } else if (res == -1) {
@@ -182,20 +174,14 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
             playagainbutton.setEnabled(true);
             playagainbutton2.setVisible(true);
             playagainbutton2.setEnabled(true);
-            /*
-             * Game g = new
-             * Game(playerpanel.roster.findPlayer(playerpanel.player1name.getText()),
-             * playerpanel.roster.findPlayer(playerpanel.player2name.getText()),
-             * playerpanel.roster.findPlayer(playerpanel.player1name.getText()).getScore(),
-             * playerpanel.roster.findPlayer(playerpanel.player1name.getText()).getScore(),
-             * 2);
-             * for (int i = 0; i < 50; i++) {
-             * if (gamerecord.getGame()[i] == null) {
-             * gamerecord.addGame(g, i);
-             * break;
-             * }
-             * }
-             */
+
+            GameR g = new GameR(playerpanel.roster.findPlayer(playerpanel.player1name.getText()),
+                    playerpanel.roster.findPlayer(playerpanel.player2name.getText()),
+                    playerpanel.roster.findPlayer(playerpanel.player1name.getText()).getScore(),
+                    playerpanel.roster.findPlayer(playerpanel.player1name.getText()).getScore(),
+                    2);
+            gamerecord.storeGame();
+
             playerpanel.roster.player2wins(playerpanel.player1name.getText(), playerpanel.player2name.getText());
             return true;
         } else {
@@ -211,20 +197,16 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
                 playagainbutton.setEnabled(true);
                 playagainbutton2.setVisible(true);
                 playagainbutton2.setEnabled(true);
-                /*
-                 * Game g = new
-                 * Game(playerpanel.roster.findPlayer(playerpanel.player1name.getText()),
-                 * playerpanel.roster.findPlayer(playerpanel.player2name.getText()),
-                 * playerpanel.roster.findPlayer(playerpanel.player1name.getText()).getScore(),
-                 * playerpanel.roster.findPlayer(playerpanel.player1name.getText()).getScore(),
-                 * 0);
-                 * for (int i = 0; i < 50; i++) {
-                 * if (gamerecord.getGame()[i] == null) {
-                 * gamerecord.addGame(g, i);
-                 * break;
-                 * }
-                 * }
-                 */
+                
+                  GameR g = new
+                  GameR(playerpanel.roster.findPlayer(playerpanel.player1name.getText()),
+                  playerpanel.roster.findPlayer(playerpanel.player2name.getText()),
+                  playerpanel.roster.findPlayer(playerpanel.player1name.getText()).getScore(),
+                  playerpanel.roster.findPlayer(playerpanel.player1name.getText()).getScore(),
+                  0);
+                  gamerecord.storeGame();
+
+                 
                 playerpanel.roster.playerdraw(playerpanel.player1name.getText(), playerpanel.player2name.getText());
                 return true;
             }
@@ -264,18 +246,17 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
                         e1.printStackTrace();
                     }
                     return;
-                } 
-                   else if (playerpanel.player1name.getText().equals("Hal") == true) {
-                   try {
-                   PerfectPlayer(turn);
-                   turn = board.nextPlay();
-                  } catch (InterruptedException e1) {
-                   // TODO Auto-generated catch block
-                   e1.printStackTrace();
-                   }
-                   return;
-                   }
-                  
+                } else if (playerpanel.player1name.getText().equals("Hal") == true) {
+                    try {
+                        PerfectPlayer(turn);
+                        turn = board.nextPlay();
+                    } catch (InterruptedException e1) {
+                        // TODO Auto-generated catch block
+                        e1.printStackTrace();
+                    }
+                    return;
+                }
+
                 // ksekinaei o 1
             }
 
@@ -315,18 +296,17 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
                         e1.printStackTrace();
                     }
                     return;
-                } 
-                   else if (playerpanel.player2name.getText().equals("Hal") == true) {
-                   try {
-                   PerfectPlayer(turn);
-                   turn = board.nextPlay();
-                   } catch (InterruptedException e1) {
-                   // TODO Auto-generated catch block
-                   e1.printStackTrace();
-                   }
-                   return;
-                   }
-                  
+                } else if (playerpanel.player2name.getText().equals("Hal") == true) {
+                    try {
+                        PerfectPlayer(turn);
+                        turn = board.nextPlay();
+                    } catch (InterruptedException e1) {
+                        // TODO Auto-generated catch block
+                        e1.printStackTrace();
+                    }
+                    return;
+                }
+
                 // ksekinaei o 2
             }
 
