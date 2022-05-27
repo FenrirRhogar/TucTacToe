@@ -264,18 +264,18 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
                         e1.printStackTrace();
                     }
                     return;
-                } /*
-                   * else if (playerpanel.player1name.getText().equals("Hal") == true) {
-                   * try {
-                   * PerfectPlayer(board.getIc1());
-                   * turn = board.nextPlay();
-                   * } catch (InterruptedException e1) {
-                   * // TODO Auto-generated catch block
-                   * e1.printStackTrace();
-                   * }
-                   * return;
-                   * }
-                   */
+                } 
+                   else if (playerpanel.player1name.getText().equals("Hal") == true) {
+                   try {
+                   PerfectPlayer(turn);
+                   turn = board.nextPlay();
+                  } catch (InterruptedException e1) {
+                   // TODO Auto-generated catch block
+                   e1.printStackTrace();
+                   }
+                   return;
+                   }
+                  
                 // ksekinaei o 1
             }
 
@@ -315,18 +315,18 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
                         e1.printStackTrace();
                     }
                     return;
-                } /*
-                   * else if (playerpanel.player2name.getText().equals("Hal") == true) {
-                   * try {
-                   * PerfectPlayer(board.getIc2());
-                   * turn = board.nextPlay();
-                   * } catch (InterruptedException e1) {
-                   * // TODO Auto-generated catch block
-                   * e1.printStackTrace();
-                   * }
-                   * return;
-                   * }
-                   */
+                } 
+                   else if (playerpanel.player2name.getText().equals("Hal") == true) {
+                   try {
+                   PerfectPlayer(turn);
+                   turn = board.nextPlay();
+                   } catch (InterruptedException e1) {
+                   // TODO Auto-generated catch block
+                   e1.printStackTrace();
+                   }
+                   return;
+                   }
+                  
                 // ksekinaei o 2
             }
 
