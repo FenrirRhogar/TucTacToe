@@ -7,6 +7,8 @@ public class Player implements Serializable {
     public String username;
     public int victories, losses, draws, games;
     public float score;
+    public Game[] gameR;
+    //GameRecord gamerecord = new GameRecord();
 
     public Player() {
 
@@ -19,6 +21,10 @@ public class Player implements Serializable {
         this.victories = victories;
         this.losses = losses;
         this.draws = draws;
+        /*int i = 0;
+        while (gameR[i] != null) {
+            gameR[i] = gamerecord.findGame(this.username);
+        }*/
     }
 
     public String getUsername() {
@@ -69,6 +75,14 @@ public class Player implements Serializable {
         this.games = games;
     }
 
+    public Game[] getGameR() {
+        return gameR;
+    }
+
+    public void setGameR(Game[] gameR) {
+        this.gameR = gameR;
+    }
+
     public float calculateScore(int victories, int draws, int games) {
         float result;
         if (games == 0) {
@@ -98,4 +112,5 @@ public class Player implements Serializable {
         }
         return result;
     }
+    
 }

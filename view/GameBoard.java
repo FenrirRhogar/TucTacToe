@@ -8,7 +8,7 @@ import javax.swing.JOptionPane;
 
 import java.awt.*;
 import model.*;
-import model.Board;
+import model.Game;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -30,6 +30,7 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
     JPanel activeplayerpanel = new JPanel();
     Board board = new Board();
     AIplayer ai = new AIplayer();
+    GameRecord gamerecord = new GameRecord();
     Random random = new Random();
     boolean turn;
     int num, result;
@@ -144,17 +145,32 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
 
     public Boolean Result(int res) {
         JFrame jFrame = new JFrame();
+        // gamerecord.loadGame();
         if (res == 1) {
             for (int i = 0; i < 9; i++) {
                 b[i].setEnabled(false);
                 boardbutton.setEnabled(false);
             }
             JOptionPane.showMessageDialog(jFrame, "Player 1 wins!");
-            playerpanel.roster.player1wins(playerpanel.player1name.getText(), playerpanel.player2name.getText());
             playagainbutton.setVisible(true);
             playagainbutton.setEnabled(true);
             playagainbutton2.setVisible(true);
             playagainbutton2.setEnabled(true);
+            /*
+             * Game g = new
+             * Game(playerpanel.roster.findPlayer(playerpanel.player1name.getText()),
+             * playerpanel.roster.findPlayer(playerpanel.player2name.getText()),
+             * playerpanel.roster.findPlayer(playerpanel.player1name.getText()).getScore(),
+             * playerpanel.roster.findPlayer(playerpanel.player1name.getText()).getScore(),
+             * 1);
+             * for (int i = 0; i < 50; i++) {
+             * if (gamerecord.getGame()[i] == null) {
+             * gamerecord.addGame(g, i);
+             * break;
+             * }
+             * }
+             */
+            playerpanel.roster.player1wins(playerpanel.player1name.getText(), playerpanel.player2name.getText());
             return true;
         } else if (res == -1) {
             for (int i = 0; i < 9; i++) {
@@ -162,11 +178,25 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
                 boardbutton.setEnabled(false);
             }
             JOptionPane.showMessageDialog(jFrame, "Player 2 wins!");
-            playerpanel.roster.player2wins(playerpanel.player1name.getText(), playerpanel.player2name.getText());
             playagainbutton.setVisible(true);
             playagainbutton.setEnabled(true);
             playagainbutton2.setVisible(true);
             playagainbutton2.setEnabled(true);
+            /*
+             * Game g = new
+             * Game(playerpanel.roster.findPlayer(playerpanel.player1name.getText()),
+             * playerpanel.roster.findPlayer(playerpanel.player2name.getText()),
+             * playerpanel.roster.findPlayer(playerpanel.player1name.getText()).getScore(),
+             * playerpanel.roster.findPlayer(playerpanel.player1name.getText()).getScore(),
+             * 2);
+             * for (int i = 0; i < 50; i++) {
+             * if (gamerecord.getGame()[i] == null) {
+             * gamerecord.addGame(g, i);
+             * break;
+             * }
+             * }
+             */
+            playerpanel.roster.player2wins(playerpanel.player1name.getText(), playerpanel.player2name.getText());
             return true;
         } else {
             if (b[0].getIcon() != null && b[1].getIcon() != null && b[2].getIcon() != null && b[3].getIcon() != null
@@ -177,11 +207,25 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
                     boardbutton.setEnabled(false);
                 }
                 JOptionPane.showMessageDialog(jFrame, "Draw!");
-                playerpanel.roster.playerdraw(playerpanel.player1name.getText(), playerpanel.player2name.getText());
                 playagainbutton.setVisible(true);
                 playagainbutton.setEnabled(true);
                 playagainbutton2.setVisible(true);
                 playagainbutton2.setEnabled(true);
+                /*
+                 * Game g = new
+                 * Game(playerpanel.roster.findPlayer(playerpanel.player1name.getText()),
+                 * playerpanel.roster.findPlayer(playerpanel.player2name.getText()),
+                 * playerpanel.roster.findPlayer(playerpanel.player1name.getText()).getScore(),
+                 * playerpanel.roster.findPlayer(playerpanel.player1name.getText()).getScore(),
+                 * 0);
+                 * for (int i = 0; i < 50; i++) {
+                 * if (gamerecord.getGame()[i] == null) {
+                 * gamerecord.addGame(g, i);
+                 * break;
+                 * }
+                 * }
+                 */
+                playerpanel.roster.playerdraw(playerpanel.player1name.getText(), playerpanel.player2name.getText());
                 return true;
             }
         }
@@ -399,86 +443,84 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
         }
     }
 
-    public int getMin(boolean turn, Icon ic, int alpha, int beta, int depth) {
-        int bestMove = -1;
-        int i;
-
-        for (i = 0; i < 9; i++) {
-
-            if (b[i].getIcon() == null) {
-                b[i].setIcon(ic);
-                turn = board.nextPlay();
-                int score = minimax(turn, ic, alpha, beta, depth);
-                b[i].setIcon(null);
-                if (score < beta) {
-                    beta = score;
-                    bestMove = i;
-                }
-
-                // Pruning.
-                if (alpha >= beta) {
-                    break;
-                }
+    public int getAvailable() {
+        int num = 0;
+        for (int i = 0; i < 9; i++) {
+            if (b[i].getIcon() != null) {
+                num++;
             }
         }
-        if (bestMove != -1) {
-
-            System.out.println("Bba");
-            return bestMove;
-        }
-        return beta;
+        return num;
     }
 
-    public int getMax(boolean turn, Icon ic, int alpha, int beta, int depth) {
-        int bestMove = -1;
-        int i;
-
-        for (i = 0; i < 9; i++) {
-            if (b[i].getIcon() == null) {
-                b[i].setIcon(ic);
-                turn = board.nextPlay();
-                int score = minimax(turn, ic, alpha, beta, depth);
-                b[i].setIcon(null);
-                if (score > alpha) {
-                    alpha = score;
-                    bestMove = i;
-                }
-
-                // Pruning.
-                if (alpha >= beta) {
-                    break;
-                }
-
-            }
-        }
-
-        if (bestMove != -1) {
-
-            System.out.println("BLa");
-            return bestMove;
-        }
-        return alpha;
-
-    }
-
-    public int minimax(boolean turn, Icon ic, int alpha, int beta, int depth) {
-        depth++;
+    public int minimax(boolean isMaximizing, int depth) {
         if (ResultCheck() != 0) {
             return score(depth);
         }
-        if (depth == 6) {
-            if (turn) {
-
-                b[getMax(turn, ic, alpha, beta, depth)].setIcon(ic);
-            } else {
-                b[getMin(turn, ic, alpha, beta, depth)].setIcon(ic);
-            }
+        if (getAvailable() == 0) {
+            return 0;
         }
-        if (turn) {
-
-            return getMax(turn, ic, alpha, beta, depth);
+        if (isMaximizing) {
+            int best = Integer.MIN_VALUE;
+            for (int i = 0; i < 9; i++) {
+                if (b[i].getIcon() == null) {
+                    b[i].setIcon(board.getIc1());
+                    best = Math.max(best, minimax(!isMaximizing, depth + 1));
+                    b[i].setIcon(null);
+                }
+            }
+            return best;
         } else {
-            return getMin(turn, ic, alpha, beta, depth);
+            int best = Integer.MAX_VALUE;
+            for (int i = 0; i < 9; i++) {
+                if (b[i].getIcon() == null) {
+                    b[i].setIcon(board.getIc2());
+                    best = Math.min(best, minimax(!isMaximizing, depth + 1));
+                    b[i].setIcon(null);
+                }
+            }
+            return best;
+        }
+    }
+
+    public void PerfectPlayer(boolean turn) throws InterruptedException {
+
+        if (turn) {
+            int bestMove = -1;
+            int best = Integer.MIN_VALUE;
+            for (int i = 0; i < 9; i++) {
+                if (b[i].getIcon() == null) {
+                    b[i].setIcon(board.getIc1());
+                    int move = minimax(false, 0);
+                    b[i].setIcon(null);
+                    System.out.println(move + "turn");
+                    if (move > best) {
+                        best = move;
+                        bestMove = i;
+                    }
+                }
+                System.out.println(best + "turn");
+            }
+            System.out.println("\n" + bestMove + "turn");
+            b[bestMove].setIcon(board.getIc1());
+        } else {
+            int bestMove = -1;
+            int best = Integer.MAX_VALUE;
+            for (int i = 0; i < 9; i++) {
+                if (b[i].getIcon() == null) {
+                    b[i].setIcon(board.getIc2());
+                    int move = minimax(true, 0);
+                    b[i].setIcon(null);
+                    System.out.println(move + "MOVE");
+                    if (move < best) {
+                        best = move;
+                        bestMove = i;
+                    }
+                }
+                System.out.println(bestMove + "IN_LOOP");
+            }
+            System.out.println("\n" + best + "FINAL");
+            b[bestMove].setIcon(board.getIc2());
         }
 
     }
@@ -487,7 +529,7 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
         int sel = 0;
         int i;
         int[] availablePos = new int[9];
-        // TimeUnit.SECONDS.sleep(2);
+
         for (i = 0; i < 9; i++) {
             if (b[i].getIcon() == null) {
                 availablePos[i] = i;
@@ -504,42 +546,6 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
         b[sel].setIcon(ic);
     }
 
-    
-    
-     public int minmax(boolean turn) {
-      if (ResultCheck() != 0) {
-      return result;
-      }
-      if (turn) {
-      int j = Integer.MAX_VALUE;
-      for (int i = 0; i < 9; i++) {
-      if (b[i].getIcon() == null) {
-      b[i].setIcon(board.getIc1());
-      int value = minmax(false);
-      b[i].setIcon(null);
-      if (value == -1) {
-      return value;
-      }
-      j = Math.min(value, j);
-      }
-      }
-      return j;
-      }
-      int bestVal = Integer.MIN_VALUE;
-      for (int k = 0; k < 9; k++) {
-      if (b[k].getIcon() == null) {
-      b[k].setIcon(board.getIc2());
-      int value = minmax(true);
-      b[k].setIcon(null);
-      if (value == 1) {
-      return value;
-      }
-      bestVal = Math.max(bestVal, value);
-      }
-      }
-      return bestVal;
-      }
-     
     public Boolean gameplay(int i) {
 
         if (turn) {
@@ -570,6 +576,7 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        // Timer t = new Timer(1000, listener)
         try {
             JButton actionSource = (JButton) e.getSource();
 
@@ -581,36 +588,42 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
                     if (playerpanel.player1name.getText().equals("Hal")) {
                         if (turn) {
 
-                            minimax(turn, board.getIc1(), Integer.MIN_VALUE, Integer.MAX_VALUE, 0);
+                            PerfectPlayer(turn);
+                            activeplayer.setText(playerpanel.player1name.getText());
                             turn = board.nextPlay();
                         } else {
                             if (actionSource == b[i]) {
                                 if (gameplay(i) == true) {
                                     return;
                                 }
+
                             }
 
                         }
                         // gameplay(i);
                     } else {
                         if (turn) {
-                            actionSource = b[i];
-                            if (gameplay(i) == true) {
-                                return;
+                            if (actionSource == b[i]) {
+                                if (gameplay(i) == true) {
+                                    return;
+                                }
                             }
-
                         } else {
-                            // actionSource = null;
-                            minimax(turn, board.getIc2(), Integer.MIN_VALUE, Integer.MAX_VALUE, 0);
+
+                            actionSource = null;
+                            PerfectPlayer(turn);
+                            activeplayer.setText(playerpanel.player1name.getText());
                             turn = board.nextPlay();
                             if (Result(ResultCheck()) == true) {
                                 return;
                             }
+                            actionSource = b[i];
                         }
 
                         // gameplay(i);
                     }
-                } else if (playerpanel.player1name.getText().equals("Mr. Bean") || playerpanel.player2name.getText().equals("Mr. Bean")) {
+                } else if (playerpanel.player1name.getText().equals("Mr. Bean")
+                        || playerpanel.player2name.getText().equals("Mr. Bean")) {
 
                     if (playerpanel.player1name.getText().equals("Mr. Bean")) {
                         if (turn) {
@@ -626,7 +639,6 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
 
                             }
 
-                        
                         }
                         // gameplay(i);
                     } else {
@@ -637,6 +649,7 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
                                 }
                             }
                         } else {
+
                             actionSource = null;
                             RandomPlayer(board.getIc2());
                             activeplayer.setText(playerpanel.player1name.getText());
@@ -687,5 +700,4 @@ public class GameBoard extends JFrame implements ItemListener, ActionListener {
     public void itemStateChanged(ItemEvent e) {
 
     }
-
 }
